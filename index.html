@@ -778,7 +778,7 @@ footer p {
 
 /* === UNIFORM NON-BELIEVER NAME SIZE === */
 #non-believers .non-believers-list li .name {
-  font-family: Georgia, "Times New Roman", serif !important;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
   font-size: 2.25rem !important;
   font-weight: 800 !important;
   line-height: 1 !important;
@@ -796,6 +796,96 @@ footer p {
   }
 }
 
+
+/* === Roman numerals placed after the left banner === */
+#non-believers .non-believers-panel {
+  width: min(900px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 8px 0 30px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#non-believers .non-believers-list {
+  display: block !important;
+  width: min(860px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+  counter-reset: unbeliever !important;
+}
+#non-believers .non-believers-list li {
+  counter-increment: unbeliever !important;
+  display: grid !important;
+  grid-template-columns: 82px minmax(0,1fr) !important;
+  align-items: center !important;
+  width: 100% !important;
+  aspect-ratio: 1800 / 450 !important;
+  min-height: 0 !important;
+  margin: 0 0 10px !important;
+  padding: 0 70px 0 155px !important;
+  background: url("assets/name-parchment-long.jpg") center / 100% 100% no-repeat !important;
+  border: 0 !important;
+  box-shadow: 0 7px 18px rgba(0,0,0,.34) !important;
+  overflow: hidden !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#non-believers .non-believers-list li::before,
+#non-believers .non-believers-list li::after {
+  content: none !important;
+  display: none !important;
+}
+#non-believers .non-believers-list li .roman {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#non-believers .non-believers-list li .roman::before {
+  content: counter(unbeliever, upper-roman) "." !important;
+  color: #2a2116 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+#non-believers .non-believers-list li .name {
+  display: block !important;
+  padding-left: 18px !important;
+  color: #17130d !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .015em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+#non-believers .non-believers-list li:hover {
+  transform: translateY(-1px) !important;
+  filter: brightness(1.02) !important;
+}
+@media (max-width:700px) {
+  #non-believers .non-believers-list li {
+    grid-template-columns: 58px minmax(0,1fr) !important;
+    padding-left: 105px !important;
+    padding-right: 38px !important;
+    margin-bottom: 7px !important;
+  }
+  #non-believers .non-believers-list li .roman::before {
+    font-size: .9rem !important;
+  }
+  #non-believers .non-believers-list li .name {
+    font-size: 1.3rem !important;
+    padding-left: 10px !important;
+  }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -807,8 +897,8 @@ footer p {
   </header>
 
   <nav class="tabs" aria-label="Main sections">
-    <button type="button" class="tab-button active" data-tab="home">CHURCH OF OVERLORD</button>
-    <button type="button" class="tab-button" data-tab="ten-laws">TEN LAWS</button>
+    <button type="button" class="tab-button active" data-tab="home">THE CHURCH OF OVERLORD</button>
+    <button type="button" class="tab-button" data-tab="ten-laws">THE TEN LAWS</button>
     <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
     <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
   </nav>
@@ -818,6 +908,14 @@ footer p {
       <div class="intro">
         <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
       </div>
+
+      <section class="video-section" aria-labelledby="video-title">
+        <div class="section-heading">
+          <span></span>
+          <h2 id="video-title">THE MESSAGE</h2>
+          <span></span>
+        </div>
+
         <div class="video-frame">
           <iframe
             src="https://www.youtube-nocookie.com/embed/2HGI_hD7JSM"
@@ -834,16 +932,26 @@ footer p {
 
 
 <section id="ten-laws" class="tab-panel document-page">
+      <div class="page-heading">
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
+        <h1>THE TEN LAWS</h1>
+      </div>
       <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
     </section>
 
 <section id="doctrine" class="tab-panel document-page">
+      <div class="page-heading">
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
+        <h1>THE DOCTRINE</h1>
+      </div>
       <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
     </section>
 
 <section id="non-believers" class="tab-panel">
       <div class="page-heading">
-        <h1>NON-BELIEVERS</h1>
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
+        <h1>THE NON-BELIEVERS</h1>
+        <p>Those who have yet to see the Flame.</p>
       </div>
 
       <div class="non-believers-panel">
