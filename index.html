@@ -597,7 +597,7 @@ footer p {
 }
 .non-believers-list li {
   counter-increment:unbeliever; display:grid; grid-template-columns:92px 1fr; align-items:center; min-height:76px;
-  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/-parchment.jpg") center / 100% 100% no-repeat;
+  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/name-parchment.jpg") center / 100% 100% no-repeat;
   color:#1e1a12; border:0; box-shadow:0 8px 20px rgba(0,0,0,.36);
   font-family:"Cinzel", Georgia, "Times New Roman", serif; transition:transform 150ms ease, filter 150ms ease;
 }
@@ -605,8 +605,8 @@ footer p {
 .non-believers-list li .roman::before {
   content:counter(unbeliever, upper-roman) "."; display:block; color:#382918; font-size:.95rem; font-weight:800; text-align:center;
 }
-.non-believers-list li . { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
-.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:1400; }
+.non-believers-list li .name { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
+.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:700; }
 @media (max-width:620px) {
  .non-believers-list li { grid-template-columns:68px 1fr; min-height:64px; padding:0 20px 0 14px; margin-bottom:8px; }
  .non-believers-list li .roman::before { font-size:.78rem; }
@@ -715,6 +715,85 @@ footer p {
   }
   .non-believers-list li .roman::before { font-size: .78rem !important; }
   .non-believers-list li .name { font-size: .92rem !important; padding-left: 8px !important; }
+}
+
+
+/* === FINAL TYPOGRAPHY UPDATE === */
+
+/* Non-Believers title uses the same pamphlet-style font as the names */
+#non-believers .page-heading h1 {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(2.6rem, 5.4vw, 4.2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .10em !important;
+  line-height: 1.05 !important;
+  color: #ead9bd !important;
+}
+
+/* Larger Roman numeral and name so each parchment feels filled */
+#non-believers .non-believers-list li .roman::before {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.15rem, 2.1vw, 1.55rem) !important;
+  font-weight: 800 !important;
+}
+
+#non-believers .non-believers-list li .name {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.65rem, 3vw, 2.25rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .025em !important;
+  line-height: 1 !important;
+  color: #17130d !important;
+}
+
+/* Give the text a little more usable parchment space */
+#non-believers .non-believers-list li {
+  grid-template-columns: 105px minmax(0, 1fr) !important;
+  padding-left: 30px !important;
+  padding-right: 82px !important;
+}
+
+@media (max-width: 620px) {
+  #non-believers .page-heading h1 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+    letter-spacing: .06em !important;
+  }
+
+  #non-believers .non-believers-list li {
+    grid-template-columns: 70px minmax(0, 1fr) !important;
+    padding-left: 18px !important;
+    padding-right: 52px !important;
+  }
+
+  #non-believers .non-believers-list li .roman::before {
+    font-size: .95rem !important;
+  }
+
+  #non-believers .non-believers-list li .name {
+    font-size: clamp(1.15rem, 5vw, 1.5rem) !important;
+    padding-left: 8px !important;
+  }
+}
+
+
+/* === UNIFORM NON-BELIEVER NAME SIZE === */
+#non-believers .non-believers-list li .name {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .02em !important;
+  color: #17130d !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  padding-left: 12px !important;
+}
+
+@media (max-width: 620px) {
+  #non-believers .non-believers-list li .name {
+    font-size: 1.35rem !important;
+  }
 }
 
 </style>
