@@ -3,62 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#09070b">
+  <meta name="theme-color" content="#050407">
   <title>The Church of Overlord</title>
   <meta name="description" content="The Church of Overlord — One Flame. One Law. One Balance.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
-    <img class="hero-banner" src="assets/banner2.png" alt="The Church of Overlord banner">
+    <img class="hero-banner" src="assets/banner.png" alt="The Church of Overlord banner">
   </header>
 
+  <nav class="tabs" aria-label="Main sections">
+    <button class="tab-button active" data-tab="home">THE CHURCH OF OVERLORD</button>
+    <button class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
+    <button class="tab-button" data-tab="doctrine">DOCTRINE</button>
+    <button class="tab-button" data-tab="creed">CREED</button>
+    <button class="tab-button" data-tab="ten-laws">TEN LAWS</button>
+  </nav>
+
   <main>
-    <section class="intro">
-      <img class="sigil" src="assets/symbol.png" alt="Church of Overlord symbol">
-      <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
-    </section>
-
-    <section class="video-section" aria-labelledby="video-title">
-      <div class="section-heading">
-        <span></span>
-        <h2 id="video-title">THE MESSAGE</h2>
-        <span></span>
+    <section id="home" class="tab-panel active">
+      <div class="intro">
+        <img class="sigil" src="assets/symbol.png" alt="Church of Overlord symbol">
+        <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
       </div>
 
-      <!--
-        PARA COLOCAR O TEU VÍDEO:
-        1. Abre o vídeo no YouTube.
-        2. Copia o código que aparece depois de "v=" no endereço.
-           Exemplo: youtube.com/watch?v=ABC123XYZ
-           O ID é: ABC123XYZ
-        3. Substitui VIDEO_ID abaixo por esse código.
-      -->
-      <div class="video-frame">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/2HGI_hD7JSM"
-          title="The Church of Overlord"
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-      
+      <section class="video-section" aria-labelledby="video-title">
+        <div class="section-heading">
+          <span></span>
+          <h2 id="video-title">THE MESSAGE</h2>
+          <span></span>
+        </div>
+
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/2HGI_hD7JSM"
+            title="The Church of Overlord"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
     </section>
 
-    <section class="documents" aria-label="Church documents">
-      <article class="document-card">
-        <img src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
-      </article>
+    <section id="non-believers" class="tab-panel">
+      <div class="page-heading">
+        <img class="page-sigil" src="assets/symbol.png" alt="">
+        <h1>THE NON-BELIEVERS</h1>
+        <p>Those who have yet to see the Flame.</p>
+      </div>
 
-      <article class="document-card">
-        <img src="assets/creed.png" alt="The Creed of the Church of Overlord">
-      </article>
+      <div class="non-believers-panel">
+        <ol class="non-believers-list">
+          <li>invite</li>
+          <li>Undying</li>
+          <li>Rubio</li>
+          <li>Aivan</li>
+          <li>BUSDRIVER</li>
+          <li>Tecto</li>
+          <li>NoCommenT</li>
+          <li>BlackillusioN</li>
+          <li>BigusDickus</li>
+          <li>dsn</li>
+          <li>Seriel</li>
+          <li>Copycat</li>
+          <li>kill</li>
+        </ol>
 
-      <article class="document-card wide">
-        <img src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
-      </article>
+        <div class="non-believers-ending">
+          <span></span>
+          <p>THE FLAME REMEMBERS.</p>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="doctrine" class="tab-panel document-page">
+      <div class="page-heading">
+        <h1>DOCTRINE</h1>
+      </div>
+      <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
+    </section>
+
+    <section id="creed" class="tab-panel document-page">
+      <div class="page-heading">
+        <h1>THE CREED</h1>
+      </div>
+      <img class="document-image" src="assets/creed.png" alt="The Creed of the Church of Overlord">
+    </section>
+
+    <section id="ten-laws" class="tab-panel document-page">
+      <div class="page-heading">
+        <h1>THE TEN LAWS</h1>
+      </div>
+      <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
     </section>
   </main>
 
@@ -66,5 +106,34 @@
     <img src="assets/symbol.png" alt="" class="footer-sigil">
     <p>PRAISE PA’AGRIO · HONOUR THE ANCESTORS · TRUST THE LORD</p>
   </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(tabName) {
+      buttons.forEach(button => {
+        const isActive = button.dataset.tab === tabName;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      panels.forEach(panel => {
+        panel.classList.toggle('active', panel.id === tabName);
+      });
+
+      history.replaceState(null, '', '#' + tabName);
+      window.scrollTo({ top: document.querySelector('.tabs').offsetTop, behavior: 'smooth' });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => activateTab(button.dataset.tab));
+    });
+
+    const initial = location.hash.replace('#', '');
+    if (initial && document.getElementById(initial)) {
+      activateTab(initial);
+    }
+  </script>
 </body>
 </html>

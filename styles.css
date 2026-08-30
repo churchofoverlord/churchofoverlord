@@ -4,8 +4,8 @@
 
 :root {
   --bg: #050407;
-  --panel: #0b0810;
-  --panel-2: #110b18;
+  --bg-soft: #0a0710;
+  --panel: #0c0811;
   --purple: #7a2f9d;
   --purple-bright: #b05ad7;
   --stone: #d4c6ae;
@@ -19,8 +19,9 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
   background:
-    radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.17), transparent 32rem),
+    radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.15), transparent 30rem),
     linear-gradient(180deg, #020203 0%, var(--bg) 35%, #030204 100%);
   color: var(--stone);
   font-family: Georgia, "Times New Roman", serif;
@@ -29,16 +30,74 @@ body {
 .hero {
   width: 100%;
   background: #000;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(176, 90, 215, 0.22);
 }
 
 .hero-banner {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 620px;
-  object-fit: contain;
-  background: #000;
+  max-height: 540px;
+  object-fit: cover;
+}
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  padding: 0 16px;
+  background: rgba(5, 4, 7, 0.96);
+  border-bottom: 1px solid rgba(176, 90, 215, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.32);
+  backdrop-filter: blur(8px);
+  overflow-x: auto;
+}
+
+.tab-button {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 58px;
+  padding: 0 20px;
+  border: 0;
+  background: transparent;
+  color: #9b90a2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.83rem;
+  letter-spacing: 0.11em;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: var(--stone);
+  background: rgba(176, 90, 215, 0.045);
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 2px;
+  background: transparent;
+  box-shadow: none;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.tab-button.active {
+  color: #e5d7c1;
+}
+
+.tab-button.active::after {
+  background: var(--purple-bright);
+  box-shadow: 0 0 10px rgba(176, 90, 215, 0.65);
 }
 
 main {
@@ -46,27 +105,39 @@ main {
   margin: 0 auto;
 }
 
+.tab-panel {
+  display: none;
+  min-height: 650px;
+  padding: 34px 0 68px;
+}
+
+.tab-panel.active {
+  display: block;
+  animation: fadeIn 180ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .intro {
   text-align: center;
-  padding: 42px 0 28px;
+  padding: 8px 0 26px;
 }
 
 .sigil {
-  width: min(190px, 48vw);
+  width: min(150px, 40vw);
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(138, 52, 178, 0.35));
+  filter: drop-shadow(0 0 22px rgba(138, 52, 178, 0.34));
 }
 
 .motto {
-  margin: 18px 0 0;
+  margin: 8px 0 0;
   color: var(--purple-bright);
   letter-spacing: 0.22em;
   font-size: clamp(0.72rem, 1.7vw, 1rem);
-}
-
-.video-section {
-  padding: 34px 0 64px;
 }
 
 .section-heading {
@@ -89,14 +160,18 @@ main {
   font-size: clamp(1.2rem, 3vw, 2rem);
 }
 
+.video-section {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: 10px 0 20px;
+}
+
 .video-frame {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid rgba(176, 90, 215, 0.42);
-  background:
-    radial-gradient(circle at center, rgba(116, 38, 148, 0.2), transparent 45%),
-    #000;
+  background: #000;
   box-shadow:
     0 0 0 5px rgba(255,255,255,0.015),
     0 18px 70px rgba(0,0,0,0.6),
@@ -111,65 +186,130 @@ main {
   border: 0;
 }
 
-.video-help {
+.page-heading {
+  text-align: center;
+  padding: 8px 0 30px;
+}
+
+.page-heading h1 {
+  margin: 0;
+  color: #ddd0ba;
+  font-size: clamp(1.55rem, 4vw, 2.55rem);
+  letter-spacing: 0.14em;
+  font-weight: normal;
+}
+
+.page-heading p {
   margin: 12px 0 0;
   color: var(--muted);
-  text-align: center;
-  font: 0.9rem/1.5 Arial, Helvetica, sans-serif;
+  font-style: italic;
+  letter-spacing: 0.06em;
 }
 
-.video-help code {
-  color: var(--purple-bright);
+.page-sigil {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 16px rgba(176, 90, 215, 0.38));
 }
 
-.documents {
+.non-believers-panel {
+  position: relative;
+  overflow: hidden;
+  width: min(820px, 100%);
+  margin: 0 auto;
+  padding: 38px 54px 38px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(122, 47, 157, 0.16), transparent 42%),
+    linear-gradient(145deg, rgba(17, 11, 24, 0.96), rgba(5, 4, 7, 0.98));
+  border: 1px solid rgba(176, 90, 215, 0.32);
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.8),
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(102, 31, 132, 0.12);
+}
+
+.non-believers-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
-  align-items: start;
-  padding-bottom: 72px;
+  gap: 0 56px;
+  margin: 0 auto;
+  padding-left: 38px;
+  max-width: 650px;
+  color: #d4c6ae;
 }
 
-.document-card {
+.non-believers-list li {
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(176, 90, 215, 0.13);
+  letter-spacing: 0.07em;
+  font-size: 1.04rem;
+}
+
+.non-believers-list li::marker {
+  color: #a34dc5;
+  font-weight: bold;
+}
+
+.non-believers-ending {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.non-believers-ending span {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.55), transparent);
+}
+
+.non-believers-ending p {
+  margin: 0;
+  color: #a34dc5;
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.document-page {
+  text-align: center;
+}
+
+.document-image {
+  display: block;
+  width: min(760px, 100%);
+  height: auto;
+  margin: 0 auto;
   padding: 7px;
-  background: linear-gradient(145deg, rgba(122, 47, 157, 0.18), rgba(255,255,255,0.02));
+  background: linear-gradient(145deg, rgba(122, 47, 157, 0.15), rgba(255,255,255,0.015));
   border: 1px solid rgba(176, 90, 215, 0.22);
   box-shadow:
     0 22px 70px rgba(0,0,0,0.55),
     0 0 35px rgba(102, 31, 132, 0.08);
 }
 
-.document-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.document-card.wide {
-  grid-column: 1 / -1;
-  width: min(800px, 100%);
-  justify-self: center;
-}
-
 footer {
   text-align: center;
-  padding: 36px 20px 48px;
+  padding: 30px 20px 42px;
   border-top: 1px solid var(--line);
   background: #020203;
 }
 
 .footer-sigil {
-  width: 76px;
-  height: 76px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
-  opacity: 0.8;
+  opacity: 0.78;
 }
 
 footer p {
-  margin: 15px 0 0;
+  margin: 13px 0 0;
   color: #8f72a2;
   letter-spacing: 0.12em;
-  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  font-size: clamp(0.64rem, 1.5vw, 0.84rem);
 }
 
 @media (max-width: 760px) {
@@ -177,26 +317,43 @@ footer p {
     width: min(100% - 18px, 1180px);
   }
 
-  .intro {
-    padding-top: 28px;
+  .hero-banner {
+    max-height: none;
+    object-fit: contain;
   }
 
-  .video-section {
-    padding-bottom: 42px;
+  .tabs {
+    justify-content: flex-start;
+    padding: 0 8px;
   }
 
-  .documents {
+  .tab-button {
+    min-height: 52px;
+    padding: 0 14px;
+    font-size: 0.74rem;
+  }
+
+  .tab-panel {
+    min-height: 520px;
+    padding-top: 26px;
+  }
+
+  .non-believers-panel {
+    padding: 30px 20px;
+  }
+
+  .non-believers-list {
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding-bottom: 44px;
+    padding-left: 35px;
+    gap: 0;
   }
 
-  .document-card.wide {
-    grid-column: auto;
-    width: 100%;
+  .non-believers-ending {
+    gap: 8px;
   }
 
-  .section-heading {
-    gap: 10px;
+  .non-believers-ending p {
+    white-space: normal;
+    font-size: 0.72rem;
   }
 }
