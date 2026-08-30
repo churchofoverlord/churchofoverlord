@@ -238,7 +238,7 @@
     .non-believers-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       width: min(860px, 100%);
       margin: 0 auto;
       padding: 0;
@@ -250,17 +250,24 @@
       counter-increment: unbeliever;
       position: relative;
       display: grid;
-      grid-template-columns: 78px minmax(0, 1fr);
+      grid-template-columns: 82px minmax(0, 1fr);
       align-items: center;
       width: 100%;
 
-      /* Exact proportions of the trimmed nb-row2.png.
-         No fixed height: this prevents vertical distortion. */
-      aspect-ratio: 1509 / 312;
+      /* nb-row3 is physically cropped to the parchment itself.
+         Therefore the element and the image always have the same ratio. */
+      aspect-ratio: 1504 / 303;
 
-      padding: 0 58px 0 118px;
-      background: url("assets/nb-row2.png") center / 100% 100% no-repeat;
+      /* Left inset starts after the integrated standard. */
+      padding: 0 58px 0 138px;
+
+      background-image: url("assets/nb-row3.png");
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+
       color: #1b160f;
+      overflow: hidden;
       transition: transform 150ms ease, filter 150ms ease;
     }
 
@@ -268,16 +275,16 @@
       content: counter(unbeliever, upper-roman) ".";
       justify-self: end;
       font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 1.7rem;
+      font-size: 1.55rem;
       font-weight: 700;
       line-height: 1;
       color: #21190f;
     }
 
     .non-believers-list .name {
-      padding-left: 18px;
+      padding-left: 16px;
       font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 1.82rem;
+      font-size: 1.72rem;
       font-weight: 700;
       line-height: 1;
       color: #1b160f;
@@ -377,12 +384,12 @@
       }
 
       .non-believers-list {
-        gap: 7px;
+        gap: 6px;
       }
 
       .non-believers-list li {
-        grid-template-columns: 52px minmax(0, 1fr);
-        padding: 0 30px 0 82px;
+        grid-template-columns: 54px minmax(0, 1fr);
+        padding: 0 28px 0 92px;
       }
 
       .non-believers-list li::before {

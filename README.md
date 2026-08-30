@@ -1,32 +1,22 @@
-# Church of Overlord — nb-row2 corrigido
+# Church of Overlord — nb-row3 final fix
 
-Foi usado o `nb-row2.png` exacto fornecido pelo utilizador.
+Cause of the huge vertical gaps:
+The deployed `nb-row2.png` was still the original 1536×1024 canvas. The visible parchment occupies only a horizontal strip inside that canvas. The CSS element had the ratio of the cropped version, but `background-size: 100% 100%` was stretching the entire 1536×1024 canvas into it. Result: a very thin visible parchment inside a tall invisible row.
 
-## O que estava errado
+Fix:
+- New asset name: `assets/nb-row3.png` (avoids browser/GitHub cache confusion).
+- `nb-row3.png` is physically cropped to the parchment itself: 1504×303px.
+- CSS aspect ratio exactly matches that file.
+- No fixed height.
+- Gap between rows is only 8px.
+- Old Non-Believers row assets are removed from this package.
+- One clean CSS rule set only.
 
-O ficheiro original tinha 1536×1024 px, mas a faixa visível ocupava apenas uma parte central.
-O browser estava a comprimir todo esse canvas para uma linha baixa, achatando o papel, o
-estandarte e os ornamentos.
-
-## Correcção
-
-- O asset foi recortado automaticamente à área visual real.
-- Novo tamanho do asset: 1509×312px.
-- O CSS usa `aspect-ratio` correspondente ao ficheiro real.
-- Foi removida a altura fixa das entradas.
-- `nb-row.png` antigo foi removido.
-- Só `assets/nb-row2.png` é usado pelos Non-Believers.
-- Numeração romana continua automática.
-- Para adicionar nomes:
-
-    <li><span class="name">NovoNome</span></li>
-
-## Deploy
-
-Substitui:
+Deploy:
+Upload/replace the ENTIRE contents of this ZIP, especially:
 - `index.html`
-- `assets/nb-row2.png`
+- `assets/nb-row3.png`
 
-Se preferires, podes simplesmente substituir toda a pasta `assets` pela incluída neste ZIP.
+The code deliberately uses a NEW filename. Do not rename `nb-row3.png` back to `nb-row2.png`.
 
-Depois: Commit changes → aguardar GitHub Pages → Ctrl+F5.
+After GitHub Pages deploys, Ctrl+F5.
