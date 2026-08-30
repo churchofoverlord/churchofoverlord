@@ -597,7 +597,7 @@ footer p {
 }
 .non-believers-list li {
   counter-increment:unbeliever; display:grid; grid-template-columns:92px 1fr; align-items:center; min-height:76px;
-  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/name-parchment.jpg") center / 100% 100% no-repeat;
+  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/-parchment.jpg") center / 100% 100% no-repeat;
   color:#1e1a12; border:0; box-shadow:0 8px 20px rgba(0,0,0,.36);
   font-family:"Cinzel", Georgia, "Times New Roman", serif; transition:transform 150ms ease, filter 150ms ease;
 }
@@ -605,8 +605,8 @@ footer p {
 .non-believers-list li .roman::before {
   content:counter(unbeliever, upper-roman) "."; display:block; color:#382918; font-size:.95rem; font-weight:800; text-align:center;
 }
-.non-believers-list li .name { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
-.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:700; }
+.non-believers-list li . { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
+.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:1400; }
 @media (max-width:620px) {
  .non-believers-list li { grid-template-columns:68px 1fr; min-height:64px; padding:0 20px 0 14px; margin-bottom:8px; }
  .non-believers-list li .roman::before { font-size:.78rem; }
