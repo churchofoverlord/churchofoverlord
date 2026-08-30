@@ -613,6 +613,110 @@ footer p {
  .non-believers-list li .name { font-size:.95rem; padding-left:8px; }
 }
 
+
+/* === FINAL NON-BELIEVERS FIX === */
+.non-believers-panel {
+  width: min(760px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 8px 0 30px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.non-believers-list {
+  display: block !important;
+  width: min(700px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+  counter-reset: unbeliever !important;
+}
+.non-believers-list li {
+  counter-increment: unbeliever !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 92px minmax(0, 1fr) !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 104px !important;
+  min-height: 104px !important;
+  margin: 0 0 10px !important;
+  padding: 0 90px 0 42px !important;
+  background-image: url("assets/name-parchment.jpg") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  border: 0 !important;
+  color: #1b160f !important;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: hidden !important;
+  filter: none !important;
+}
+/* Remove old decimal numbering that was leaking through */
+.non-believers-list li::before,
+.non-believers-list li::after {
+  content: none !important;
+  display: none !important;
+}
+.non-believers-list li .roman {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #312415 !important;
+}
+.non-believers-list li .roman::before {
+  content: counter(unbeliever, upper-roman) "." !important;
+  display: block !important;
+  color: #312415 !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em !important;
+  text-align: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.non-believers-list li .name {
+  display: block !important;
+  position: static !important;
+  padding: 0 0 0 14px !important;
+  color: #17130d !important;
+  font-size: clamp(1rem, 2vw, 1.2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: .015em !important;
+  line-height: 1.2 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+  text-shadow: 0 1px rgba(255,255,255,.12) !important;
+}
+.non-believers-list li:hover {
+  transform: translateY(-1px) !important;
+  filter: brightness(1.02) !important;
+}
+.non-believers-list li:hover .name,
+.non-believers-list li:hover .roman {
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #17130d !important;
+}
+@media (max-width: 620px) {
+  .non-believers-list li {
+    grid-template-columns: 70px minmax(0, 1fr) !important;
+    height: 82px !important;
+    min-height: 82px !important;
+    padding: 0 58px 0 24px !important;
+  }
+  .non-believers-list li .roman::before { font-size: .78rem !important; }
+  .non-believers-list li .name { font-size: .92rem !important; padding-left: 8px !important; }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
