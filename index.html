@@ -723,7 +723,7 @@ footer p {
 /* Non-Believers title uses the same pamphlet-style font as the names */
 #non-believers .page-heading h1 {
   font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: 2.5rem !important;
+  font-size: clamp(2.6rem, 5.4vw, 4.2rem) !important;
   font-weight: 800 !important;
   letter-spacing: .10em !important;
   line-height: 1.05 !important;
@@ -883,6 +883,59 @@ footer p {
   #non-believers .non-believers-list li .name {
     font-size: 1.3rem !important;
     padding-left: 10px !important;
+  }
+}
+
+
+/* === FIX: Roman numerals match names + preserve full parchment border === */
+
+/* Use the real aspect ratio of the updated parchment asset and keep the full artwork visible */
+#non-believers .non-believers-list li {
+  aspect-ratio: 1800 / 560 !important;
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  /* Give the burnt edges breathing room instead of clipping them */
+  overflow: visible !important;
+  margin-bottom: 14px !important;
+}
+
+/* Roman numeral uses exactly the same typography as the name */
+#non-believers .non-believers-list li .roman::before {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .015em !important;
+  color: #17130d !important;
+}
+
+/* Keep numeral and name vertically aligned */
+#non-believers .non-believers-list li .roman {
+  align-self: center !important;
+  justify-self: end !important;
+  line-height: 1 !important;
+}
+
+#non-believers .non-believers-list li .name {
+  align-self: center !important;
+  line-height: 1 !important;
+}
+
+/* Slightly rebalance the columns now that the Roman numeral is larger */
+#non-believers .non-believers-list li {
+  grid-template-columns: 95px minmax(0, 1fr) !important;
+}
+
+@media (max-width: 700px) {
+  #non-believers .non-believers-list li {
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+  }
+
+  #non-believers .non-believers-list li .roman::before,
+  #non-believers .non-believers-list li .name {
+    font-size: 1.3rem !important;
   }
 }
 
