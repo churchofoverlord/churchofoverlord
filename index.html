@@ -402,6 +402,137 @@
       }
     }
   </style>
+
+  <style>
+    /* ==========================================================
+       MOBILE — FORCED CONSISTENT LAYOUT
+       Keeps the approved parchment asset unchanged.
+       ========================================================== */
+    @media (max-width: 760px) {
+      main {
+        width: calc(100% - 20px);
+      }
+
+      /* Four tabs always visible; no horizontal scrolling. */
+      .tabs {
+        display: grid;
+        grid-template-columns: 1.45fr .82fr .88fr 1.18fr;
+        gap: 5px;
+        width: 100%;
+        padding: 8px 6px 9px;
+        overflow: visible;
+      }
+
+      .tab-button {
+        min-width: 0;
+        min-height: 38px;
+        padding: 0 4px;
+        font-size: clamp(.46rem, 2.15vw, .63rem);
+        line-height: 1.08;
+        letter-spacing: .035em;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .tab-button::after {
+        left: 12%;
+        right: 12%;
+        bottom: -10px;
+      }
+
+      /* Compact page start. */
+      .tab-panel {
+        min-height: 0;
+        padding: 22px 0 48px;
+      }
+
+      .page-heading {
+        margin-bottom: 20px;
+      }
+
+      .page-heading::after {
+        margin-top: 14px;
+      }
+
+      .page-heading h1 {
+        font-size: clamp(1.65rem, 7.2vw, 2.15rem);
+        line-height: 1;
+        letter-spacing: .055em;
+        white-space: nowrap;
+      }
+
+      .non-believers-panel,
+      .non-believers-list {
+        width: 100%;
+      }
+
+      .non-believers-list {
+        gap: 6px;
+      }
+
+      /* Asset ratio is preserved; only text positioning changes. */
+      .non-believers-list li {
+        grid-template-columns: 46px minmax(0, 1fr);
+        width: 100%;
+        padding: 0 25px 0 82px;
+      }
+
+      .non-believers-list li::before {
+        justify-self: end;
+        font-size: clamp(.78rem, 3.3vw, 1rem);
+        line-height: 1;
+      }
+
+      .non-believers-list .name {
+        min-width: 0;
+        padding-left: 8px;
+        font-size: clamp(.86rem, 3.7vw, 1.12rem);
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .non-believers-ending {
+        margin-top: 20px;
+      }
+
+      .non-believers-ending p {
+        font-size: .58rem;
+      }
+    }
+
+    /* Very narrow phones */
+    @media (max-width: 390px) {
+      .tabs {
+        gap: 3px;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+
+      .tab-button {
+        font-size: .45rem;
+        letter-spacing: .015em;
+      }
+
+      .page-heading h1 {
+        font-size: 1.55rem;
+      }
+
+      .non-believers-list li {
+        grid-template-columns: 40px minmax(0, 1fr);
+        padding-left: 72px;
+        padding-right: 21px;
+      }
+
+      .non-believers-list li::before {
+        font-size: .78rem;
+      }
+
+      .non-believers-list .name {
+        font-size: .86rem;
+      }
+    }
+  </style>
+
 </head>
 
 <body>

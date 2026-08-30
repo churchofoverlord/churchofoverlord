@@ -1,15 +1,16 @@
-# Church of Overlord — thin Non-Believers row
+# Church of Overlord — forced mobile layout
 
-Substituído o antigo `nb-row3.png` pelo novo asset mais baixo:
-- `assets/nb-row-thin.png`
-- Dimensões finais recortadas: 1996×321px
+Mantém o asset `nb-row-thin.png` inalterado.
 
-O `index.html` foi atualizado para:
-- usar exclusivamente `nb-row-thin.png`;
-- usar a proporção real do novo asset;
-- manter numeração romana automática e nomes;
-- evitar cache do asset anterior através de um novo nome de ficheiro.
+Alterações mobile:
+- Os quatro separadores são forçados a caber numa única linha.
+- Sem scroll horizontal dos separadores.
+- NON-BELIEVERS fica sempre visível.
+- Título reduzido e com tamanho previsível.
+- Espaço entre menu, título e lista reduzido.
+- Número romano e nome têm tamanhos controlados.
+- Nomes longos permanecem numa linha.
+- A proporção do pergaminho não é alterada.
 
 Deploy:
-Substitui `index.html` e adiciona `assets/nb-row-thin.png`.
-Podes apagar `assets/nb-row3.png` do GitHub.
+Substitui o conteúdo pelo deste ZIP, em particular o `index.html`.
