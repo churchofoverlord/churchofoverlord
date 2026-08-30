@@ -940,28 +940,59 @@ footer p {
 }
 
 
-/* === CURRENT INDEX REFERENCE: FINAL PARCHMENT BORDER FIX === */
+/* === ABSOLUTE NO-CROP FIX: parchment rendered as an actual image === */
 
-/*
-  Keep the whole parchment artwork visible inside each card.
-  The previous rules forced a fixed aspect-ratio and stretched the image,
-  which made the lower burnt edge look clipped.
-*/
 #non-believers .non-believers-list li {
-  aspect-ratio: auto !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 95px minmax(0, 1fr) !important;
+  align-items: center !important;
+
+  width: 100% !important;
   height: 118px !important;
   min-height: 118px !important;
+  aspect-ratio: auto !important;
 
-  /* leave a few pixels of black breathing room above/below the artwork */
-  background-size: calc(100% - 4px) calc(100% - 8px) !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
+  margin: 0 0 10px !important;
+  padding: 0 70px 0 155px !important;
+
+  /* the parchment is no longer a CSS background */
+  background: none !important;
+  background-image: none !important;
 
   overflow: visible !important;
-  margin-bottom: 10px !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
-/* Roman numeral and name stay exactly aligned */
+/* The whole image is always visible. object-fit: contain cannot crop it. */
+#non-believers .non-believers-list li .parchment-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain !important;
+  object-position: center !important;
+
+  pointer-events: none !important;
+  user-select: none !important;
+
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Keep text above the parchment image */
+#non-believers .non-believers-list li .roman,
+#non-believers .non-believers-list li .name {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Same formatting for Roman numeral and name */
 #non-believers .non-believers-list li .roman::before,
 #non-believers .non-believers-list li .name {
   font-family: Georgia, "Times New Roman", serif !important;
@@ -982,11 +1013,23 @@ footer p {
   padding-left: 14px !important;
 }
 
+/* No hover rule may hide or recolor the text/image */
+#non-believers .non-believers-list li:hover {
+  transform: none !important;
+  filter: none !important;
+}
+
+#non-believers .non-believers-list li:hover .parchment-bg {
+  filter: none !important;
+}
+
 @media (max-width: 700px) {
   #non-believers .non-believers-list li {
     height: 88px !important;
     min-height: 88px !important;
-    background-size: calc(100% - 2px) calc(100% - 6px) !important;
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+    padding-left: 105px !important;
+    padding-right: 38px !important;
   }
 
   #non-believers .non-believers-list li .roman::before,
@@ -1047,22 +1090,22 @@ footer p {
 
       <div class="non-believers-panel">
         <ol class="non-believers-list">
-          <li><span class="roman"></span><span class="name">dsn</span></li>
-          <li><span class="roman"></span><span class="name">invite</span></li>
-          <li><span class="roman"></span><span class="name">Undying</span></li>
-          <li><span class="roman"></span><span class="name">Rubio</span></li>
-          <li><span class="roman"></span><span class="name">Aivan</span></li>
-          <li><span class="roman"></span><span class="name">BUSDRIVER</span></li>
-          <li><span class="roman"></span><span class="name">Tecto</span></li>
-          <li><span class="roman"></span><span class="name">NoCommenT</span></li>
-          <li><span class="roman"></span><span class="name">BlackillusioN</span></li>
-          <li><span class="roman"></span><span class="name">BigusDickus</span></li>
-          <li><span class="roman"></span><span class="name">Seriel</span></li>
-          <li><span class="roman"></span><span class="name">Copycat</span></li>
-          <li><span class="roman"></span><span class="name">kill</span></li>
-          <li><span class="roman"></span><span class="name">Eirial</span></li>
-          <li><span class="roman"></span><span class="name">Ghast</span></li>
-          <li><span class="roman"></span><span class="name">Neturno</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">dsn</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">invite</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Undying</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Rubio</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Aivan</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BUSDRIVER</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Tecto</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">NoCommenT</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BlackillusioN</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BigusDickus</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Seriel</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Copycat</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">kill</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Eirial</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Ghast</span></li>
+          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Neturno</span></li>
         </ol>
 
         <div class="non-believers-ending">
