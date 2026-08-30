@@ -940,108 +940,192 @@ footer p {
 }
 
 
-/* === ABSOLUTE NO-CROP FIX: parchment rendered as an actual image === */
+/* =========================================================
+   MODULAR NON-BELIEVERS — approved parchment style
+   ========================================================= */
 
+#non-believers .non-believers-panel {
+  width: min(820px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 4px 0 30px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#non-believers .non-believers-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  width: min(760px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+  counter-reset: unbeliever !important;
+}
+
+/* Each new <li> automatically becomes the next Roman-numbered card */
 #non-believers .non-believers-list li {
+  counter-increment: unbeliever !important;
   position: relative !important;
-  display: grid !important;
-  grid-template-columns: 95px minmax(0, 1fr) !important;
+  display: flex !important;
   align-items: center !important;
 
   width: 100% !important;
-  height: 118px !important;
-  min-height: 118px !important;
-  aspect-ratio: auto !important;
+  height: 78px !important;
+  min-height: 78px !important;
+  margin: 0 !important;
+  padding: 0 52px 0 168px !important;
 
-  margin: 0 0 10px !important;
-  padding: 0 70px 0 155px !important;
+  background-image: url("assets/nb-parchment.png") !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 
-  /* the parchment is no longer a CSS background */
-  background: none !important;
-  background-image: none !important;
-
-  overflow: visible !important;
   border: 0 !important;
-  box-shadow: none !important;
+  overflow: visible !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35) !important;
+
+  color: #1d1810 !important;
+  isolation: isolate !important;
 }
 
-/* The whole image is always visible. object-fit: contain cannot crop it. */
-#non-believers .non-believers-list li .parchment-bg {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-
+/* Left banner: independent asset, so the parchment can scale without distortion */
+#non-believers .non-believers-list li::after {
+  content: "" !important;
   display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-
-  object-fit: contain !important;
-  object-position: center !important;
-
+  position: absolute !important;
+  z-index: 1 !important;
+  left: 22px !important;
+  top: 50% !important;
+  width: 92px !important;
+  height: 112px !important;
+  transform: translateY(-50%) !important;
+  background: url("assets/nb-left-banner.png") center / contain no-repeat !important;
   pointer-events: none !important;
-  user-select: none !important;
-
-  filter: none !important;
-  opacity: 1 !important;
 }
 
-/* Keep text above the parchment image */
-#non-believers .non-believers-list li .roman,
+/* Roman number generated automatically */
+#non-believers .non-believers-list li::before {
+  content: counter(unbeliever, upper-roman) "." !important;
+  display: block !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 126px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+
+  width: 54px !important;
+  text-align: right !important;
+
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: .01em !important;
+  color: #21190f !important;
+}
+
+/* Small decorative divider between Roman number and name */
+#non-believers .non-believers-list li .name::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: -16px !important;
+  top: 50% !important;
+  width: 26px !important;
+  height: 22px !important;
+  transform: translate(-100%, -50%) !important;
+  background: url("assets/nb-divider.png") center / contain no-repeat !important;
+  opacity: .65 !important;
+}
+
+/* Lowercase-preserving pamphlet-like serif */
 #non-believers .non-believers-list li .name {
   position: relative !important;
   z-index: 2 !important;
-}
+  display: block !important;
 
-/* Same formatting for Roman numeral and name */
-#non-believers .non-believers-list li .roman::before,
-#non-believers .non-believers-list li .name {
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 2.25rem !important;
-  font-weight: 800 !important;
+  padding: 0 0 0 28px !important;
+  margin: 0 !important;
+
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif !important;
+  font-size: 1.72rem !important;
+  font-weight: 700 !important;
   line-height: 1 !important;
-  letter-spacing: .015em !important;
-  color: #17130d !important;
+  letter-spacing: .005em !important;
+  color: #1b160f !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-transform: none !important;
+  font-variant: normal !important;
+  text-shadow: none !important;
 }
 
-#non-believers .non-believers-list li .roman {
-  align-self: center !important;
-  justify-self: end !important;
-}
-
-#non-believers .non-believers-list li .name {
-  align-self: center !important;
-  padding-left: 14px !important;
-}
-
-/* No hover rule may hide or recolor the text/image */
+/* No hover-dependent text; only a tiny card lift */
 #non-believers .non-believers-list li:hover {
-  transform: none !important;
-  filter: none !important;
+  transform: translateY(-1px) !important;
+  filter: brightness(1.02) !important;
 }
 
-#non-believers .non-believers-list li:hover .parchment-bg {
-  filter: none !important;
+#non-believers .non-believers-list li:hover .name {
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: #1b160f !important;
 }
 
+/* Title remains monumental */
+#non-believers .page-heading h1 {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  letter-spacing: .10em !important;
+  color: #ead9bd !important;
+}
+
+/* Easy mobile scaling */
 @media (max-width: 700px) {
-  #non-believers .non-believers-list li {
-    height: 88px !important;
-    min-height: 88px !important;
-    grid-template-columns: 68px minmax(0, 1fr) !important;
-    padding-left: 105px !important;
-    padding-right: 38px !important;
+  #non-believers .non-believers-list {
+    gap: 8px !important;
   }
 
-  #non-believers .non-believers-list li .roman::before,
+  #non-believers .non-believers-list li {
+    height: 64px !important;
+    min-height: 64px !important;
+    padding-left: 118px !important;
+    padding-right: 28px !important;
+  }
+
+  #non-believers .non-believers-list li::after {
+    left: 12px !important;
+    width: 70px !important;
+    height: 88px !important;
+  }
+
+  #non-believers .non-believers-list li::before {
+    left: 82px !important;
+    width: 42px !important;
+    font-size: 1rem !important;
+  }
+
   #non-believers .non-believers-list li .name {
-    font-size: 1.3rem !important;
+    padding-left: 20px !important;
+    font-size: 1.15rem !important;
+  }
+
+  #non-believers .non-believers-list li .name::before {
+    width: 20px !important;
+    height: 16px !important;
+    left: -10px !important;
   }
 }
 
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="hero">
@@ -1090,22 +1174,22 @@ footer p {
 
       <div class="non-believers-panel">
         <ol class="non-believers-list">
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">dsn</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">invite</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Undying</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Rubio</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Aivan</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BUSDRIVER</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Tecto</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">NoCommenT</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BlackillusioN</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">BigusDickus</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Seriel</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Copycat</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">kill</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Eirial</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Ghast</span></li>
-          <li><img class="parchment-bg" src="assets/name-parchment-long.jpg" alt=""><span class="roman"></span><span class="name">Neturno</span></li>
+          <li><span class="name">dsn</span></li>
+          <li><span class="name">invite</span></li>
+          <li><span class="name">Undying</span></li>
+          <li><span class="name">Rubio</span></li>
+          <li><span class="name">Aivan</span></li>
+          <li><span class="name">BUSDRIVER</span></li>
+          <li><span class="name">Tecto</span></li>
+          <li><span class="name">NoCommenT</span></li>
+          <li><span class="name">BlackillusioN</span></li>
+          <li><span class="name">BigusDickus</span></li>
+          <li><span class="name">Seriel</span></li>
+          <li><span class="name">Copycat</span></li>
+          <li><span class="name">kill</span></li>
+          <li><span class="name">Eirial</span></li>
+          <li><span class="name">Ghast</span></li>
+          <li><span class="name">Neturno</span></li>
         </ol>
 
         <div class="non-believers-ending">
