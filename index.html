@@ -353,6 +353,168 @@ footer p {
   }
 }
 
+
+/* === Polished tab navigation === */
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 18px 12px;
+  background:
+    linear-gradient(180deg, rgba(7,5,10,.985), rgba(4,3,6,.97));
+  border-top: 1px solid rgba(176, 90, 215, 0.10);
+  border-bottom: 1px solid rgba(176, 90, 215, 0.24);
+  box-shadow: 0 12px 32px rgba(0,0,0,.34);
+  backdrop-filter: blur(10px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab-button {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgba(176, 90, 215, 0.26);
+  border-radius: 2px;
+  background:
+    linear-gradient(180deg, rgba(28,18,34,.72), rgba(10,7,13,.86));
+  color: #aa9cac;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.80rem;
+  font-weight: 600;
+  letter-spacing: 0.105em;
+  text-shadow: 0 1px 0 #000;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.012),
+    0 6px 18px rgba(0,0,0,.22);
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.tab-button:hover {
+  color: #e0d2bc;
+  border-color: rgba(176, 90, 215, 0.56);
+  background:
+    linear-gradient(180deg, rgba(47,24,58,.72), rgba(14,8,18,.92));
+  box-shadow:
+    inset 0 0 18px rgba(176,90,215,.07),
+    0 7px 20px rgba(0,0,0,.28);
+  transform: translateY(-1px);
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: -13px;
+  height: 2px;
+  background: transparent;
+  box-shadow: none;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.tab-button.active {
+  color: #efe1ca;
+  border-color: rgba(176, 90, 215, 0.68);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(176,90,215,.16), transparent 70%),
+    linear-gradient(180deg, rgba(38,21,47,.86), rgba(11,7,15,.94));
+  box-shadow:
+    inset 0 0 22px rgba(176,90,215,.08),
+    0 7px 24px rgba(0,0,0,.32);
+}
+
+.tab-button.active::after {
+  background: var(--purple-bright);
+  box-shadow:
+    0 0 7px rgba(176, 90, 215, 0.72),
+    0 0 16px rgba(176, 90, 215, 0.34);
+}
+
+/* === Unified start of every page === */
+.page-heading {
+  position: relative;
+  text-align: center;
+  padding: 6px 0 28px;
+  margin-bottom: 8px;
+}
+
+.page-heading::after {
+  content: "";
+  display: block;
+  width: min(860px, 88%);
+  height: 1px;
+  margin: 20px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(176,90,215,.38), transparent);
+}
+
+.page-motto {
+  margin: 0 0 28px;
+  color: var(--purple-bright);
+  font-size: clamp(0.72rem, 1.5vw, 0.96rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.page-heading h1 {
+  margin: 0;
+  color: #ead9bd;
+  font-size: clamp(1.7rem, 4.2vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-shadow: 0 2px 0 #000;
+}
+
+.page-heading p:not(.page-motto) {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+#home .intro {
+  padding: 3px 0 26px;
+}
+
+#home .motto {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .tabs {
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 10px 9px 9px;
+  }
+
+  .tab-button {
+    min-height: 42px;
+    padding: 0 13px;
+    font-size: 0.70rem;
+    letter-spacing: 0.08em;
+  }
+
+  .tab-button::after {
+    bottom: -10px;
+  }
+
+  .page-motto {
+    margin-bottom: 22px;
+    letter-spacing: 0.15em;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -362,7 +524,7 @@ footer p {
 
   <nav class="tabs" aria-label="Main sections">
     <button type="button" class="tab-button active" data-tab="home">THE CHURCH OF OVERLORD</button>
-    <button type="button" class="tab-button" data-tab="ten-laws">TEN LAWS</button>
+    <button type="button" class="tab-button" data-tab="ten-laws">THE TEN LAWS</button>
     <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
     <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
   </nav>
@@ -397,6 +559,7 @@ footer p {
 
 <section id="ten-laws" class="tab-panel document-page">
       <div class="page-heading">
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
         <h1>THE TEN LAWS</h1>
       </div>
       <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
@@ -404,13 +567,15 @@ footer p {
 
 <section id="doctrine" class="tab-panel document-page">
       <div class="page-heading">
-        <h1>DOCTRINE</h1>
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
+        <h1>THE DOCTRINE</h1>
       </div>
       <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
     </section>
 
 <section id="non-believers" class="tab-panel">
       <div class="page-heading">
+        <p class="page-motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
         <h1>THE NON-BELIEVERS</h1>
         <p>Those who have yet to see the Flame.</p>
       </div>
