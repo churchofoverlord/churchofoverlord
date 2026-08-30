@@ -261,7 +261,7 @@
       /* Left inset starts after the integrated standard. */
       padding: 0 58px 0 138px;
 
-      background-image: url("assets/nb-row-thin.png");
+      background-image: url("assets/nb-row-transparent.png");
       background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -275,7 +275,7 @@
       content: counter(unbeliever, upper-roman) ".";
       justify-self: end;
       font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 1.55rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1;
       color: #21190f;
@@ -284,7 +284,7 @@
     .non-believers-list .name {
       padding-left: 16px;
       font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 1.72rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1;
       color: #1b160f;
@@ -479,14 +479,14 @@
 
       .non-believers-list li::before {
         justify-self: end;
-        font-size: clamp(.78rem, 3.3vw, 1rem);
+        font-size: clamp(1rem, 4.5vw, 1.4rem);
         line-height: 1;
       }
 
       .non-believers-list .name {
         min-width: 0;
         padding-left: 8px;
-        font-size: clamp(.86rem, 3.7vw, 1.12rem);
+        font-size: clamp(1.1rem, 5vw, 1.5rem);
         line-height: 1;
         white-space: nowrap;
       }
@@ -524,11 +524,11 @@
       }
 
       .non-believers-list li::before {
-        font-size: .78rem;
+        font-size: 1rem;
       }
 
       .non-believers-list .name {
-        font-size: .86rem;
+        font-size: 1.1rem;
       }
     }
   </style>
