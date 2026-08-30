@@ -135,12 +135,6 @@ main {
   padding: 8px 0 26px;
 }
 
-.sigil {
-  width: min(150px, 40vw);
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  filter: drop-shadow(0 0 22px rgba(138, 52, 178, 0.34));
-}
 
 .motto {
   margin: 8px 0 0;
@@ -215,14 +209,6 @@ main {
   letter-spacing: 0.06em;
 }
 
-.page-sigil {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  opacity: 0.92;
-  filter: drop-shadow(0 0 16px rgba(176, 90, 215, 0.38));
-}
 
 .non-believers-panel {
   position: relative;
@@ -376,16 +362,14 @@ footer p {
 
   <nav class="tabs" aria-label="Main sections">
     <button type="button" class="tab-button active" data-tab="home">THE CHURCH OF OVERLORD</button>
-    <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
-    <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
-    <button type="button" class="tab-button" data-tab="creed">CREED</button>
     <button type="button" class="tab-button" data-tab="ten-laws">TEN LAWS</button>
+    <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
+    <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
   </nav>
 
   <main>
     <section id="home" class="tab-panel active">
       <div class="intro">
-        <img class="sigil" src="assets/symbol.png" alt="Church of Overlord symbol">
         <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
       </div>
 
@@ -409,9 +393,24 @@ footer p {
       </section>
     </section>
 
-    <section id="non-believers" class="tab-panel">
+
+
+<section id="ten-laws" class="tab-panel document-page">
       <div class="page-heading">
-        <img class="page-sigil" src="assets/symbol.png" alt="">
+        <h1>THE TEN LAWS</h1>
+      </div>
+      <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
+    </section>
+
+<section id="doctrine" class="tab-panel document-page">
+      <div class="page-heading">
+        <h1>DOCTRINE</h1>
+      </div>
+      <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
+    </section>
+
+<section id="non-believers" class="tab-panel">
+      <div class="page-heading">
         <h1>THE NON-BELIEVERS</h1>
         <p>Those who have yet to see the Flame.</p>
       </div>
@@ -439,27 +438,6 @@ footer p {
           <span></span>
         </div>
       </div>
-    </section>
-
-    <section id="doctrine" class="tab-panel document-page">
-      <div class="page-heading">
-        <h1>DOCTRINE</h1>
-      </div>
-      <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
-    </section>
-
-    <section id="creed" class="tab-panel document-page">
-      <div class="page-heading">
-        <h1>THE CREED</h1>
-      </div>
-      <img class="document-image" src="assets/creed.png" alt="The Creed of the Church of Overlord">
-    </section>
-
-    <section id="ten-laws" class="tab-panel document-page">
-      <div class="page-heading">
-        <h1>THE TEN LAWS</h1>
-      </div>
-      <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
     </section>
   </main>
 
@@ -497,4 +475,3 @@ footer p {
   </script>
 </body>
 </html>
-<!-- redeploy -->
