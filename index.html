@@ -939,6 +939,62 @@ footer p {
   }
 }
 
+
+/* === CURRENT INDEX REFERENCE: FINAL PARCHMENT BORDER FIX === */
+
+/*
+  Keep the whole parchment artwork visible inside each card.
+  The previous rules forced a fixed aspect-ratio and stretched the image,
+  which made the lower burnt edge look clipped.
+*/
+#non-believers .non-believers-list li {
+  aspect-ratio: auto !important;
+  height: 118px !important;
+  min-height: 118px !important;
+
+  /* leave a few pixels of black breathing room above/below the artwork */
+  background-size: calc(100% - 4px) calc(100% - 8px) !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  overflow: visible !important;
+  margin-bottom: 10px !important;
+}
+
+/* Roman numeral and name stay exactly aligned */
+#non-believers .non-believers-list li .roman::before,
+#non-believers .non-believers-list li .name {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .015em !important;
+  color: #17130d !important;
+}
+
+#non-believers .non-believers-list li .roman {
+  align-self: center !important;
+  justify-self: end !important;
+}
+
+#non-believers .non-believers-list li .name {
+  align-self: center !important;
+  padding-left: 14px !important;
+}
+
+@media (max-width: 700px) {
+  #non-believers .non-believers-list li {
+    height: 88px !important;
+    min-height: 88px !important;
+    background-size: calc(100% - 2px) calc(100% - 6px) !important;
+  }
+
+  #non-believers .non-believers-list li .roman::before,
+  #non-believers .non-believers-list li .name {
+    font-size: 1.3rem !important;
+  }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
