@@ -1,35 +1,32 @@
-# Church of Overlord — clean integrated build
+# Church of Overlord — nb-row2 corrigido
 
-Esta versão foi reorganizada de raiz para remover CSS redundante e regras antigas em conflito.
+Foi usado o `nb-row2.png` exacto fornecido pelo utilizador.
 
-## Alterações principais
+## O que estava errado
 
-- O estandarte dos Non-Believers está agora integrado diretamente em `assets/nb-row.png`.
-- Cada nome usa apenas um único asset de fundo: não existem elementos separados para o estandarte.
-- O estandarte foi redimensionado para ficar totalmente dentro da altura do papel.
-- O papel foi alongado sem deformar as extremidades ornamentais.
-- Numeração romana automática através de CSS.
-- Os nomes preservam maiúsculas/minúsculas.
-- O CSS foi consolidado: uma única regra por componente, sem as várias camadas de `!important` das versões anteriores.
-- O HTML foi corrigido e organizado.
-- O JavaScript dos separadores foi simplificado.
+O ficheiro original tinha 1536×1024 px, mas a faixa visível ocupava apenas uma parte central.
+O browser estava a comprimir todo esse canvas para uma linha baixa, achatando o papel, o
+estandarte e os ornamentos.
 
-## Adicionar um Non-Believer
+## Correcção
 
-Dentro de:
-
-    <ol class="non-believers-list">
-
-acrescenta:
+- O asset foi recortado automaticamente à área visual real.
+- Novo tamanho do asset: 1509×312px.
+- O CSS usa `aspect-ratio` correspondente ao ficheiro real.
+- Foi removida a altura fixa das entradas.
+- `nb-row.png` antigo foi removido.
+- Só `assets/nb-row2.png` é usado pelos Non-Believers.
+- Numeração romana continua automática.
+- Para adicionar nomes:
 
     <li><span class="name">NovoNome</span></li>
 
-A numeração romana é automática.
-
 ## Deploy
 
-Substitui no GitHub:
+Substitui:
 - `index.html`
-- a pasta `assets`
+- `assets/nb-row2.png`
 
-Depois faz Commit changes e Ctrl+F5 quando o GitHub Pages terminar.
+Se preferires, podes simplesmente substituir toda a pasta `assets` pela incluída neste ZIP.
+
+Depois: Commit changes → aguardar GitHub Pages → Ctrl+F5.
