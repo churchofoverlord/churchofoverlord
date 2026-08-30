@@ -4,1129 +4,396 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050407">
-  <title>The Church of Overlord</title>
   <meta name="description" content="The Church of Overlord — One Flame. One Law. One Balance.">
-  <style>
-* {
-  box-sizing: border-box;
-}
+  <title>The Church of Overlord</title>
 
-:root {
-  --bg: #050407;
-  --bg-soft: #0a0710;
-  --panel: #0c0811;
-  --purple: #7a2f9d;
-  --purple-bright: #b05ad7;
-  --stone: #d4c6ae;
-  --muted: #8d8294;
-  --line: rgba(176, 90, 215, 0.34);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.15), transparent 30rem),
-    linear-gradient(180deg, #020203 0%, var(--bg) 35%, #030204 100%);
-  color: var(--stone);
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.hero {
-  width: 100%;
-  background: #000;
-  border-bottom: 1px solid rgba(176, 90, 215, 0.22);
-}
-
-.hero-banner {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 540px;
-  object-fit: cover;
-}
-
-.tabs {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 0;
-  width: 100%;
-  padding: 0 16px;
-  background: rgba(5, 4, 7, 0.96);
-  border-bottom: 1px solid rgba(176, 90, 215, 0.2);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.32);
-  backdrop-filter: blur(8px);
-  overflow-x: auto;
-}
-
-.tab-button {
-  position: relative;
-  flex: 0 0 auto;
-  min-height: 58px;
-  padding: 0 20px;
-  border: 0;
-  background: transparent;
-  color: #9b90a2;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.83rem;
-  letter-spacing: 0.11em;
-  cursor: pointer;
-  transition: color 160ms ease, background 160ms ease;
-  white-space: nowrap;
-}
-
-.tab-button:hover {
-  color: var(--stone);
-  background: rgba(176, 90, 215, 0.045);
-}
-
-.tab-button::after {
-  content: "";
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: 0;
-  height: 2px;
-  background: transparent;
-  box-shadow: none;
-  transition: background 160ms ease, box-shadow 160ms ease;
-}
-
-.tab-button.active {
-  color: #e5d7c1;
-}
-
-.tab-button.active::after {
-  background: var(--purple-bright);
-  box-shadow: 0 0 10px rgba(176, 90, 215, 0.65);
-}
-
-main {
-  width: min(1180px, calc(100% - 30px));
-  margin: 0 auto;
-}
-
-.tab-panel {
-  display: none;
-  min-height: 650px;
-  padding: 34px 0 68px;
-}
-
-.tab-panel.active {
-  display: block;
-  animation: fadeIn 180ms ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(3px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.intro {
-  text-align: center;
-  padding: 8px 0 26px;
-}
-
-
-.motto {
-  margin: 8px 0 0;
-  color: var(--purple-bright);
-  letter-spacing: 0.22em;
-  font-size: clamp(0.72rem, 1.7vw, 1rem);
-}
-
-.section-heading {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 24px;
-}
-
-.section-heading span {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--purple), transparent);
-}
-
-.section-heading h2 {
-  margin: 0;
-  color: var(--stone);
-  letter-spacing: 0.16em;
-  font-size: clamp(1.2rem, 3vw, 2rem);
-}
-
-.video-section {
-  width: min(920px, 100%);
-  margin: 0 auto;
-  padding: 10px 0 20px;
-}
-
-.video-frame {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border: 1px solid rgba(176, 90, 215, 0.42);
-  background: #000;
-  box-shadow:
-    0 0 0 5px rgba(255,255,255,0.015),
-    0 18px 70px rgba(0,0,0,0.6),
-    0 0 45px rgba(105, 34, 136, 0.12);
-}
-
-.video-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.page-heading {
-  text-align: center;
-  padding: 8px 0 30px;
-}
-
-.page-heading h1 {
-  margin: 0;
-  color: #ddd0ba;
-  font-size: clamp(1.55rem, 4vw, 2.55rem);
-  letter-spacing: 0.14em;
-  font-weight: normal;
-}
-
-.page-heading p {
-  margin: 12px 0 0;
-  color: var(--muted);
-  font-style: italic;
-  letter-spacing: 0.06em;
-}
-
-
-.non-believers-panel {
-  position: relative;
-  overflow: hidden;
-  width: min(820px, 100%);
-  margin: 0 auto;
-  padding: 38px 54px 38px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(122, 47, 157, 0.16), transparent 42%),
-    linear-gradient(145deg, rgba(17, 11, 24, 0.96), rgba(5, 4, 7, 0.98));
-  border: 1px solid rgba(176, 90, 215, 0.32);
-  box-shadow:
-    inset 0 0 45px rgba(0, 0, 0, 0.8),
-    0 25px 70px rgba(0, 0, 0, 0.55),
-    0 0 35px rgba(102, 31, 132, 0.12);
-}
-
-.non-believers-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 56px;
-  margin: 0 auto;
-  padding-left: 38px;
-  max-width: 650px;
-  color: #d4c6ae;
-}
-
-.non-believers-list li {
-  padding: 12px 8px;
-  border-bottom: 1px solid rgba(176, 90, 215, 0.13);
-  letter-spacing: 0.07em;
-  font-size: 1.04rem;
-}
-
-.non-believers-list li::marker {
-  color: #a34dc5;
-  font-weight: bold;
-}
-
-.non-believers-ending {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 18px;
-  margin-top: 34px;
-}
-
-.non-believers-ending span {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.55), transparent);
-}
-
-.non-believers-ending p {
-  margin: 0;
-  color: #a34dc5;
-  letter-spacing: 0.18em;
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-
-.document-page {
-  text-align: center;
-}
-
-.document-image {
-  display: block;
-  width: min(760px, 100%);
-  height: auto;
-  margin: 0 auto;
-  padding: 7px;
-  background: linear-gradient(145deg, rgba(122, 47, 157, 0.15), rgba(255,255,255,0.015));
-  border: 1px solid rgba(176, 90, 215, 0.22);
-  box-shadow:
-    0 22px 70px rgba(0,0,0,0.55),
-    0 0 35px rgba(102, 31, 132, 0.08);
-}
-
-footer {
-  text-align: center;
-  padding: 30px 20px 42px;
-  border-top: 1px solid var(--line);
-  background: #020203;
-}
-
-.footer-sigil {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  opacity: 0.78;
-}
-
-footer p {
-  margin: 13px 0 0;
-  color: #8f72a2;
-  letter-spacing: 0.12em;
-  font-size: clamp(0.64rem, 1.5vw, 0.84rem);
-}
-
-@media (max-width: 760px) {
-  main {
-    width: min(100% - 18px, 1180px);
-  }
-
-  .hero-banner {
-    max-height: none;
-    object-fit: contain;
-  }
-
-  .tabs {
-    justify-content: flex-start;
-    padding: 0 8px;
-  }
-
-  .tab-button {
-    min-height: 52px;
-    padding: 0 14px;
-    font-size: 0.74rem;
-  }
-
-  .tab-panel {
-    min-height: 520px;
-    padding-top: 26px;
-  }
-
-  .non-believers-panel {
-    padding: 30px 20px;
-  }
-
-  .non-believers-list {
-    grid-template-columns: 1fr;
-    padding-left: 35px;
-    gap: 0;
-  }
-
-  .non-believers-ending {
-    gap: 8px;
-  }
-
-  .non-believers-ending p {
-    white-space: normal;
-    font-size: 0.72rem;
-  }
-}
-
-
-/* === Polished tab navigation === */
-.tabs {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px 18px 12px;
-  background:
-    linear-gradient(180deg, rgba(7,5,10,.985), rgba(4,3,6,.97));
-  border-top: 1px solid rgba(176, 90, 215, 0.10);
-  border-bottom: 1px solid rgba(176, 90, 215, 0.24);
-  box-shadow: 0 12px 32px rgba(0,0,0,.34);
-  backdrop-filter: blur(10px);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.tabs::-webkit-scrollbar { display: none; }
-
-.tab-button {
-  position: relative;
-  flex: 0 0 auto;
-  min-height: 46px;
-  padding: 0 18px;
-  border: 1px solid rgba(176, 90, 215, 0.26);
-  border-radius: 2px;
-  background:
-    linear-gradient(180deg, rgba(28,18,34,.72), rgba(10,7,13,.86));
-  color: #aa9cac;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.80rem;
-  font-weight: 600;
-  letter-spacing: 0.105em;
-  text-shadow: 0 1px 0 #000;
-  cursor: pointer;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.012),
-    0 6px 18px rgba(0,0,0,.22);
-  transition:
-    color 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease,
-    transform 160ms ease;
-}
-
-.tab-button:hover {
-  color: #e0d2bc;
-  border-color: rgba(176, 90, 215, 0.56);
-  background:
-    linear-gradient(180deg, rgba(47,24,58,.72), rgba(14,8,18,.92));
-  box-shadow:
-    inset 0 0 18px rgba(176,90,215,.07),
-    0 7px 20px rgba(0,0,0,.28);
-  transform: translateY(-1px);
-}
-
-.tab-button::after {
-  content: "";
-  position: absolute;
-  left: 16%;
-  right: 16%;
-  bottom: -13px;
-  height: 2px;
-  background: transparent;
-  box-shadow: none;
-  transition: background 160ms ease, box-shadow 160ms ease;
-}
-
-.tab-button.active {
-  color: #efe1ca;
-  border-color: rgba(176, 90, 215, 0.68);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(176,90,215,.16), transparent 70%),
-    linear-gradient(180deg, rgba(38,21,47,.86), rgba(11,7,15,.94));
-  box-shadow:
-    inset 0 0 22px rgba(176,90,215,.08),
-    0 7px 24px rgba(0,0,0,.32);
-}
-
-.tab-button.active::after {
-  background: var(--purple-bright);
-  box-shadow:
-    0 0 7px rgba(176, 90, 215, 0.72),
-    0 0 16px rgba(176, 90, 215, 0.34);
-}
-
-/* === Unified start of every page === */
-.page-heading {
-  position: relative;
-  text-align: center;
-  padding: 6px 0 28px;
-  margin-bottom: 8px;
-}
-
-.page-heading::after {
-  content: "";
-  display: block;
-  width: min(860px, 88%);
-  height: 1px;
-  margin: 20px auto 0;
-  background: linear-gradient(90deg, transparent, rgba(176,90,215,.38), transparent);
-}
-
-.page-motto {
-  margin: 0 0 28px;
-  color: var(--purple-bright);
-  font-size: clamp(0.72rem, 1.5vw, 0.96rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-.page-heading h1 {
-  margin: 0;
-  color: #ead9bd;
-  font-size: clamp(1.7rem, 4.2vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-shadow: 0 2px 0 #000;
-}
-
-.page-heading p:not(.page-motto) {
-  margin: 12px 0 0;
-  color: var(--muted);
-  font-style: italic;
-  letter-spacing: 0.06em;
-}
-
-#home .intro {
-  padding: 3px 0 26px;
-}
-
-#home .motto {
-  margin-top: 0;
-}
-
-@media (max-width: 760px) {
-  .tabs {
-    justify-content: flex-start;
-    gap: 8px;
-    padding: 10px 9px 9px;
-  }
-
-  .tab-button {
-    min-height: 42px;
-    padding: 0 13px;
-    font-size: 0.70rem;
-    letter-spacing: 0.08em;
-  }
-
-  .tab-button::after {
-    bottom: -10px;
-  }
-
-  .page-motto {
-    margin-bottom: 22px;
-    letter-spacing: 0.15em;
-  }
-}
-
-
-/* === NON-BELIEVERS: ceremonial single-column registry === */
-.non-believers-panel {
-  width: min(620px, 100%);
-  margin: 0 auto;
-  padding: 18px 42px 28px;
-  background: linear-gradient(180deg, rgba(16,10,21,.70), rgba(5,4,7,.82));
-  border: 1px solid rgba(176,90,215,.20);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.015), 0 18px 55px rgba(0,0,0,.35);
-}
-.non-believers-list {
-  display: block;
-  width: min(470px, 100%);
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  counter-reset: unbeliever;
-}
-.non-believers-list li {
-  counter-increment: unbeliever;
-  display: grid;
-  grid-template-columns: 55px 1fr;
-  align-items: center;
-  min-height: 50px;
-  padding: 0 10px;
-  border-bottom: 1px solid rgba(176,90,215,.11);
-  color: #d9cab4;
-  font-size: 1.05rem;
-  letter-spacing: .05em;
-  position: relative;
-}
-.non-believers-list li:last-child { border-bottom: none; }
-.non-believers-list li::before {
-  content: counter(unbeliever, decimal-leading-zero);
-  color: #b05ad7;
-  font-size: .78rem;
-  font-weight: bold;
-  letter-spacing: .08em;
-}
-.non-believers-list li:hover {
-  background: linear-gradient(90deg, transparent, rgba(176,90,215,.055), transparent);
-}
-.non-believers-ending {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  width: min(470px,100%);
-  margin: 25px auto 0;
-  gap: 15px;
-}
-.non-believers-ending span {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(176,90,215,.35));
-}
-.non-believers-ending span:last-child { transform: scaleX(-1); }
-.non-believers-ending p {
-  margin: 0;
-  color: #ae50cf;
-  font-size: .72rem;
-  letter-spacing: .17em;
-  white-space: nowrap;
-}
-@media (max-width:600px) {
-  .non-believers-panel { padding:14px 18px 24px; }
-  .non-believers-list li { grid-template-columns:45px 1fr; min-height:47px; }
-}
-
-
-/* === Parchment Non-Believers === */
-.non-believers-panel {
-  width: min(760px, 100%);
-  margin: 0 auto;
-  padding: 8px 0 30px;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-}
-.non-believers-list {
-  display:block; width:min(700px,100%); margin:0 auto; padding:0; list-style:none; counter-reset:unbeliever;
-}
-.non-believers-list li {
-  counter-increment:unbeliever; display:grid; grid-template-columns:92px 1fr; align-items:center; min-height:76px;
-  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/name-parchment.jpg") center / 100% 100% no-repeat;
-  color:#1e1a12; border:0; box-shadow:0 8px 20px rgba(0,0,0,.36);
-  font-family:"Cinzel", Georgia, "Times New Roman", serif; transition:transform 150ms ease, filter 150ms ease;
-}
-.non-believers-list li:hover { transform:translateY(-1px); filter:brightness(1.035); }
-.non-believers-list li .roman::before {
-  content:counter(unbeliever, upper-roman) "."; display:block; color:#382918; font-size:.95rem; font-weight:800; text-align:center;
-}
-.non-believers-list li .name { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
-.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:700; }
-@media (max-width:620px) {
- .non-believers-list li { grid-template-columns:68px 1fr; min-height:64px; padding:0 20px 0 14px; margin-bottom:8px; }
- .non-believers-list li .roman::before { font-size:.78rem; }
- .non-believers-list li .name { font-size:.95rem; padding-left:8px; }
-}
-
-
-/* === FINAL NON-BELIEVERS FIX === */
-.non-believers-panel {
-  width: min(760px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 8px 0 30px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-.non-believers-list {
-  display: block !important;
-  width: min(700px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  list-style: none !important;
-  counter-reset: unbeliever !important;
-}
-.non-believers-list li {
-  counter-increment: unbeliever !important;
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: 92px minmax(0, 1fr) !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 104px !important;
-  min-height: 104px !important;
-  margin: 0 0 10px !important;
-  padding: 0 90px 0 42px !important;
-  background-image: url("assets/name-parchment.jpg") !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  border: 0 !important;
-  color: #1b160f !important;
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  overflow: hidden !important;
-  filter: none !important;
-}
-/* Remove old decimal numbering that was leaking through */
-.non-believers-list li::before,
-.non-believers-list li::after {
-  content: none !important;
-  display: none !important;
-}
-.non-believers-list li .roman {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  color: #312415 !important;
-}
-.non-believers-list li .roman::before {
-  content: counter(unbeliever, upper-roman) "." !important;
-  display: block !important;
-  color: #312415 !important;
-  font-size: 1rem !important;
-  font-weight: 800 !important;
-  letter-spacing: .02em !important;
-  text-align: center !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.non-believers-list li .name {
-  display: block !important;
-  position: static !important;
-  padding: 0 0 0 14px !important;
-  color: #17130d !important;
-  font-size: clamp(1rem, 2vw, 1.2rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: .015em !important;
-  line-height: 1.2 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  filter: none !important;
-  text-shadow: 0 1px rgba(255,255,255,.12) !important;
-}
-.non-believers-list li:hover {
-  transform: translateY(-1px) !important;
-  filter: brightness(1.02) !important;
-}
-.non-believers-list li:hover .name,
-.non-believers-list li:hover .roman {
-  opacity: 1 !important;
-  visibility: visible !important;
-  color: #17130d !important;
-}
-@media (max-width: 620px) {
-  .non-believers-list li {
-    grid-template-columns: 70px minmax(0, 1fr) !important;
-    height: 82px !important;
-    min-height: 82px !important;
-    padding: 0 58px 0 24px !important;
-  }
-  .non-believers-list li .roman::before { font-size: .78rem !important; }
-  .non-believers-list li .name { font-size: .92rem !important; padding-left: 8px !important; }
-}
-
-
-/* === FINAL TYPOGRAPHY UPDATE === */
-
-/* Non-Believers title uses the same pamphlet-style font as the names */
-#non-believers .page-heading h1 {
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: 2.5rem !important;
-  font-weight: 800 !important;
-  letter-spacing: .10em !important;
-  line-height: 1.05 !important;
-  color: #ead9bd !important;
-}
-
-/* Larger Roman numeral and name so each parchment feels filled */
-#non-believers .non-believers-list li .roman::before {
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: clamp(1.15rem, 2.1vw, 1.55rem) !important;
-  font-weight: 800 !important;
-}
-
-#non-believers .non-believers-list li .name {
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: clamp(1.65rem, 3vw, 2.25rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: .025em !important;
-  line-height: 1 !important;
-  color: #17130d !important;
-}
-
-/* Give the text a little more usable parchment space */
-#non-believers .non-believers-list li {
-  grid-template-columns: 105px minmax(0, 1fr) !important;
-  padding-left: 30px !important;
-  padding-right: 82px !important;
-}
-
-@media (max-width: 620px) {
-  #non-believers .page-heading h1 {
-    font-size: clamp(2rem, 9vw, 3rem) !important;
-    letter-spacing: .06em !important;
-  }
-
-  #non-believers .non-believers-list li {
-    grid-template-columns: 70px minmax(0, 1fr) !important;
-    padding-left: 18px !important;
-    padding-right: 52px !important;
-  }
-
-  #non-believers .non-believers-list li .roman::before {
-    font-size: .95rem !important;
-  }
-
-  #non-believers .non-believers-list li .name {
-    font-size: clamp(1.15rem, 5vw, 1.5rem) !important;
-    padding-left: 8px !important;
-  }
-}
-
-
-/* === UNIFORM NON-BELIEVER NAME SIZE === */
-#non-believers .non-believers-list li .name {
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: 2.25rem !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  letter-spacing: .02em !important;
-  color: #17130d !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  padding-left: 12px !important;
-}
-
-@media (max-width: 620px) {
-  #non-believers .non-believers-list li .name {
-    font-size: 1.35rem !important;
-  }
-}
-
-
-/* === Roman numerals placed after the left banner === */
-#non-believers .non-believers-panel {
-  width: min(900px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 8px 0 30px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-#non-believers .non-believers-list {
-  display: block !important;
-  width: min(860px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  list-style: none !important;
-  counter-reset: unbeliever !important;
-}
-#non-believers .non-believers-list li {
-  counter-increment: unbeliever !important;
-  display: grid !important;
-  grid-template-columns: 82px minmax(0,1fr) !important;
-  align-items: center !important;
-  width: 100% !important;
-  aspect-ratio: 1800 / 450 !important;
-  min-height: 0 !important;
-  margin: 0 0 10px !important;
-  padding: 0 70px 0 155px !important;
-  background: url("assets/name-parchment-long.jpg") center / 100% 100% no-repeat !important;
-  border: 0 !important;
-  box-shadow: 0 7px 18px rgba(0,0,0,.34) !important;
-  overflow: hidden !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-#non-believers .non-believers-list li::before,
-#non-believers .non-believers-list li::after {
-  content: none !important;
-  display: none !important;
-}
-#non-believers .non-believers-list li .roman {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-#non-believers .non-believers-list li .roman::before {
-  content: counter(unbeliever, upper-roman) "." !important;
-  color: #2a2116 !important;
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 1.45rem !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-}
-#non-believers .non-believers-list li .name {
-  display: block !important;
-  padding-left: 18px !important;
-  color: #17130d !important;
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 2.25rem !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  letter-spacing: .015em !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-  filter: none !important;
-  text-shadow: none !important;
-}
-#non-believers .non-believers-list li:hover {
-  transform: translateY(-1px) !important;
-  filter: brightness(1.02) !important;
-}
-@media (max-width:700px) {
-  #non-believers .non-believers-list li {
-    grid-template-columns: 58px minmax(0,1fr) !important;
-    padding-left: 105px !important;
-    padding-right: 38px !important;
-    margin-bottom: 7px !important;
-  }
-  #non-believers .non-believers-list li .roman::before {
-    font-size: .9rem !important;
-  }
-  #non-believers .non-believers-list li .name {
-    font-size: 1.3rem !important;
-    padding-left: 10px !important;
-  }
-}
-
-
-/* === FIX: Roman numerals match names + preserve full parchment border === */
-
-/* Use the real aspect ratio of the updated parchment asset and keep the full artwork visible */
-#non-believers .non-believers-list li {
-  aspect-ratio: 1800 / 560 !important;
-  background-size: 100% 100% !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-
-  /* Give the burnt edges breathing room instead of clipping them */
-  overflow: visible !important;
-  margin-bottom: 14px !important;
-}
-
-/* Roman numeral uses exactly the same typography as the name */
-#non-believers .non-believers-list li .roman::before {
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: 2.25rem !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  letter-spacing: .015em !important;
-  color: #17130d !important;
-}
-
-/* Keep numeral and name vertically aligned */
-#non-believers .non-believers-list li .roman {
-  align-self: center !important;
-  justify-self: end !important;
-  line-height: 1 !important;
-}
-
-#non-believers .non-believers-list li .name {
-  align-self: center !important;
-  line-height: 1 !important;
-}
-
-/* Slightly rebalance the columns now that the Roman numeral is larger */
-#non-believers .non-believers-list li {
-  grid-template-columns: 95px minmax(0, 1fr) !important;
-}
-
-@media (max-width: 700px) {
-  #non-believers .non-believers-list li {
-    grid-template-columns: 68px minmax(0, 1fr) !important;
-  }
-
-  #non-believers .non-believers-list li .roman::before,
-  #non-believers .non-believers-list li .name {
-    font-size: 1.3rem !important;
-  }
-}
-
-
-/* =========================================================
-   MODULAR NON-BELIEVERS — approved parchment style
-   ========================================================= */
-
-#non-believers .non-believers-panel {
-  width: min(820px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 4px 0 30px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-
-#non-believers .non-believers-list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 10px !important;
-  width: min(760px, 100%) !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  list-style: none !important;
-  counter-reset: unbeliever !important;
-}
-
-/* Each new <li> automatically becomes the next Roman-numbered card */
-#non-believers .non-believers-list li {
-  counter-increment: unbeliever !important;
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-
-  width: 100% !important;
-  height: 78px !important;
-  min-height: 78px !important;
-  margin: 0 !important;
-  padding: 0 52px 0 168px !important;
-
-  background-image: url("assets/nb-parchment.png") !important;
-  background-size: 100% 100% !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-
-  border: 0 !important;
-  overflow: visible !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,.35) !important;
-
-  color: #1d1810 !important;
-  isolation: isolate !important;
-}
-
-/* Left banner: independent asset, so the parchment can scale without distortion */
-#non-believers .non-believers-list li::after {
-  content: "" !important;
-  display: block !important;
-  position: absolute !important;
-  z-index: 1 !important;
-  left: 22px !important;
-  top: 50% !important;
-  width: 92px !important;
-  height: 112px !important;
-  transform: translateY(-50%) !important;
-  background: url("assets/nb-left-banner.png") center / contain no-repeat !important;
-  pointer-events: none !important;
-}
-
-/* Roman number generated automatically */
-#non-believers .non-believers-list li::before {
-  content: counter(unbeliever, upper-roman) "." !important;
-  display: block !important;
-  position: absolute !important;
-  z-index: 2 !important;
-  left: 126px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-
-  width: 54px !important;
-  text-align: right !important;
-
-  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif !important;
-  font-size: 1.55rem !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-  letter-spacing: .01em !important;
-  color: #21190f !important;
-}
-
-/* Small decorative divider between Roman number and name */
-#non-believers .non-believers-list li .name::before {
-  content: "" !important;
-  display: block !important;
-  position: absolute !important;
-  left: -16px !important;
-  top: 50% !important;
-  width: 26px !important;
-  height: 22px !important;
-  transform: translate(-100%, -50%) !important;
-  background: url("assets/nb-divider.png") center / contain no-repeat !important;
-  opacity: .65 !important;
-}
-
-/* Lowercase-preserving pamphlet-like serif */
-#non-believers .non-believers-list li .name {
-  position: relative !important;
-  z-index: 2 !important;
-  display: block !important;
-
-  padding: 0 0 0 28px !important;
-  margin: 0 !important;
-
-  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif !important;
-  font-size: 1.72rem !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-  letter-spacing: .005em !important;
-  color: #1b160f !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-  text-transform: none !important;
-  font-variant: normal !important;
-  text-shadow: none !important;
-}
-
-/* No hover-dependent text; only a tiny card lift */
-#non-believers .non-believers-list li:hover {
-  transform: translateY(-1px) !important;
-  filter: brightness(1.02) !important;
-}
-
-#non-believers .non-believers-list li:hover .name {
-  opacity: 1 !important;
-  visibility: visible !important;
-  color: #1b160f !important;
-}
-
-/* Title remains monumental */
-#non-believers .page-heading h1 {
-  font-family: "Cinzel", Georgia, "Times New Roman", serif !important;
-  font-size: 2.5rem !important;
-  font-weight: 800 !important;
-  letter-spacing: .10em !important;
-  color: #ead9bd !important;
-}
-
-/* Easy mobile scaling */
-@media (max-width: 700px) {
-  #non-believers .non-believers-list {
-    gap: 8px !important;
-  }
-
-  #non-believers .non-believers-list li {
-    height: 64px !important;
-    min-height: 64px !important;
-    padding-left: 118px !important;
-    padding-right: 28px !important;
-  }
-
-  #non-believers .non-believers-list li::after {
-    left: 12px !important;
-    width: 70px !important;
-    height: 88px !important;
-  }
-
-  #non-believers .non-believers-list li::before {
-    left: 82px !important;
-    width: 42px !important;
-    font-size: 1rem !important;
-  }
-
-  #non-believers .non-believers-list li .name {
-    padding-left: 20px !important;
-    font-size: 1.15rem !important;
-  }
-
-  #non-believers .non-believers-list li .name::before {
-    width: 20px !important;
-    height: 16px !important;
-    left: -10px !important;
-  }
-}
-
-</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050407;
+      --stone: #d4c6ae;
+      --muted: #8d8294;
+      --purple: #7a2f9d;
+      --purple-bright: #b05ad7;
+      --line: rgba(176, 90, 215, 0.28);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.14), transparent 30rem),
+        linear-gradient(180deg, #020203 0%, var(--bg) 35%, #030204 100%);
+      color: var(--stone);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      width: 100%;
+      background: #000;
+      border-bottom: 1px solid rgba(176, 90, 215, 0.2);
+    }
+
+    .hero-banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 540px;
+      object-fit: cover;
+    }
+
+    /* ---------- TABS ---------- */
+
+    .tabs {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 18px 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      background: rgba(5, 4, 7, 0.97);
+      border-bottom: 1px solid rgba(176, 90, 215, 0.22);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-button {
+      position: relative;
+      flex: 0 0 auto;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid rgba(176, 90, 215, 0.26);
+      border-radius: 2px;
+      background: linear-gradient(180deg, rgba(28, 18, 34, 0.72), rgba(10, 7, 13, 0.88));
+      color: #aa9cac;
+      font: 600 0.8rem/1 Georgia, "Times New Roman", serif;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 160ms ease;
+    }
+
+    .tab-button:hover {
+      color: #e0d2bc;
+      border-color: rgba(176, 90, 215, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .tab-button::after {
+      content: "";
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      bottom: -13px;
+      height: 2px;
+      background: transparent;
+    }
+
+    .tab-button.active {
+      color: #efe1ca;
+      border-color: rgba(176, 90, 215, 0.68);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(176, 90, 215, 0.16), transparent 70%),
+        linear-gradient(180deg, rgba(38, 21, 47, 0.86), rgba(11, 7, 15, 0.94));
+    }
+
+    .tab-button.active::after {
+      background: var(--purple-bright);
+      box-shadow: 0 0 10px rgba(176, 90, 215, 0.65);
+    }
+
+    /* ---------- PANELS ---------- */
+
+    main {
+      width: min(1180px, calc(100% - 30px));
+      margin: 0 auto;
+    }
+
+    .tab-panel {
+      display: none;
+      min-height: 650px;
+      padding: 34px 0 68px;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fade-in 180ms ease-out;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(3px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- HOME ---------- */
+
+    .intro {
+      padding: 4px 0 28px;
+      text-align: center;
+    }
+
+    .motto {
+      margin: 0;
+      color: var(--purple-bright);
+      font-size: clamp(0.72rem, 1.7vw, 1rem);
+      letter-spacing: 0.22em;
+    }
+
+    .video-frame {
+      position: relative;
+      width: min(920px, 100%);
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(176, 90, 215, 0.4);
+      box-shadow:
+        0 18px 70px rgba(0, 0, 0, 0.6),
+        0 0 45px rgba(105, 34, 136, 0.1);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ---------- DOCUMENTS ---------- */
+
+    .document-page {
+      text-align: center;
+    }
+
+    .document-image {
+      display: block;
+      width: min(760px, 100%);
+      height: auto;
+      margin: 0 auto;
+      padding: 7px;
+      border: 1px solid rgba(176, 90, 215, 0.22);
+      background: linear-gradient(145deg, rgba(122, 47, 157, 0.14), rgba(255, 255, 255, 0.015));
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    /* ---------- NON-BELIEVERS ---------- */
+
+    .page-heading {
+      position: relative;
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .page-heading::after {
+      content: "";
+      display: block;
+      width: min(860px, 88%);
+      height: 1px;
+      margin: 20px auto 0;
+      background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.38), transparent);
+    }
+
+    .page-heading h1 {
+      margin: 0;
+      color: #ead9bd;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      line-height: 1.05;
+    }
+
+    .non-believers-panel {
+      width: min(900px, 100%);
+      margin: 0 auto;
+    }
+
+    .non-believers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: min(860px, 100%);
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      counter-reset: unbeliever;
+    }
+
+    .non-believers-list li {
+      counter-increment: unbeliever;
+      position: relative;
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      align-items: center;
+      width: 100%;
+      height: 84px;
+      padding: 0 66px 0 172px;
+      background: url("assets/nb-row.png") center / 100% 100% no-repeat;
+      color: #1b160f;
+      transition: transform 150ms ease, filter 150ms ease;
+    }
+
+    .non-believers-list li::before {
+      content: counter(unbeliever, upper-roman) ".";
+      justify-self: end;
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #21190f;
+    }
+
+    .non-believers-list .name {
+      padding-left: 18px;
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 1.72rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #1b160f;
+      text-transform: none;
+    }
+
+    .non-believers-list li:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+    }
+
+    .non-believers-ending {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      width: min(680px, 90%);
+      margin: 28px auto 0;
+    }
+
+    .non-believers-ending span {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.36));
+    }
+
+    .non-believers-ending span:last-child {
+      transform: scaleX(-1);
+    }
+
+    .non-believers-ending p {
+      margin: 0;
+      color: #ae50cf;
+      font: 700 0.72rem/1 "Cinzel", Georgia, serif;
+      letter-spacing: 0.17em;
+      white-space: nowrap;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 30px 20px 42px;
+      text-align: center;
+      background: #020203;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-sigil {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      opacity: 0.78;
+    }
+
+    footer p {
+      margin: 13px 0 0;
+      color: #8f72a2;
+      font-size: clamp(0.64rem, 1.5vw, 0.84rem);
+      letter-spacing: 0.12em;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 18px, 1180px);
+      }
+
+      .hero-banner {
+        max-height: none;
+        object-fit: contain;
+      }
+
+      .tabs {
+        justify-content: flex-start;
+        gap: 8px;
+        padding: 10px 9px 9px;
+      }
+
+      .tab-button {
+        min-height: 42px;
+        padding: 0 13px;
+        font-size: 0.7rem;
+      }
+
+      .tab-button::after {
+        bottom: -10px;
+      }
+
+      .tab-panel {
+        min-height: 520px;
+        padding-top: 26px;
+      }
+
+      .page-heading h1 {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        letter-spacing: 0.06em;
+      }
+
+      .non-believers-list {
+        gap: 7px;
+      }
+
+      .non-believers-list li {
+        grid-template-columns: 58px minmax(0, 1fr);
+        height: 64px;
+        padding: 0 34px 0 116px;
+      }
+
+      .non-believers-list li::before {
+        font-size: 1rem;
+      }
+
+      .non-believers-list .name {
+        padding-left: 10px;
+        font-size: 1.12rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header class="hero">
     <img class="hero-banner" src="assets/banner.png" alt="The Church of Overlord banner">
@@ -1144,30 +411,28 @@ footer p {
       <div class="intro">
         <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
       </div>
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/2HGI_hD7JSM"
-            title="The Church of Overlord"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </section>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/2HGI_hD7JSM"
+          title="The Church of Overlord"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
     </section>
 
-
-
-<section id="ten-laws" class="tab-panel document-page">
+    <section id="ten-laws" class="tab-panel document-page">
       <img class="document-image" src="assets/ten-laws.png" alt="The Ten Laws of the Church of Overlord">
     </section>
 
-<section id="doctrine" class="tab-panel document-page">
+    <section id="doctrine" class="tab-panel document-page">
       <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
     </section>
 
-<section id="non-believers" class="tab-panel">
+    <section id="non-believers" class="tab-panel">
       <div class="page-heading">
         <h1>NON-BELIEVERS</h1>
       </div>
@@ -1202,36 +467,39 @@ footer p {
   </main>
 
   <footer>
-    <img src="assets/symbol.png" alt="" class="footer-sigil">
+    <img class="footer-sigil" src="assets/symbol.png" alt="">
     <p>PRAISE PA’AGRIO · HONOUR THE ANCESTORS · TRUST THE LORD</p>
   </footer>
 
   <script>
-    const buttons = document.querySelectorAll('.tab-button');
-    const panels = document.querySelectorAll('.tab-panel');
+    const buttons = [...document.querySelectorAll(".tab-button")];
+    const panels = [...document.querySelectorAll(".tab-panel")];
 
-    function activateTab(tabName) {
-      buttons.forEach(button => {
-        const isActive = button.dataset.tab === tabName;
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    function activateTab(tabName, updateHash = true) {
+      buttons.forEach((button) => {
+        const active = button.dataset.tab === tabName;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-selected", String(active));
       });
 
-      panels.forEach(panel => {
-        panel.classList.toggle('active', panel.id === tabName);
+      panels.forEach((panel) => {
+        panel.classList.toggle("active", panel.id === tabName);
       });
 
-      history.replaceState(null, '', '#' + tabName);
+      if (updateHash) {
+        history.replaceState(null, "", `#${tabName}`);
+      }
     }
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => activateTab(button.dataset.tab));
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => activateTab(button.dataset.tab));
     });
 
-    const initial = location.hash.replace('#', '');
-    if (initial && document.getElementById(initial)) {
-      activateTab(initial);
-    }
+    const initialTab = location.hash.slice(1);
+    activateTab(
+      buttons.some((button) => button.dataset.tab === initialTab) ? initialTab : "home",
+      false
+    );
   </script>
 </body>
 </html>
