@@ -582,7 +582,41 @@ footer p {
   .non-believers-list li { grid-template-columns:45px 1fr; min-height:47px; }
 }
 
+
+/* === Parchment Non-Believers === */
+.non-believers-panel {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 8px 0 30px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.non-believers-list {
+  display:block; width:min(700px,100%); margin:0 auto; padding:0; list-style:none; counter-reset:unbeliever;
+}
+.non-believers-list li {
+  counter-increment:unbeliever; display:grid; grid-template-columns:92px 1fr; align-items:center; min-height:76px;
+  margin:0 0 10px; padding:0 34px 0 24px; background:url("assets/name-parchment.jpg") center / 100% 100% no-repeat;
+  color:#1e1a12; border:0; box-shadow:0 8px 20px rgba(0,0,0,.36);
+  font-family:"Cinzel", Georgia, "Times New Roman", serif; transition:transform 150ms ease, filter 150ms ease;
+}
+.non-believers-list li:hover { transform:translateY(-1px); filter:brightness(1.035); }
+.non-believers-list li .roman::before {
+  content:counter(unbeliever, upper-roman) "."; display:block; color:#382918; font-size:.95rem; font-weight:800; text-align:center;
+}
+.non-believers-list li .name { padding-left:12px; color:#1b160f; font-size:clamp(1rem,2vw,1.18rem); font-weight:700; letter-spacing:.02em; }
+.non-believers-ending p { font-family:"Cinzel", Georgia, serif; font-weight:700; }
+@media (max-width:620px) {
+ .non-believers-list li { grid-template-columns:68px 1fr; min-height:64px; padding:0 20px 0 14px; margin-bottom:8px; }
+ .non-believers-list li .roman::before { font-size:.78rem; }
+ .non-believers-list li .name { font-size:.95rem; padding-left:8px; }
+}
+
 </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="hero">
@@ -649,22 +683,22 @@ footer p {
 
       <div class="non-believers-panel">
         <ol class="non-believers-list">
-          <li>dsn</li>
-          <li>invite</li>
-          <li>Undying</li>
-          <li>Rubio</li>
-          <li>Aivan</li>
-          <li>BUSDRIVER</li>
-          <li>Tecto</li>
-          <li>NoCommenT</li>
-          <li>BlackillusioN</li>
-          <li>BigusDickus</li>
-          <li>Seriel</li>
-          <li>Copycat</li>
-          <li>kill</li>
-          <li>Eirial</li>
-          <li>Ghast</li>
-          <li>Neturno</li>
+          <li><span class="roman"></span><span class="name">dsn</span></li>
+          <li><span class="roman"></span><span class="name">invite</span></li>
+          <li><span class="roman"></span><span class="name">Undying</span></li>
+          <li><span class="roman"></span><span class="name">Rubio</span></li>
+          <li><span class="roman"></span><span class="name">Aivan</span></li>
+          <li><span class="roman"></span><span class="name">BUSDRIVER</span></li>
+          <li><span class="roman"></span><span class="name">Tecto</span></li>
+          <li><span class="roman"></span><span class="name">NoCommenT</span></li>
+          <li><span class="roman"></span><span class="name">BlackillusioN</span></li>
+          <li><span class="roman"></span><span class="name">BigusDickus</span></li>
+          <li><span class="roman"></span><span class="name">Seriel</span></li>
+          <li><span class="roman"></span><span class="name">Copycat</span></li>
+          <li><span class="roman"></span><span class="name">kill</span></li>
+          <li><span class="roman"></span><span class="name">Eirial</span></li>
+          <li><span class="roman"></span><span class="name">Ghast</span></li>
+          <li><span class="roman"></span><span class="name">Neturno</span></li>
         </ol>
 
         <div class="non-believers-ending">
