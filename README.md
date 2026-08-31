@@ -1,12 +1,9 @@
-# Church of Overlord — Trial of Exile update
+# Church of Overlord — Keepers of the Flame
 
 Alterações:
-- Novo separador `TRIAL OF EXILE`.
-- Adicionado o panfleto `assets/trial-of-exile.png`.
-- `Nikita` adicionado ao topo da lista de Non-Believers.
-- Mantida a frase da homepage: `THEY MAY CAST US OUT. THEY WILL NOT SILENCE THE FLAME.`
-- Mantidas as duas imagens do Discord e o vídeo.
-- Navegação móvel ajustada para os cinco separadores.
-
-Deploy:
-Substitui os ficheiros do site pelos conteúdos deste ZIP.
+- Novo separador KEEPERS OF THE FLAME.
+- Lista com numeração romana e a mesma tipografia/tamanho dos Non-Believers.
+- Background próprio em prata, branco e roxo.
+- Background normalizado para as mesmas dimensões do asset dos Non-Believers.
+- Keepers iniciais: Rubio, strontsiy, Savvazs, picksy.
+- Mantidas todas as alterações anteriores, incluindo Trial of Exile e Nikita no topo dos Non-Believers.
