@@ -428,6 +428,22 @@
         font-size: 1.12rem;
       }
     }
+
+    @media (max-width: 700px) {
+      .tabs {
+        gap: 2px;
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+
+      .tab-button {
+        padding-left: 7px;
+        padding-right: 7px;
+        font-size: .41rem;
+        letter-spacing: 0;
+      }
+    }
+
   </style>
 
   <style>
@@ -558,6 +574,22 @@
         font-size: 1.1rem;
       }
     }
+
+    @media (max-width: 700px) {
+      .tabs {
+        gap: 2px;
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+
+      .tab-button {
+        padding-left: 7px;
+        padding-right: 7px;
+        font-size: .41rem;
+        letter-spacing: 0;
+      }
+    }
+
   </style>
 
 </head>
@@ -571,6 +603,7 @@
     <button type="button" class="tab-button active" data-tab="home">CHURCH OF OVERLORD</button>
     <button type="button" class="tab-button" data-tab="ten-laws">TEN LAWS</button>
     <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
+    <button type="button" class="tab-button" data-tab="trial-of-exile">TRIAL OF EXILE</button>
     <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
   </nav>
 
@@ -603,6 +636,10 @@
 
     <section id="doctrine" class="tab-panel document-page">
       <img class="document-image" src="assets/doctrine.png" alt="Doctrine of the Church of Overlord">
+    </section>
+
+    <section id="trial-of-exile" class="tab-panel document-page">
+      <img class="document-image" src="assets/trial-of-exile.png" alt="The Trial of Exile">
     </section>
 
     <section id="non-believers" class="tab-panel">
