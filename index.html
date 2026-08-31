@@ -347,24 +347,11 @@
     /* ---------- KEEPERS OF THE FLAME ---------- */
 
     /*
-      The Keepers artwork contains transparent vertical padding inside the PNG.
-      The row itself must keep the exact same 1996:321 box as Non-Believers,
-      but the background needs to be enlarged vertically inside that box.
+      Keepers and Non-Believers deliberately use the exact same row geometry.
+      The ONLY visual/layout difference is the background asset.
     */
     .keepers-list li {
-      aspect-ratio: 1996 / 321;
-      background-image: url("assets/keepers-row-v2.png");
-      background-size: 100% 144%;
-      background-position: center 37%;
-      background-repeat: no-repeat;
-      align-items: center;
-    }
-
-    .keepers-list li::before,
-    .keepers-list .name {
-      align-self: center;
-      line-height: 1;
-      transform: none;
+      background-image: url("assets/keepers-row-v3.png");
     }
 
     /* ---------- FOOTER ---------- */
@@ -614,6 +601,23 @@
       }
     }
 
+  </style>
+
+
+  <style>
+    /* FINAL ROW UNIFORMITY — both lists share identical geometry */
+    .keepers-list li {
+      aspect-ratio: 1996 / 321;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .keepers-list li::before,
+    .keepers-list .name {
+      align-self: center;
+      transform: none;
+    }
   </style>
 
 </head>
