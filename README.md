@@ -1,9 +1,10 @@
-# Church of Overlord — Keepers of the Flame
+# Church of Overlord — Keepers CSS placement fix
 
-Alterações:
-- Novo separador KEEPERS OF THE FLAME.
-- Lista com numeração romana e a mesma tipografia/tamanho dos Non-Believers.
-- Background próprio em prata, branco e roxo.
-- Background normalizado para as mesmas dimensões do asset dos Non-Believers.
-- Keepers iniciais: Rubio, strontsiy, Savvazs, picksy.
-- Mantidas todas as alterações anteriores, incluindo Trial of Exile e Nikita no topo dos Non-Believers.
+Correção:
+- O problema estava também na forma como o PNG era colocado no elemento.
+- O `li` mantém a mesma proporção 1996:321 dos Non-Believers.
+- O PNG dos Keepers tem padding transparente vertical, por isso agora é ampliado
+  apenas dentro da caixa com `background-size: 100% 144%`.
+- O background é reposicionado para centrar visualmente a moldura.
+- Números romanos e nomes deixam de ter `translateY` e ficam centrados pela grid.
+- O asset foi renomeado para `keepers-row-v2.png` apenas para evitar cache antigo.

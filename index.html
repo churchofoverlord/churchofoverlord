@@ -345,18 +345,26 @@
 
 
     /* ---------- KEEPERS OF THE FLAME ---------- */
+
+    /*
+      The Keepers artwork contains transparent vertical padding inside the PNG.
+      The row itself must keep the exact same 1996:321 box as Non-Believers,
+      but the background needs to be enlarged vertically inside that box.
+    */
     .keepers-list li {
-      background-image: url("assets/keepers-row.png");
+      aspect-ratio: 1996 / 321;
+      background-image: url("assets/keepers-row-v2.png");
+      background-size: 100% 144%;
+      background-position: center 37%;
+      background-repeat: no-repeat;
+      align-items: center;
     }
 
-
-    /* Keepers: artwork is cropped to the same ratio as Non-Believers, never vertically squeezed. */
     .keepers-list li::before,
     .keepers-list .name {
       align-self: center;
       line-height: 1;
-      position: relative;
-      top: -1px;
+      transform: none;
     }
 
     /* ---------- FOOTER ---------- */
