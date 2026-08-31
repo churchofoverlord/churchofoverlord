@@ -349,6 +349,16 @@
       background-image: url("assets/keepers-row.png");
     }
 
+
+    /* Keepers: artwork is cropped to the same ratio as Non-Believers, never vertically squeezed. */
+    .keepers-list li::before,
+    .keepers-list .name {
+      align-self: center;
+      line-height: 1;
+      position: relative;
+      top: -1px;
+    }
+
     /* ---------- FOOTER ---------- */
 
     footer {
