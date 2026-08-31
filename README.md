@@ -1,19 +1,12 @@
-# Church of Overlord — Keepers uniform layout fix
+# Church of Overlord — Keepers visual height match
 
-Diagnóstico:
-- Keepers e Non-Believers já partilhavam a mesma lista e a mesma tipografia.
-- A diferença vinha do CSS específico dos Keepers:
-    background-size: 100% 144%;
-    background-position: center 37%;
-  Isto fazia o asset dos Keepers ser desenhado de forma diferente dentro da mesma caixa.
-- Havia ainda várias regras mobile duplicadas, mas essas afetam ambas as listas da mesma forma.
+Diagnóstico confirmado pelos assets:
+- Non-Believers canvas: 1996x321, artwork visível ~320 px de altura.
+- Keepers canvas: 1996x321, mas artwork visível só ~223 px de altura.
+- O resto era padding transparente dentro do próprio PNG, por isso a barra parecia muito mais fina e o texto parecia deslocado.
 
 Correção:
-- Keepers agora herda 100% da geometria dos Non-Believers.
-- A única diferença é `background-image`.
-- Ambos usam `aspect-ratio: 1996 / 321`, `background-size: 100% 100%`
-  e o mesmo sistema de grid, padding, fonte, numeração e alinhamento.
-- Asset renomeado para `keepers-row-v3.png` para evitar cache do GitHub/browser.
-
-Se os dois assets tiverem o mesmo desenho/proporção interna, as duas listas terão
-exatamente a mesma altura e posicionamento no site.
+- Removido o padding transparente interno do asset dos Keepers.
+- O artwork visível foi ajustado para preencher exatamente 1996x321, como o Non-Believers.
+- O CSS/layout permanece igual entre as duas listas.
+- Novo nome do asset: keepers-row-v4.png para evitar cache.
