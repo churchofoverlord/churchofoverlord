@@ -186,6 +186,27 @@
       border: 0;
     }
 
+
+    /* ---------- REBORN INVITE IMAGES ---------- */
+
+    .reborn-images {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      width: min(920px, 100%);
+      margin: 0 auto 30px;
+    }
+
+    .reborn-images img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(176, 90, 215, 0.28);
+      box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(105, 34, 136, 0.08);
+    }
+
     /* ---------- DOCUMENTS ---------- */
 
     .document-page {
@@ -350,6 +371,12 @@
     @media (max-width: 760px) {
       main {
         width: min(100% - 18px, 1180px);
+      }
+
+      .reborn-images {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 20px;
       }
 
       .hero-banner {
@@ -550,7 +577,12 @@
   <main>
     <section id="home" class="tab-panel active">
       <div class="intro">
-        <p class="motto">ONE FLAME. ONE LAW. ONE BALANCE.</p>
+        <p class="motto">THEY MAY CAST US OUT. THEY WILL NOT SILENCE THE FLAME.</p>
+      </div>
+
+      <div class="reborn-images">
+        <img src="assets/reborn-invite.jpg" alt="Reborn Discord server invitation">
+        <img src="assets/reborn-invite-expired.jpg" alt="Expired Reborn Discord invitation">
       </div>
 
       <div class="video-frame">
@@ -580,7 +612,6 @@
 
       <div class="non-believers-panel">
         <ol class="non-believers-list">
-          <li><span class="name">Nikita</span></li>
           <li><span class="name">dsn</span></li>
           <li><span class="name">invite</span></li>
           <li><span class="name">Undying</span></li>
@@ -597,7 +628,6 @@
           <li><span class="name">Eirial</span></li>
           <li><span class="name">Ghast</span></li>
           <li><span class="name">Neturno</span></li>
-          <li><span class="name">Claire</span></li>
         </ol>
 
         <div class="non-believers-ending">
