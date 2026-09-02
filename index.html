@@ -12,118 +12,240 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
     :root {
       --bg: #050407;
       --stone: #d4c6ae;
-      --muted: #8d8294;
-      --purple: #7a2f9d;
-      --purple-bright: #b05ad7;
-      --line: rgba(176, 90, 215, 0.28);
+      --purple: #b05ad7;
+      --orange: #d77a2c;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
+    html.gate-open,
+    html.gate-open body { overflow: hidden; }
 
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.14), transparent 30rem),
-        linear-gradient(180deg, #020203 0%, var(--bg) 35%, #030204 100%);
       color: var(--stone);
       font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(91,24,123,.10), transparent 30rem),
+        linear-gradient(180deg, #020203 0%, var(--bg) 38%, #030204 100%);
     }
 
-    /* ---------- HERO ---------- */
-
-    .hero {
-      width: 100%;
-      background: #000;
-      border-bottom: 1px solid rgba(176, 90, 215, 0.2);
+    /* ---------- ENTRANCE ---------- */
+    .church-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,.56), rgba(0,0,0,.74)),
+        url("assets/paagrio-temple-bg.webp") center / cover no-repeat,
+        #020202;
+      transition: opacity .85s ease, visibility .85s ease;
     }
 
-    .hero-banner {
+    .church-gate.entered {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .gate-shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 53%, rgba(210,90,27,.15), transparent 24rem),
+        radial-gradient(circle at 50% 45%, rgba(128,48,157,.10), transparent 34rem),
+        linear-gradient(90deg, rgba(0,0,0,.54), transparent 25%, transparent 75%, rgba(0,0,0,.54));
+    }
+
+    .gate-content {
+      position: relative;
+      z-index: 1;
+      width: min(1040px, calc(100% - 28px));
+      padding: 20px 18px 28px;
+      text-align: center;
+    }
+
+    .gate-church-banner {
+      display: block;
+      width: min(900px, 92vw);
+      max-height: min(52vh, 460px);
+      height: auto;
+      margin: 0 auto 18px;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 34px rgba(0,0,0,.72));
+    }
+
+    .enter-church {
+      display: inline-flex;
+      width: min(620px, 92vw);
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .enter-church-image {
       display: block;
       width: 100%;
       height: auto;
-      max-height: 540px;
-      object-fit: cover;
+      transition: transform .16s ease, filter .16s ease;
     }
 
-    /* ---------- TABS ---------- */
+    .enter-church:hover .enter-church-image {
+      transform: translateY(-1px) scale(1.01);
+      filter: brightness(1.08) drop-shadow(0 0 12px rgba(176,90,215,.13));
+    }
 
+    .gate-hint {
+      margin: 12px 0 0;
+      color: #997fa3;
+      font: 600 clamp(.55rem,1.7vw,.70rem)/1.4 "Cinzel", Georgia, serif;
+      letter-spacing: .14em;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* ---------- MUSIC ---------- */
+    .music-toggle {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 120;
+      display: none;
+      min-height: 34px;
+      padding: 0 11px;
+      border: 1px solid rgba(176,90,215,.22);
+      color: #a98cb6;
+      background: rgba(7,5,8,.86);
+      font: 600 .57rem/1 "Cinzel", Georgia, serif;
+      letter-spacing: .08em;
+      cursor: pointer;
+      backdrop-filter: blur(7px);
+    }
+
+    body.church-entered .music-toggle { display: block; }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(14px,2vw,26px);
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,.44), rgba(0,0,0,.56)),
+        url("assets/paagrio-temple-bg.webp") center 48% / cover no-repeat,
+        #030203;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(207,89,28,.12), transparent 34%),
+        linear-gradient(90deg, rgba(0,0,0,.32), transparent 22%, transparent 78%, rgba(0,0,0,.32));
+    }
+
+    .hero-banner {
+      position: relative;
+      display: block;
+      width: min(1180px,100%);
+      height: auto;
+      max-height: clamp(220px,34vw,430px);
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,.62));
+    }
+
+    /* ---------- NAV ---------- */
     .tabs {
       position: sticky;
       top: 0;
       z-index: 50;
       display: flex;
       justify-content: center;
-      gap: 12px;
-      padding: 14px 18px 12px;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 8px;
       overflow-x: auto;
       scrollbar-width: none;
-      background: rgba(5, 4, 7, 0.97);
-      border-bottom: 1px solid rgba(176, 90, 215, 0.22);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
-      backdrop-filter: blur(8px);
+      background: rgba(3,2,4,.96);
+      backdrop-filter: blur(5px);
     }
 
-    .tabs::-webkit-scrollbar {
-      display: none;
-    }
+    .tabs::-webkit-scrollbar { display: none; }
 
     .tab-button {
       position: relative;
-      flex: 0 0 auto;
-      min-height: 46px;
-      padding: 0 18px;
-      border: 1px solid rgba(176, 90, 215, 0.26);
-      border-radius: 2px;
-      background: linear-gradient(180deg, rgba(28, 18, 34, 0.72), rgba(10, 7, 13, 0.88));
-      color: #aa9cac;
-      font: 600 0.8rem/1 Georgia, "Times New Roman", serif;
-      letter-spacing: 0.1em;
+      flex: 0 0 188px;
+      width: 188px;
+      height: 48px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
       cursor: pointer;
-      white-space: nowrap;
-      transition: 160ms ease;
     }
 
-    .tab-button:hover {
-      color: #e0d2bc;
-      border-color: rgba(176, 90, 215, 0.55);
+    .tab-button-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .tab-button:hover .tab-button-image {
       transform: translateY(-1px);
+      filter: brightness(1.08) drop-shadow(0 3px 5px rgba(0,0,0,.28));
     }
 
-    .tab-button::after {
+    /* Orange glow identifies the currently open tab. */
+    .tab-button.active::before {
       content: "";
       position: absolute;
-      left: 16%;
-      right: 16%;
-      bottom: -13px;
-      height: 2px;
-      background: transparent;
+      inset: 4px 7px;
+      z-index: -1;
+      border-radius: 10px;
+      background: rgba(215,122,44,.20);
+      box-shadow:
+        0 0 10px rgba(215,122,44,.50),
+        0 0 22px rgba(215,122,44,.30),
+        0 0 36px rgba(159,67,31,.18);
+      pointer-events: none;
     }
 
-    .tab-button.active {
-      color: #efe1ca;
-      border-color: rgba(176, 90, 215, 0.68);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(176, 90, 215, 0.16), transparent 70%),
-        linear-gradient(180deg, rgba(38, 21, 47, 0.86), rgba(11, 7, 15, 0.94));
+    .tab-button.active .tab-button-image {
+      filter:
+        brightness(1.13)
+        drop-shadow(0 0 7px rgba(215,122,44,.34))
+        drop-shadow(0 3px 6px rgba(0,0,0,.34));
     }
 
-    .tab-button.active::after {
-      background: var(--purple-bright);
-      box-shadow: 0 0 10px rgba(176, 90, 215, 0.65);
-    }
-
-    /* ---------- PANELS ---------- */
-
+    /* ---------- CONTENT ---------- */
     main {
       width: min(1180px, calc(100% - 30px));
       margin: 0 auto;
@@ -131,51 +253,44 @@
 
     .tab-panel {
       display: none;
-      min-height: 650px;
-      padding: 34px 0 68px;
+      min-height: 540px;
+      padding: 30px 0 58px;
     }
 
     .tab-panel.active {
       display: block;
-      animation: fade-in 180ms ease-out;
+      animation: fade-in .18s ease-out;
     }
 
     @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(3px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- HOME ---------- */
-
     .intro {
-      padding: 4px 0 28px;
+      padding: 3px 0 26px;
       text-align: center;
     }
 
     .motto {
       margin: 0;
-      color: var(--purple-bright);
-      font-size: clamp(0.72rem, 1.7vw, 1rem);
-      letter-spacing: 0.22em;
+      color: var(--purple);
+      font-size: clamp(.72rem,1.7vw,1rem);
+      letter-spacing: .22em;
     }
 
+    /* Video: glow only, no visible border. */
     .video-frame {
       position: relative;
-      width: min(920px, 100%);
+      width: min(920px,100%);
       margin: 0 auto;
       aspect-ratio: 16 / 9;
       overflow: hidden;
       background: #000;
-      border: 1px solid rgba(176, 90, 215, 0.4);
       box-shadow:
-        0 18px 70px rgba(0, 0, 0, 0.6),
-        0 0 45px rgba(105, 34, 136, 0.1);
+        0 20px 72px rgba(0,0,0,.68),
+        0 0 24px rgba(173,75,28,.11),
+        0 0 56px rgba(105,34,136,.07);
     }
 
     .video-frame iframe {
@@ -186,73 +301,103 @@
       border: 0;
     }
 
-
-    /* ---------- REBORN INVITE IMAGES ---------- */
-
-    .reborn-images {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      width: min(920px, 100%);
-      margin: 0 auto 30px;
-    }
-
-    .reborn-images img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 1px solid rgba(176, 90, 215, 0.28);
-      box-shadow:
-        0 14px 40px rgba(0, 0, 0, 0.5),
-        0 0 24px rgba(105, 34, 136, 0.08);
-    }
-
-    /* ---------- DOCUMENTS ---------- */
-
-    .document-page {
-      text-align: center;
-    }
+    /* Documents: glow only, no border/background frame. */
+    .document-page { text-align: center; }
 
     .document-image {
       display: block;
-      width: min(760px, 100%);
+      width: min(760px,100%);
       height: auto;
       margin: 0 auto;
-      padding: 7px;
-      border: 1px solid rgba(176, 90, 215, 0.22);
-      background: linear-gradient(145deg, rgba(122, 47, 157, 0.14), rgba(255, 255, 255, 0.015));
-      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow:
+        0 25px 76px rgba(0,0,0,.72),
+        0 0 18px rgba(218,129,54,.11),
+        0 0 44px rgba(167,72,29,.075),
+        0 0 82px rgba(105,34,136,.045);
     }
 
-    /* ---------- NON-BELIEVERS ---------- */
+    .exile-status {
+      width: fit-content;
+      max-width: 92%;
+      margin: 16px auto 0;
+      padding: 8px 14px;
+      border: 1px solid rgba(176,90,215,.24);
+      background: linear-gradient(180deg, rgba(122,47,157,.05), rgba(133,55,24,.04));
+      color: #c27be0;
+      font: 700 clamp(.62rem,1.35vw,.78rem)/1.35 "Cinzel", Georgia, serif;
+      letter-spacing: .11em;
+      box-shadow: 0 0 14px rgba(176,90,215,.05);
+    }
 
+    .exile-status::before {
+      content: "◆";
+      margin-right: 9px;
+      color: #c878e8;
+      font-size: .65em;
+      text-shadow:
+        0 0 5px rgba(200,120,232,.68),
+        0 0 12px rgba(176,90,215,.30),
+        0 0 18px rgba(210,94,31,.11);
+      animation: exile-pulse 5s ease-in-out infinite;
+    }
+
+    @keyframes exile-pulse {
+      0%,100% { opacity:.62; }
+      50% { opacity:1; }
+    }
+
+    /* ---------- KEEPERS / NON-BELIEVERS ---------- */
     .page-heading {
       position: relative;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       text-align: center;
     }
 
-    .page-heading::after {
+    .page-heading::before {
       content: "";
-      display: block;
-      width: min(860px, 88%);
-      height: 1px;
-      margin: 20px auto 0;
-      background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.38), transparent);
+      position: absolute;
+      left: 50%;
+      top: -24px;
+      width: min(620px,86vw);
+      height: 84px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(201,87,30,.06), transparent 54%),
+        radial-gradient(ellipse, rgba(146,62,181,.08), transparent 70%);
+      filter: blur(5px);
     }
 
     .page-heading h1 {
+      position: relative;
+      z-index: 1;
       margin: 0;
       color: #ead9bd;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      line-height: 1.05;
+      font: 800 clamp(1.8rem,4.2vw,2.5rem)/1.05 "Cinzel", Georgia, serif;
+      letter-spacing: .08em;
+      text-shadow:
+        0 0 13px rgba(176,90,215,.11),
+        0 7px 28px rgba(190,78,26,.075);
     }
 
+    .section-intro {
+      position: relative;
+      z-index: 1;
+      margin: 13px auto 0;
+      max-width: 760px;
+      color: #a989b8;
+      font: 600 clamp(.72rem,1.5vw,.92rem)/1.5 "Cinzel", Georgia, serif;
+      letter-spacing: .08em;
+    }
+
+    #keepers .page-heading h1 { color: #e6ddea; }
+    #non-believers .page-heading h1 { color: #e4d1ad; }
+
     .non-believers-panel {
-      width: min(900px, 100%);
+      width: min(900px,100%);
       margin: 0 auto;
     }
 
@@ -260,7 +405,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      width: min(860px, 100%);
+      width: min(860px,100%);
       margin: 0 auto;
       padding: 0;
       list-style: none;
@@ -269,1112 +414,137 @@
 
     .non-believers-list li {
       counter-increment: unbeliever;
-      position: relative;
       display: grid;
-      grid-template-columns: 82px minmax(0, 1fr);
+      grid-template-columns: 82px minmax(0,1fr);
       align-items: center;
       width: 100%;
-
-      /* nb-row3 is physically cropped to the parchment itself.
-         Therefore the element and the image always have the same ratio. */
       aspect-ratio: 1996 / 321;
-
-      /* Left inset starts after the integrated standard. */
       padding: 0 58px 0 138px;
-
-      background-image: url("assets/nb-row-transparent.png");
-      background-size: 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-
       color: #1b160f;
-      overflow: hidden;
-      transition: transform 150ms ease, filter 150ms ease;
+      background: url("assets/nb-row-transparent.png") center / 100% 100% no-repeat;
+      filter:
+        drop-shadow(0 0 5px rgba(201,154,69,.18))
+        drop-shadow(0 0 12px rgba(166,113,34,.08));
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .keepers-list li {
+      background-image: url("assets/keepers-row-v4.png");
+      filter:
+        drop-shadow(0 0 5px rgba(176,90,215,.22))
+        drop-shadow(0 0 12px rgba(122,47,157,.10));
     }
 
     .non-believers-list li::before {
       content: counter(unbeliever, upper-roman) ".";
       justify-self: end;
-      font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1;
+      font: 700 2rem/1 "Libre Baskerville", Georgia, serif;
       color: #21190f;
     }
 
     .non-believers-list .name {
       padding-left: 16px;
-      font-family: "Libre Baskerville", Georgia, serif;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1;
+      font: 700 2rem/1 "Libre Baskerville", Georgia, serif;
       color: #1b160f;
-      text-transform: none;
+      white-space: nowrap;
     }
 
     .non-believers-list li:hover {
       transform: translateY(-1px);
-      filter: brightness(1.02);
-    }
-
-    .non-believers-ending {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 14px;
-      width: min(680px, 90%);
-      margin: 28px auto 0;
-    }
-
-    .non-believers-ending span {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(176, 90, 215, 0.36));
-    }
-
-    .non-believers-ending span:last-child {
-      transform: scaleX(-1);
-    }
-
-    .non-believers-ending p {
-      margin: 0;
-      color: #ae50cf;
-      font: 700 0.72rem/1 "Cinzel", Georgia, serif;
-      letter-spacing: 0.17em;
-      white-space: nowrap;
-    }
-
-
-
-    .page-heading .section-intro {
-      margin: 14px auto 0;
-      max-width: 760px;
-      color: #a989b8;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: clamp(0.72rem, 1.5vw, 0.92rem);
-      font-weight: 600;
-      line-height: 1.5;
-      letter-spacing: 0.08em;
-      text-align: center;
-    }
-
-    /* ---------- KEEPERS OF THE FLAME ---------- */
-
-    /*
-      Keepers and Non-Believers deliberately use the exact same row geometry.
-      The ONLY visual/layout difference is the background asset.
-    */
-    .keepers-list li {
-      background-image: url("assets/keepers-row-v4.png");
-    }
-
-
-    /* ---------- EXILE STATUS ---------- */
-    .exile-status {
-      width: fit-content;
-      max-width: 92%;
-      margin: 16px auto 0;
-      padding: 8px 14px;
-      border: 1px solid rgba(176, 90, 215, 0.30);
-      background: rgba(122, 47, 157, 0.07);
-      color: #c27be0;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: clamp(0.62rem, 1.35vw, 0.78rem);
-      font-weight: 700;
-      line-height: 1.35;
-      letter-spacing: 0.11em;
-      text-align: center;
-      box-shadow: 0 0 16px rgba(176, 90, 215, 0.06);
-    }
-
-    /* ---------- ROW GLOW DETAILS ---------- */
-
-    /* Subtle permanent glow so it is visible on touch devices too. */
-    .keepers-list li {
-      filter:
-        drop-shadow(0 0 5px rgba(176, 90, 215, 0.22))
-        drop-shadow(0 0 12px rgba(122, 47, 157, 0.10));
-    }
-
-    #non-believers .non-believers-list li {
-      filter:
-        drop-shadow(0 0 5px rgba(201, 154, 69, 0.18))
-        drop-shadow(0 0 12px rgba(166, 113, 34, 0.08));
-    }
-
-    /* Slightly stronger when hovered, focused or tapped. */
-    .keepers-list li:hover,
-    .keepers-list li:focus-within,
-    .keepers-list li:active {
       filter:
         brightness(1.03)
-        drop-shadow(0 0 8px rgba(176, 90, 215, 0.34))
-        drop-shadow(0 0 18px rgba(122, 47, 157, 0.15));
+        drop-shadow(0 0 8px rgba(201,154,69,.30))
+        drop-shadow(0 0 18px rgba(166,113,34,.13));
     }
 
-    #non-believers .non-believers-list li:hover,
-    #non-believers .non-believers-list li:focus-within,
-    #non-believers .non-believers-list li:active {
+    .keepers-list li:hover {
       filter:
         brightness(1.03)
-        drop-shadow(0 0 8px rgba(201, 154, 69, 0.30))
-        drop-shadow(0 0 18px rgba(166, 113, 34, 0.13));
+        drop-shadow(0 0 8px rgba(176,90,215,.34))
+        drop-shadow(0 0 18px rgba(122,47,157,.15));
     }
-
 
     /* ---------- FOOTER ---------- */
-
     footer {
-      padding: 30px 20px 42px;
+      padding: 24px 20px 36px;
       text-align: center;
       background: #020203;
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-sigil {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      opacity: 0.78;
     }
 
     footer p {
-      margin: 13px 0 0;
+      margin: 0;
       color: #8f72a2;
-      font-size: clamp(0.64rem, 1.5vw, 0.84rem);
-      letter-spacing: 0.12em;
+      font-size: clamp(.64rem,1.5vw,.84rem);
+      letter-spacing: .12em;
     }
 
-    /* ---------- MOBILE ---------- */
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1180px) and (min-width: 761px) {
+      .tab-button {
+        flex-basis: 15.6vw;
+        width: 15.6vw;
+        min-width: 0;
+        height: 46px;
+      }
+    }
 
     @media (max-width: 760px) {
-      main {
-        width: min(100% - 18px, 1180px);
+      body { background-attachment: scroll; }
+
+      .gate-church-banner {
+        width: min(96vw,760px);
+        max-height: 43vh;
+        margin-bottom: 14px;
       }
 
-      .reborn-images {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
+      .enter-church { width: min(520px,94vw); }
+
+      .hero { padding: 9px; }
 
       .hero-banner {
-        max-height: none;
-        object-fit: contain;
+        max-height: clamp(150px,42vw,270px);
       }
 
-      .tabs {
-        justify-content: flex-start;
-        gap: 8px;
-        padding: 10px 9px 9px;
-      }
-
-      .tab-button {
-        min-height: 42px;
-        padding: 0 13px;
-        font-size: 0.7rem;
-      }
-
-      .tab-button::after {
-        bottom: -10px;
-      }
-
-      .tab-panel {
-        min-height: 520px;
-        padding-top: 26px;
-      }
-
-      .page-heading h1 {
-        font-size: clamp(1.8rem, 8vw, 2.5rem);
-        letter-spacing: 0.06em;
-      }
-
-      .non-believers-list {
-        gap: 6px;
-      }
-
-      .non-believers-list li {
-        grid-template-columns: 54px minmax(0, 1fr);
-        padding: 0 28px 0 92px;
-      }
-
-      .non-believers-list li::before {
-        font-size: 1rem;
-      }
-
-      .non-believers-list .name {
-        padding-left: 10px;
-        font-size: 1.12rem;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .tabs {
-        gap: 2px;
-        padding-left: 3px;
-        padding-right: 3px;
-      }
-
-      .tab-button {
-        padding-left: 5px;
-        padding-right: 5px;
-        font-size: .36rem;
-        letter-spacing: 0;
-      }
-    }
-
-  </style>
-
-  <style>
-    /* ==========================================================
-       MOBILE — FORCED CONSISTENT LAYOUT
-       Keeps the approved parchment asset unchanged.
-       ========================================================== */
-    @media (max-width: 760px) {
-      main {
-        width: calc(100% - 20px);
-      }
-
-      /* Four tabs always visible; no horizontal scrolling. */
       .tabs {
         display: grid;
-        grid-template-columns: 1.45fr .82fr .88fr 1.18fr;
-        gap: 5px;
-        width: 100%;
-        padding: 8px 6px 9px;
-        overflow: visible;
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        gap: 3px;
+        padding: 5px 4px;
       }
 
       .tab-button {
+        width: 100%;
         min-width: 0;
-        min-height: 38px;
-        padding: 0 4px;
-        font-size: clamp(.46rem, 2.15vw, .63rem);
-        line-height: 1.08;
-        letter-spacing: .035em;
-        white-space: normal;
-        text-align: center;
+        height: 44px;
       }
 
-      .tab-button::after {
-        left: 12%;
-        right: 12%;
-        bottom: -10px;
-      }
+      main { width: calc(100% - 20px); }
 
-      /* Compact page start. */
       .tab-panel {
         min-height: 0;
         padding: 22px 0 48px;
       }
 
-      .page-heading {
-        margin-bottom: 20px;
-      }
-
-      .page-heading::after {
-        margin-top: 14px;
-      }
-
       .page-heading h1 {
-        font-size: clamp(1.65rem, 7.2vw, 2.15rem);
-        line-height: 1;
+        font-size: clamp(1.55rem,7.2vw,2.15rem);
         letter-spacing: .055em;
         white-space: nowrap;
       }
 
-      .non-believers-panel,
-      .non-believers-list {
-        width: 100%;
-      }
+      .non-believers-list { gap: 6px; }
 
-      .non-believers-list {
-        gap: 6px;
-      }
-
-      /* Asset ratio is preserved; only text positioning changes. */
       .non-believers-list li {
-        grid-template-columns: 46px minmax(0, 1fr);
-        width: 100%;
+        grid-template-columns: 46px minmax(0,1fr);
         padding: 0 25px 0 82px;
       }
 
       .non-believers-list li::before {
-        justify-self: end;
-        font-size: clamp(1rem, 4.5vw, 1.4rem);
-        line-height: 1;
+        font-size: clamp(1rem,4.5vw,1.4rem);
       }
 
       .non-believers-list .name {
-        min-width: 0;
         padding-left: 8px;
-        font-size: clamp(1.1rem, 5vw, 1.5rem);
-        line-height: 1;
-        white-space: nowrap;
-      }
-
-      .non-believers-ending {
-        margin-top: 20px;
-      }
-
-      .non-believers-ending p {
-        font-size: .58rem;
-      }
-    }
-
-    /* Very narrow phones */
-    @media (max-width: 390px) {
-      .tabs {
-        gap: 3px;
-        padding-left: 4px;
-        padding-right: 4px;
-      }
-
-      .tab-button {
-        font-size: .45rem;
-        letter-spacing: .015em;
-      }
-
-      .page-heading h1 {
-        font-size: 1.55rem;
-      }
-
-      .non-believers-list li {
-        grid-template-columns: 40px minmax(0, 1fr);
-        padding-left: 72px;
-        padding-right: 21px;
-      }
-
-      .non-believers-list li::before {
-        font-size: 1rem;
-      }
-
-      .non-believers-list .name {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .tabs {
-        gap: 2px;
-        padding-left: 3px;
-        padding-right: 3px;
-      }
-
-      .tab-button {
-        padding-left: 5px;
-        padding-right: 5px;
-        font-size: .36rem;
-        letter-spacing: 0;
-      }
-    }
-
-  </style>
-
-
-  <style>
-    /* FINAL ROW UNIFORMITY — both lists share identical geometry */
-    .keepers-list li {
-      aspect-ratio: 1996 / 321;
-      background-size: 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .keepers-list li::before,
-    .keepers-list .name {
-      align-self: center;
-      transform: none;
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       FINAL MOBILE NAVIGATION — 3 x 2 EQUAL GRID
-       ========================================================== */
-    @media (max-width: 760px) {
-      .tabs {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 5px;
-        width: 100%;
-        padding: 8px 6px 9px;
-        overflow: visible;
-      }
-
-      .tab-button {
-        width: 100%;
-        min-width: 0;
-        min-height: 44px;
-        padding: 5px 4px;
-        font-size: clamp(.46rem, 2.05vw, .62rem);
-        line-height: 1.08;
-        letter-spacing: .025em;
-        white-space: normal;
-        text-align: center;
-      }
-
-      .tab-button::after {
-        left: 14%;
-        right: 14%;
-        bottom: -10px;
-      }
-
-      .exile-status {
-        margin-top: 13px;
-        padding: 7px 10px;
-        font-size: clamp(.58rem, 2.45vw, .72rem);
-        letter-spacing: .075em;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       FULL AESTHETIC PASS
-       Decorative only — preserves current layout and assets.
-       ========================================================== */
-
-    /* Overall content vignette / ritual ambience */
-    main {
-      position: relative;
-      isolation: isolate;
-    }
-
-    main::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 22%, rgba(111, 42, 143, 0.075), transparent 38rem),
-        linear-gradient(90deg, rgba(0,0,0,0.26), transparent 20%, transparent 80%, rgba(0,0,0,0.26)),
-        linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.24) 100%);
-    }
-
-    /* Page titles: restrained purple ambient halo */
-    .page-heading h1 {
-      position: relative;
-      z-index: 1;
-      text-shadow:
-        0 0 14px rgba(176, 90, 215, 0.13),
-        0 0 32px rgba(122, 47, 157, 0.08);
-    }
-
-    .page-heading::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -28px;
-      width: min(620px, 86vw);
-      height: 92px;
-      transform: translateX(-50%);
-      pointer-events: none;
-      background: radial-gradient(ellipse, rgba(146, 62, 181, 0.105), transparent 68%);
-      filter: blur(5px);
-    }
-
-    /* Ornamental divider replacing the plain heading line */
-    .page-heading::after {
-      content: "◆";
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: min(720px, 82%);
-      height: 15px;
-      margin: 18px auto 0;
-      color: rgba(176, 90, 215, 0.62);
-      font-size: 0.48rem;
-      line-height: 1;
-      letter-spacing: 0;
-      background:
-        linear-gradient(90deg,
-          transparent 0%,
-          rgba(176, 90, 215, 0.06) 8%,
-          rgba(176, 90, 215, 0.38) 42%,
-          transparent 42.2%,
-          transparent 57.8%,
-          rgba(176, 90, 215, 0.38) 58%,
-          rgba(176, 90, 215, 0.06) 92%,
-          transparent 100%)
-        center / 100% 1px no-repeat;
-      text-shadow: 0 0 8px rgba(176, 90, 215, 0.55);
-    }
-
-    /* Keepers: colder silver-purple identity */
-    #keepers .page-heading h1 {
-      color: #e6ddea;
-      text-shadow:
-        0 0 12px rgba(213, 190, 224, 0.12),
-        0 0 28px rgba(157, 73, 190, 0.13);
-    }
-
-    #keepers .page-heading::after {
-      color: rgba(205, 181, 218, 0.72);
-      background:
-        linear-gradient(90deg,
-          transparent 0%,
-          rgba(201, 181, 214, 0.05) 8%,
-          rgba(174, 127, 194, 0.38) 42%,
-          transparent 42.2%,
-          transparent 57.8%,
-          rgba(174, 127, 194, 0.38) 58%,
-          rgba(201, 181, 214, 0.05) 92%,
-          transparent 100%)
-        center / 100% 1px no-repeat;
-    }
-
-    /* Non-Believers: aged gold with a trace of purple */
-    #non-believers .page-heading h1 {
-      color: #e4d1ad;
-      text-shadow:
-        0 0 12px rgba(194, 145, 58, 0.11),
-        0 0 28px rgba(122, 47, 157, 0.07);
-    }
-
-    #non-believers .page-heading::after {
-      color: rgba(196, 151, 75, 0.66);
-      background:
-        linear-gradient(90deg,
-          transparent 0%,
-          rgba(194, 145, 58, 0.04) 8%,
-          rgba(194, 145, 58, 0.31) 42%,
-          transparent 42.2%,
-          transparent 57.8%,
-          rgba(194, 145, 58, 0.31) 58%,
-          rgba(194, 145, 58, 0.04) 92%,
-          transparent 100%)
-        center / 100% 1px no-repeat;
-      text-shadow: 0 0 8px rgba(194, 145, 58, 0.30);
-    }
-
-    /* Exile status: proper ritual status indicator */
-    .exile-status::before {
-      content: "◆";
-      display: inline-block;
-      margin-right: 9px;
-      color: #c878e8;
-      font-size: 0.65em;
-      vertical-align: 0.12em;
-      text-shadow:
-        0 0 5px rgba(200, 120, 232, 0.72),
-        0 0 12px rgba(176, 90, 215, 0.36);
-      animation: exile-status-pulse 5s ease-in-out infinite;
-    }
-
-    @keyframes exile-status-pulse {
-      0%, 100% { opacity: 0.62; }
-      50% { opacity: 1; }
-    }
-
-    /* Sacred-document treatment: remove the obvious rectangular UI feel
-       and let a restrained purple aura sit behind the parchment. */
-    .document-image {
-      border-color: rgba(176, 90, 215, 0.18);
-      background: linear-gradient(145deg, rgba(122, 47, 157, 0.08), rgba(255,255,255,0.008));
-      box-shadow:
-        0 24px 72px rgba(0, 0, 0, 0.68),
-        0 0 26px rgba(122, 47, 157, 0.10),
-        0 0 64px rgba(105, 34, 136, 0.075);
-    }
-
-    /* Desktop navigation: faint engraved-metal inner treatment */
-    @media (min-width: 761px) {
-      .tab-button {
-        border-color: rgba(176, 90, 215, 0.24);
-        background:
-          linear-gradient(180deg, rgba(255,255,255,0.035), transparent 18%),
-          linear-gradient(180deg, rgba(31, 25, 34, 0.88), rgba(8, 7, 10, 0.96));
-        box-shadow:
-          inset 0 1px 0 rgba(226, 211, 232, 0.055),
-          inset 0 -1px 0 rgba(0,0,0,0.72),
-          0 2px 5px rgba(0,0,0,0.22);
-      }
-
-      .tab-button:hover {
-        box-shadow:
-          inset 0 1px 0 rgba(231, 213, 238, 0.075),
-          inset 0 -1px 0 rgba(0,0,0,0.76),
-          0 0 12px rgba(122, 47, 157, 0.10);
-      }
-
-      .tab-button.active {
-        box-shadow:
-          inset 0 1px 0 rgba(235, 216, 242, 0.085),
-          inset 0 -1px 0 rgba(0,0,0,0.78),
-          0 0 16px rgba(122, 47, 157, 0.12);
-      }
-    }
-
-    /* Footer: formal ornamental ending */
-    footer::before {
-      content: "◆";
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: min(620px, 78%);
-      height: 15px;
-      margin: 0 auto 23px;
-      color: rgba(176, 90, 215, 0.46);
-      font-size: 0.42rem;
-      background:
-        linear-gradient(90deg,
-          transparent,
-          rgba(176, 90, 215, 0.28) 42%,
-          transparent 42.2%,
-          transparent 57.8%,
-          rgba(176, 90, 215, 0.28) 58%,
-          transparent)
-        center / 100% 1px no-repeat;
-      text-shadow: 0 0 7px rgba(176, 90, 215, 0.42);
-    }
-
-    .footer-sigil {
-      opacity: 0.66;
-      filter: drop-shadow(0 0 8px rgba(122, 47, 157, 0.13));
-    }
-
-    /* Keep motion restrained for users who prefer reduced motion. */
-    @media (prefers-reduced-motion: reduce) {
-      .exile-status::before {
-        animation: none;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .page-heading::before {
-        top: -22px;
-        height: 76px;
-      }
-
-      .page-heading::after {
-        width: 88%;
-        margin-top: 14px;
-      }
-
-      footer::before {
-        width: 84%;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       PA'AGRIO TEMPLE AESTHETIC
-       Warm sacred-fire ambience + ancient stone.
-       Purple remains the Overlord / Church accent.
-       ========================================================== */
-
-    :root {
-      --paagrio-fire: #d77a2c;
-      --paagrio-ember: #9f431f;
-      --paagrio-gold: #d4a45d;
-      --temple-stone: #5b4032;
-    }
-
-    /* Shift the site's ambient light from generic purple toward
-       the warm fire-and-stone atmosphere of the Orc Village temple. */
-    body {
-      background:
-        radial-gradient(ellipse at 50% 4%, rgba(189, 83, 31, 0.13), transparent 28rem),
-        radial-gradient(ellipse at 50% 38%, rgba(116, 54, 30, 0.075), transparent 42rem),
-        linear-gradient(180deg, #080403 0%, #070405 34%, #040304 100%);
-    }
-
-    main::before {
-      background:
-        radial-gradient(ellipse at 50% 18%, rgba(203, 93, 31, 0.085), transparent 32rem),
-        radial-gradient(ellipse at 50% 52%, rgba(116, 57, 32, 0.05), transparent 45rem),
-        linear-gradient(90deg, rgba(0,0,0,0.30), transparent 21%, transparent 79%, rgba(0,0,0,0.30)),
-        linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.28) 100%);
-    }
-
-    /* A tiny warm edge beneath the hero suggests firelight below stone,
-       while the existing purple line remains the Church accent. */
-    .hero {
-      box-shadow:
-        0 1px 0 rgba(176, 90, 215, 0.10),
-        0 7px 24px rgba(155, 66, 25, 0.055);
-    }
-
-    /* Navigation remains purple/Overlord, but gets warmer charcoal-metal
-       undertones instead of a purely violet-black surface. */
-    .tabs {
-      background:
-        linear-gradient(180deg, rgba(16, 10, 9, 0.975), rgba(6, 4, 6, 0.985));
-      border-bottom-color: rgba(176, 90, 215, 0.20);
-      box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.38),
-        0 1px 0 rgba(167, 78, 31, 0.055);
-    }
-
-    @media (min-width: 761px) {
-      .tab-button {
-        background:
-          linear-gradient(180deg, rgba(255, 225, 190, 0.025), transparent 18%),
-          linear-gradient(180deg, rgba(34, 27, 25, 0.90), rgba(9, 7, 8, 0.97));
-      }
-    }
-
-    /* Titles retain purple as Church identity but receive a very restrained
-       amber underglow, as if lit by the central sacred fire. */
-    .page-heading::before {
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(201, 87, 30, 0.075), transparent 54%),
-        radial-gradient(ellipse, rgba(146, 62, 181, 0.075), transparent 70%);
-    }
-
-    .page-heading h1 {
-      text-shadow:
-        0 0 13px rgba(176, 90, 215, 0.11),
-        0 7px 28px rgba(190, 78, 26, 0.075);
-    }
-
-    /* Sacred documents now look illuminated by Pa'agrio's fire:
-       warm light immediately around parchment, purple farther out. */
-    .document-image {
-      border-color: rgba(197, 131, 66, 0.20);
-      background:
-        linear-gradient(145deg, rgba(122, 69, 40, 0.12), rgba(255, 230, 192, 0.018));
-      box-shadow:
-        0 25px 76px rgba(0, 0, 0, 0.72),
-        0 0 18px rgba(218, 129, 54, 0.115),
-        0 0 44px rgba(167, 72, 29, 0.075),
-        0 0 82px rgba(105, 34, 136, 0.045);
-    }
-
-    /* Trial is the most explicitly ritual page, so its status gets
-       a trace of ember-light while remaining recognisably purple. */
-    .exile-status {
-      border-color: rgba(176, 90, 215, 0.28);
-      background:
-        linear-gradient(180deg, rgba(122, 47, 157, 0.055), rgba(133, 55, 24, 0.045));
-      box-shadow:
-        0 0 14px rgba(176, 90, 215, 0.055),
-        0 5px 24px rgba(176, 75, 27, 0.045);
-    }
-
-    .exile-status::before {
-      text-shadow:
-        0 0 5px rgba(200, 120, 232, 0.68),
-        0 0 12px rgba(176, 90, 215, 0.30),
-        0 0 18px rgba(210, 94, 31, 0.11);
-    }
-
-    /* The home video area sits in a faint pool of temple firelight. */
-    .video-frame {
-      border-color: rgba(176, 90, 215, 0.32);
-      box-shadow:
-        0 20px 72px rgba(0, 0, 0, 0.68),
-        0 0 32px rgba(173, 75, 28, 0.075),
-        0 0 58px rgba(105, 34, 136, 0.055);
-    }
-
-    /* Footer becomes darker stone/ember territory while preserving
-       the purple Church sigil and ornamental ending. */
-    footer {
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(142, 61, 28, 0.065), transparent 25rem),
-        #020203;
-      border-top-color: rgba(133, 69, 48, 0.22);
-    }
-
-    .footer-sigil {
-      filter:
-        drop-shadow(0 0 8px rgba(122, 47, 157, 0.13))
-        drop-shadow(0 4px 14px rgba(177, 75, 27, 0.055));
-    }
-
-    /* Keepers stay silver-purple; Non-Believers stay aged gold.
-       This preserves the distinction introduced in the previous pass. */
-    #keepers .page-heading::before {
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(185, 78, 28, 0.045), transparent 55%),
-        radial-gradient(ellipse, rgba(146, 62, 181, 0.085), transparent 70%);
-    }
-
-    #non-believers .page-heading::before {
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(194, 121, 47, 0.065), transparent 55%),
-        radial-gradient(ellipse, rgba(122, 47, 157, 0.045), transparent 70%);
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       GENERATED ASSET INTEGRATION + CHURCH ENTRANCE
-       ========================================================== */
-
-    html.gate-open,
-    html.gate-open body {
-      overflow: hidden;
-    }
-
-    /* Actual Pa'agrio Temple now sits behind the site, very dark and restrained. */
-    body {
-      background:
-        linear-gradient(rgba(3, 2, 3, .84), rgba(3, 2, 3, .91)),
-        url("assets/paagrio-temple-bg.webp") center top / cover fixed no-repeat,
-        #040304;
-    }
-
-    main::before {
-      background:
-        radial-gradient(ellipse at 50% 18%, rgba(210, 91, 29, .085), transparent 31rem),
-        linear-gradient(90deg, rgba(0,0,0,.36), transparent 22%, transparent 78%, rgba(0,0,0,.36)),
-        linear-gradient(180deg, transparent 52%, rgba(0,0,0,.32));
-    }
-
-    /* Upgraded banner */
-    .hero {
-      background: #000;
-    }
-
-    .hero-banner {
-      width: 100%;
-      max-height: none;
-      object-fit: contain;
-      background: #000;
-    }
-
-    /* Universal generated button texture for all six navigation buttons. */
-    .tab-button,
-    .tab-button.active {
-      position: relative;
-      overflow: hidden;
-      background-image:
-        linear-gradient(180deg, rgba(8,5,10,.30), rgba(4,3,5,.58)),
-        url("assets/church-ui-panel.webp");
-      background-size: cover;
-      background-position: center;
-      border-color: rgba(176,90,215,.34);
-      box-shadow:
-        inset 0 1px 0 rgba(239,221,244,.06),
-        inset 0 -1px 0 rgba(0,0,0,.76),
-        0 3px 8px rgba(0,0,0,.28);
-    }
-
-    .tab-button:hover {
-      background-image:
-        linear-gradient(180deg, rgba(83,34,103,.18), rgba(5,3,6,.50)),
-        url("assets/church-ui-panel.webp");
-      border-color: rgba(188,101,222,.62);
-      box-shadow:
-        inset 0 1px 0 rgba(244,225,250,.08),
-        0 0 15px rgba(128,49,160,.16);
-    }
-
-    .tab-button.active {
-      background-image:
-        linear-gradient(180deg, rgba(95,38,119,.25), rgba(6,3,8,.54)),
-        url("assets/church-ui-panel.webp");
-      border-color: rgba(192,103,225,.72);
-    }
-
-    /* Generated ornamental divider takes over from the CSS-only divider. */
-    .page-heading::after {
-      display: none;
-    }
-
-    .ornamental-divider {
-      display: block;
-      width: min(720px, 86%);
-      height: auto;
-      margin: 10px auto -2px;
-      opacity: .58;
-      filter:
-        drop-shadow(0 0 7px rgba(186,83,215,.17))
-        drop-shadow(0 2px 9px rgba(194,80,30,.08));
-      pointer-events: none;
-    }
-
-    /* Sacred-fire footer asset */
-    .footer-brazier {
-      display: block;
-      width: 92px;
-      height: 122px;
-      object-fit: contain;
-      margin: -4px auto 10px;
-      opacity: .82;
-      filter:
-        drop-shadow(0 0 11px rgba(214,90,27,.22))
-        drop-shadow(0 0 18px rgba(122,47,157,.08));
-    }
-
-    /* Existing symbol becomes a smaller Church seal beneath the Pa'agrio flame. */
-    .footer-sigil {
-      width: 48px;
-      height: 48px;
-      opacity: .52;
-    }
-
-    /* ---------- ENTRANCE SCREEN ---------- */
-    .church-gate {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.76)),
-        url("assets/paagrio-temple-bg.webp") center / cover no-repeat,
-        #020202;
-      transition: opacity 850ms ease, visibility 850ms ease;
-    }
-
-    .church-gate::before {
-      content: "";
-      position: absolute;
-      inset: 3.2%;
-      pointer-events: none;
-      background: url("assets/church-ui-panel.webp") center / 100% 100% no-repeat;
-      opacity: .38;
-      mix-blend-mode: screen;
-      filter: saturate(.72) brightness(.74);
-    }
-
-    .gate-shade {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 53%, rgba(210,90,27,.17), transparent 24rem),
-        radial-gradient(circle at 50% 45%, rgba(128,48,157,.12), transparent 34rem),
-        linear-gradient(90deg, rgba(0,0,0,.55), transparent 25%, transparent 75%, rgba(0,0,0,.55));
-      pointer-events: none;
-    }
-
-    .gate-content {
-      position: relative;
-      z-index: 2;
-      width: min(760px, calc(100% - 42px));
-      padding: 34px 26px 38px;
-      text-align: center;
-    }
-
-    .gate-emblem {
-      display: block;
-      width: clamp(118px, 19vw, 190px);
-      height: auto;
-      margin: 0 auto 12px;
-      filter:
-        drop-shadow(0 0 18px rgba(218,94,28,.26))
-        drop-shadow(0 0 26px rgba(109,42,134,.10));
-    }
-
-    .gate-title {
-      margin: 0 auto 25px;
-      color: #e6d4b8;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: clamp(1.45rem, 4.5vw, 3.25rem);
-      font-weight: 800;
-      letter-spacing: .12em;
-      text-shadow:
-        0 2px 2px #000,
-        0 0 18px rgba(176,90,215,.13),
-        0 9px 28px rgba(193,80,26,.08);
-    }
-
-    .enter-church {
-      min-width: min(360px, 88vw);
-      min-height: 58px;
-      padding: 10px 30px;
-      border: 1px solid rgba(198,112,225,.58);
-      color: #f0ddc1;
-      background:
-        linear-gradient(180deg, rgba(61,25,74,.32), rgba(7,5,8,.54)),
-        url("assets/church-ui-panel.webp") center / cover no-repeat;
-      box-shadow:
-        inset 0 1px rgba(255,255,255,.06),
-        0 0 20px rgba(128,47,158,.12),
-        0 8px 28px rgba(0,0,0,.56);
-      font-family: "Cinzel", Georgia, serif;
-      font-size: clamp(.78rem, 2vw, 1rem);
-      font-weight: 700;
-      letter-spacing: .15em;
-      cursor: pointer;
-      transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
-    }
-
-    .enter-church:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.12);
-      box-shadow:
-        inset 0 1px rgba(255,255,255,.08),
-        0 0 27px rgba(157,67,190,.20),
-        0 8px 30px rgba(0,0,0,.62);
-    }
-
-    .gate-hint {
-      margin: 13px 0 0;
-      color: #997fa3;
-      font-family: "Cinzel", Georgia, serif;
-      font-size: clamp(.55rem, 1.7vw, .70rem);
-      letter-spacing: .14em;
-    }
-
-    .church-gate.entered {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Music toggle only appears after entering. */
-    .music-toggle {
-      position: fixed;
-      right: 14px;
-      bottom: 14px;
-      z-index: 120;
-      display: none;
-      min-height: 34px;
-      padding: 0 11px;
-      border: 1px solid rgba(176,90,215,.28);
-      color: #a98cb6;
-      background: rgba(7,5,8,.86);
-      box-shadow: 0 5px 18px rgba(0,0,0,.34);
-      font-family: "Cinzel", Georgia, serif;
-      font-size: .57rem;
-      letter-spacing: .08em;
-      cursor: pointer;
-      backdrop-filter: blur(7px);
-    }
-
-    body.church-entered .music-toggle {
-      display: block;
-    }
-
-    .music-toggle:hover {
-      color: #dbc7e4;
-      border-color: rgba(176,90,215,.50);
-    }
-
-    @media (max-width: 760px) {
-      body {
-        background-attachment: scroll;
-      }
-
-      .ornamental-divider {
-        width: 96%;
-        margin-top: 7px;
-      }
-
-      .footer-brazier {
-        width: 76px;
-        height: 104px;
-      }
-
-      .church-gate::before {
-        inset: 1.5%;
-        background-size: cover;
-      }
-
-      .gate-content {
-        padding-left: 18px;
-        padding-right: 18px;
+        font-size: clamp(1.1rem,5vw,1.5rem);
       }
 
       .music-toggle {
@@ -1383,556 +553,34 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .church-gate {
-        transition: none;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       LAYOUT FIXES
-       ========================================================== */
-
-    /* Banner: preserve full image, but stop it from taking over the viewport. */
-    .hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #000;
-      overflow: hidden;
-    }
-
-    .hero-banner {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: clamp(220px, 34vw, 430px);
-      object-fit: contain;
-      object-position: center;
-      background: #000;
-    }
-
-    /* Keepers and Non-Believers: identical dimensions and text geometry. */
-    .non-believers-list,
-    .keepers-list {
-      width: min(860px, 100%);
-    }
-
-    .non-believers-list li,
-    .keepers-list li {
-      width: 100%;
-      aspect-ratio: 1996 / 321 !important;
-      grid-template-columns: 82px minmax(0, 1fr) !important;
-      padding: 0 58px 0 138px !important;
-      background-size: 100% 100% !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-    }
-
-    .non-believers-list li::before,
-    .keepers-list li::before {
-      font-size: 2rem !important;
-      line-height: 1 !important;
-    }
-
-    .non-believers-list .name,
-    .keepers-list .name {
-      padding-left: 16px !important;
-      font-size: 2rem !important;
-      line-height: 1 !important;
-    }
-
-    /* Generated divider asset removed from Keepers / Non-Believers. */
-    .ornamental-divider {
-      display: none !important;
-    }
-
-    @media (max-width: 760px) {
-      .hero-banner {
-        max-height: clamp(150px, 42vw, 270px);
-      }
-
-      .non-believers-list li,
-      .keepers-list li {
-        grid-template-columns: 46px minmax(0, 1fr) !important;
-        padding: 0 25px 0 82px !important;
-      }
-
-      .non-believers-list li::before,
-      .keepers-list li::before {
-        font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
-      }
-
-      .non-believers-list .name,
-      .keepers-list .name {
-        padding-left: 8px !important;
-        font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
-      }
-    }
-
     @media (max-width: 390px) {
-      .non-believers-list li,
-      .keepers-list li {
-        grid-template-columns: 40px minmax(0, 1fr) !important;
-        padding-left: 72px !important;
-        padding-right: 21px !important;
+      .non-believers-list li {
+        grid-template-columns: 40px minmax(0,1fr);
+        padding-left: 72px;
+        padding-right: 21px;
       }
 
-      .non-believers-list li::before,
-      .keepers-list li::before {
-        font-size: 1rem !important;
-      }
+      .non-believers-list li::before { font-size: 1rem; }
+      .non-believers-list .name { font-size: 1.1rem; }
+    }
 
-      .non-believers-list .name,
-      .keepers-list .name {
-        font-size: 1.1rem !important;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .church-gate,
+      .tab-panel,
+      .exile-status::before { animation: none; transition: none; }
     }
   </style>
-
-
-  <style>
-    /* ==========================================================
-       NAV BUTTON BACKGROUND UPDATE
-       Uses the new shared dark-stone button asset.
-       Purple CSS borders removed.
-       ========================================================== */
-
-    .tab-button,
-    .tab-button.active,
-    .tab-button:hover {
-      border: 0 !important;
-      border-color: transparent !important;
-      border-radius: 0 !important;
-
-      background-image: url("assets/nav-button-bg.webp") !important;
-      background-size: 100% 100% !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-
-      box-shadow: none !important;
-    }
-
-    .tab-button {
-      color: #b7a9b8;
-    }
-
-    .tab-button:hover {
-      color: #eadbc6;
-      filter:
-        brightness(1.08)
-        drop-shadow(0 0 8px rgba(176, 90, 215, 0.10));
-    }
-
-    .tab-button.active {
-      color: #f0dfc7;
-      filter:
-        brightness(1.12)
-        drop-shadow(0 0 10px rgba(176, 90, 215, 0.14));
-    }
-
-    /* Keep the thin purple active underline only; this is not a button border. */
-    .tab-button::after {
-      background: transparent;
-    }
-
-    .tab-button.active::after {
-      background: var(--purple-bright);
-      box-shadow: 0 0 10px rgba(176, 90, 215, 0.55);
-    }
-
-    @media (max-width: 760px) {
-      .tab-button,
-      .tab-button.active,
-      .tab-button:hover {
-        background-size: 100% 100% !important;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       IMAGE BUTTONS
-       The generated artwork is now the actual visual button.
-       ========================================================== */
-
-    .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    .tab-button,
-    .tab-button.active,
-    .tab-button:hover {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-
-      min-height: 0 !important;
-      height: auto !important;
-      padding: 0 !important;
-
-      border: 0 !important;
-      border-radius: 0 !important;
-      background: none !important;
-      background-image: none !important;
-      box-shadow: none !important;
-
-      color: transparent !important;
-      overflow: visible !important;
-      line-height: 0 !important;
-      filter: none !important;
-    }
-
-    .tab-button-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 54px;
-      object-fit: contain;
-      pointer-events: none;
-      transition:
-        transform 150ms ease,
-        filter 150ms ease,
-        opacity 150ms ease;
-    }
-
-    .tab-button:hover .tab-button-image {
-      transform: translateY(-1px);
-      filter:
-        brightness(1.10)
-        drop-shadow(0 0 7px rgba(176, 90, 215, 0.14));
-    }
-
-    .tab-button.active .tab-button-image {
-      filter:
-        brightness(1.13)
-        drop-shadow(0 0 9px rgba(176, 90, 215, 0.18));
-    }
-
-    /* Remove the old purple active underline too: the artwork itself is enough. */
-    .tab-button::after,
-    .tab-button.active::after {
-      display: none !important;
-      content: none !important;
-      background: none !important;
-      box-shadow: none !important;
-    }
-
-    /* Entrance button uses its own generated image too. */
-    .enter-church,
-    .enter-church:hover {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      min-width: 0 !important;
-      min-height: 0 !important;
-      width: min(620px, 92vw) !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: none !important;
-      background-image: none !important;
-      box-shadow: none !important;
-      filter: none !important;
-      overflow: visible !important;
-      line-height: 0 !important;
-    }
-
-    .enter-church-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      pointer-events: none;
-      transition:
-        transform 160ms ease,
-        filter 160ms ease;
-    }
-
-    .enter-church:hover .enter-church-image {
-      transform: translateY(-1px) scale(1.01);
-      filter:
-        brightness(1.08)
-        drop-shadow(0 0 12px rgba(176, 90, 215, 0.13));
-    }
-
-    @media (min-width: 761px) {
-      .tabs {
-        gap: 8px;
-        padding-top: 10px;
-        padding-bottom: 9px;
-      }
-
-      .tab-button {
-        flex: 1 1 0 !important;
-        max-width: 240px;
-      }
-
-      .tab-button-image {
-        max-height: 50px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .tabs {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 4px !important;
-        padding: 7px 5px 8px !important;
-      }
-
-      .tab-button {
-        width: 100% !important;
-      }
-
-      .tab-button-image {
-        width: 100%;
-        max-height: none;
-      }
-
-      .enter-church {
-        width: min(520px, 94vw) !important;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       CHURCH BANNER + ENTRANCE UPDATE
-       ========================================================== */
-
-    /* Main Church page: Pa'agrio Temple directly behind the banner. */
-    .hero {
-      position: relative;
-      isolation: isolate;
-      padding: clamp(14px, 2vw, 26px);
-      background:
-        linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.58)),
-        url("assets/paagrio-temple-bg.webp") center 48% / cover no-repeat,
-        #030203 !important;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(207, 89, 28, .13), transparent 34%),
-        linear-gradient(90deg, rgba(0,0,0,.34), transparent 22%, transparent 78%, rgba(0,0,0,.34));
-    }
-
-    .hero-banner {
-      position: relative;
-      z-index: 1;
-      width: min(1180px, 100%) !important;
-      max-height: clamp(220px, 34vw, 430px) !important;
-      object-fit: contain !important;
-      background: transparent !important;
-      filter:
-        drop-shadow(0 12px 24px rgba(0,0,0,.62))
-        drop-shadow(0 0 10px rgba(121,47,151,.08));
-    }
-
-    /* Entrance: the Church banner itself replaces the old title + Pa'agrio emblem. */
-    .gate-church-banner {
-      display: block;
-      width: min(900px, 92vw);
-      max-height: min(52vh, 460px);
-      height: auto;
-      object-fit: contain;
-      margin: 0 auto clamp(16px, 2.2vh, 28px);
-      filter:
-        drop-shadow(0 16px 34px rgba(0,0,0,.72))
-        drop-shadow(0 0 13px rgba(129,49,157,.09));
-    }
-
-    /* Old entrance title/emblem are no longer used. */
-    .gate-emblem,
-    .gate-title {
-      display: none !important;
-    }
-
-    .gate-content {
-      width: min(1040px, calc(100% - 28px));
-      padding-top: 20px;
-      padding-bottom: 28px;
-    }
-
-    @media (max-width: 760px) {
-      .hero {
-        padding: 9px;
-      }
-
-      .hero-banner {
-        max-height: clamp(150px, 42vw, 270px) !important;
-      }
-
-      .gate-church-banner {
-        width: min(96vw, 760px);
-        max-height: 43vh;
-        margin-bottom: 14px;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       FINAL NAV CLEANUP + BACKGROUND FIX
-       ========================================================== */
-
-    /* The Pa'agrio Temple remains behind the Church banner / entrance only.
-       The rest of the site returns to a clean dark background. */
-    body {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.10), transparent 30rem),
-        linear-gradient(180deg, #020203 0%, #050407 38%, #030204 100%) !important;
-      background-attachment: scroll !important;
-    }
-
-    /* Cleaner navigation strip: no purple outlines, no framed bar feeling. */
-    .tabs {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 4px !important;
-      padding: 5px 8px !important;
-
-      background: rgba(3, 2, 4, 0.96) !important;
-      border: 0 !important;
-      border-top: 0 !important;
-      border-bottom: 0 !important;
-      box-shadow: none !important;
-      backdrop-filter: blur(5px);
-    }
-
-    /* Equal visual button size on desktop. */
-    .tab-button,
-    .tab-button.active,
-    .tab-button:hover {
-      flex: 0 0 188px !important;
-      width: 188px !important;
-      height: 48px !important;
-      min-width: 188px !important;
-      min-height: 48px !important;
-      max-width: 188px !important;
-
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      outline: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      overflow: visible !important;
-    }
-
-    .tab-button-image {
-      display: block !important;
-      width: 188px !important;
-      height: 48px !important;
-      max-width: none !important;
-      max-height: none !important;
-      object-fit: fill !important;
-      margin: 0 !important;
-    }
-
-    /* No old purple underline / outline remnants. */
-    .tab-button::before,
-    .tab-button::after,
-    .tab-button.active::before,
-    .tab-button.active::after {
-      display: none !important;
-      content: none !important;
-      border: 0 !important;
-      background: none !important;
-      box-shadow: none !important;
-    }
-
-    /* Keep feedback subtle without recolouring the artwork. */
-    .tab-button:hover .tab-button-image {
-      transform: translateY(-1px);
-      filter:
-        brightness(1.08)
-        drop-shadow(0 3px 5px rgba(0,0,0,.28));
-    }
-
-    .tab-button.active .tab-button-image {
-      filter:
-        brightness(1.12)
-        drop-shadow(0 3px 6px rgba(0,0,0,.34));
-    }
-
-    @media (max-width: 1180px) and (min-width: 761px) {
-      .tabs {
-        gap: 3px !important;
-      }
-
-      .tab-button,
-      .tab-button.active,
-      .tab-button:hover {
-        flex-basis: 15.6vw !important;
-        width: 15.6vw !important;
-        min-width: 0 !important;
-        max-width: 188px !important;
-        height: 46px !important;
-        min-height: 46px !important;
-      }
-
-      .tab-button-image {
-        width: 100% !important;
-        height: 46px !important;
-      }
-    }
-
-    /* Preserve the approved 3 x 2 mobile layout, but make every image identical. */
-    @media (max-width: 760px) {
-      .tabs {
-        display: grid !important;
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 3px !important;
-        padding: 5px 4px !important;
-      }
-
-      .tab-button,
-      .tab-button.active,
-      .tab-button:hover {
-        width: 100% !important;
-        height: 44px !important;
-        min-width: 0 !important;
-        min-height: 44px !important;
-        max-width: none !important;
-      }
-
-      .tab-button-image {
-        width: 100% !important;
-        height: 44px !important;
-        object-fit: fill !important;
-      }
-    }
-  </style>
-
 </head>
 
 <body>
-
   <div id="church-gate" class="church-gate" role="dialog" aria-modal="true" aria-label="Enter the Church of Overlord">
     <div class="gate-shade"></div>
     <div class="gate-content">
-<img class="gate-church-banner" src="assets/banner-temple.png" alt="The Church of Overlord">
-      <button id="enter-church" class="enter-church" type="button"><img class="enter-church-image" src="assets/button-enter.webp" alt="ENTER THE CHURCH"><span class="sr-only">ENTER THE CHURCH</span></button>
+      <img class="gate-church-banner" src="assets/banner-temple.png" alt="The Church of Overlord">
+      <button id="enter-church" class="enter-church" type="button">
+        <img class="enter-church-image" src="assets/button-enter.webp" alt="ENTER THE CHURCH">
+        <span class="sr-only">ENTER THE CHURCH</span>
+      </button>
       <p class="gate-hint">ENTER AND STAND BEFORE THE FLAME</p>
     </div>
   </div>
@@ -1941,21 +589,37 @@
     <source src="assets/orc-village-theme.mp3" type="audio/mpeg">
   </audio>
 
-  <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute music" aria-pressed="false">
-    ♪ MUSIC ON
-  </button>
+  <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute music" aria-pressed="false">♪ MUSIC ON</button>
 
   <header class="hero">
     <img class="hero-banner" src="assets/banner-temple.png" alt="The Church of Overlord banner">
   </header>
 
   <nav class="tabs" aria-label="Main sections">
-    <button type="button" class="tab-button active" data-tab="home"><img class="tab-button-image" src="assets/button-home.webp" alt="CHURCH OF OVERLORD"><span class="sr-only">CHURCH OF OVERLORD</span></button>
-    <button type="button" class="tab-button" data-tab="ten-laws"><img class="tab-button-image" src="assets/button-ten-laws.webp" alt="TEN LAWS"><span class="sr-only">TEN LAWS</span></button>
-    <button type="button" class="tab-button" data-tab="doctrine"><img class="tab-button-image" src="assets/button-doctrine.webp" alt="DOCTRINE"><span class="sr-only">DOCTRINE</span></button>
-    <button type="button" class="tab-button" data-tab="trial-of-exile"><img class="tab-button-image" src="assets/button-trial-of-exile.webp" alt="TRIAL OF EXILE"><span class="sr-only">TRIAL OF EXILE</span></button>
-    <button type="button" class="tab-button" data-tab="keepers"><img class="tab-button-image" src="assets/button-keepers.png" alt="KEEPERS OF THE FLAME"><span class="sr-only">KEEPERS OF THE FLAME</span></button>
-    <button type="button" class="tab-button" data-tab="non-believers"><img class="tab-button-image" src="assets/button-non-believers.png" alt="NON-BELIEVERS"><span class="sr-only">NON-BELIEVERS</span></button>
+    <button type="button" class="tab-button active" data-tab="home">
+      <img class="tab-button-image" src="assets/button-home.webp" alt="CHURCH OF OVERLORD">
+      <span class="sr-only">CHURCH OF OVERLORD</span>
+    </button>
+    <button type="button" class="tab-button" data-tab="ten-laws">
+      <img class="tab-button-image" src="assets/button-ten-laws.webp" alt="TEN LAWS">
+      <span class="sr-only">TEN LAWS</span>
+    </button>
+    <button type="button" class="tab-button" data-tab="doctrine">
+      <img class="tab-button-image" src="assets/button-doctrine.webp" alt="DOCTRINE">
+      <span class="sr-only">DOCTRINE</span>
+    </button>
+    <button type="button" class="tab-button" data-tab="trial-of-exile">
+      <img class="tab-button-image" src="assets/button-trial-of-exile.webp" alt="TRIAL OF EXILE">
+      <span class="sr-only">TRIAL OF EXILE</span>
+    </button>
+    <button type="button" class="tab-button" data-tab="keepers">
+      <img class="tab-button-image" src="assets/button-keepers.png" alt="KEEPERS OF THE FLAME">
+      <span class="sr-only">KEEPERS OF THE FLAME</span>
+    </button>
+    <button type="button" class="tab-button" data-tab="non-believers">
+      <img class="tab-button-image" src="assets/button-non-believers.png" alt="NON-BELIEVERS">
+      <span class="sr-only">NON-BELIEVERS</span>
+    </button>
   </nav>
 
   <main>
@@ -1996,7 +660,6 @@
         <h1>KEEPERS OF THE FLAME</h1>
         <p class="section-intro">· THEY STOOD WITH THE FLAME WHEN THE GATES WERE CLOSED ·</p>
       </div>
-
       <div class="non-believers-panel">
         <ol class="non-believers-list keepers-list">
           <li><span class="name">Rubio</span></li>
@@ -2004,12 +667,6 @@
           <li><span class="name">Savvazs</span></li>
           <li><span class="name">picksy</span></li>
         </ol>
-
-        <div class="non-believers-ending">
-          <span></span>
-          <p>· THE FLAME REMEMBERS ITS FAITHFUL ·</p>
-          <span></span>
-        </div>
       </div>
     </section>
 
@@ -2018,7 +675,6 @@
         <h1>NON-BELIEVERS</h1>
         <p class="section-intro">· THE FLAME AWAITS THOSE WHO HAVE YET TO SEE ·</p>
       </div>
-
       <div class="non-believers-panel">
         <ol class="non-believers-list">
           <li><span class="name">Nikita</span></li>
@@ -2038,115 +694,87 @@
           <li><span class="name">Ghast</span></li>
           <li><span class="name">Neturno</span></li>
         </ol>
-
-        <div class="non-believers-ending">
-          <span></span>
-          <p>· THE FLAME REMEMBERS ·</p>
-          <span></span>
-        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <img class="footer-brazier" src="assets/paagrio-footer-brazier.webp" alt="">
-    <img class="footer-sigil" src="assets/symbol.png" alt="">
     <p>· PRAISE PA'AGRIO · HONOR THE ANCESTORS · TRUST THE LORD ·</p>
   </footer>
 
   <script>
     const buttons = [...document.querySelectorAll(".tab-button")];
     const panels = [...document.querySelectorAll(".tab-panel")];
+    const gate = document.getElementById("church-gate");
+    const enterButton = document.getElementById("enter-church");
+    const music = document.getElementById("church-music");
+    const musicToggle = document.getElementById("music-toggle");
 
     function activateTab(tabName, updateHash = true) {
-      buttons.forEach((button) => {
+      buttons.forEach(button => {
         const active = button.dataset.tab === tabName;
         button.classList.toggle("active", active);
         button.setAttribute("aria-selected", String(active));
       });
 
-      panels.forEach((panel) => {
-        panel.classList.toggle("active", panel.id === tabName);
-      });
+      panels.forEach(panel => panel.classList.toggle("active", panel.id === tabName));
 
-      if (updateHash) {
-        history.replaceState(null, "", `#${tabName}`);
-      }
+      if (updateHash) history.replaceState(null, "", `#${tabName}`);
     }
 
-    buttons.forEach((button) => {
+    buttons.forEach(button => {
       button.addEventListener("click", () => activateTab(button.dataset.tab));
     });
 
     const initialTab = location.hash.slice(1);
-    activateTab(
-      buttons.some((button) => button.dataset.tab === initialTab) ? initialTab : "home",
-      false
-    );
-  </script>
+    activateTab(buttons.some(button => button.dataset.tab === initialTab) ? initialTab : "home", false);
 
-  <script>
-    (() => {
-      const gate = document.getElementById("church-gate");
-      const enterButton = document.getElementById("enter-church");
-      const music = document.getElementById("church-music");
-      const musicToggle = document.getElementById("music-toggle");
+    document.documentElement.classList.add("gate-open");
+    music.volume = 0;
 
-      document.documentElement.classList.add("gate-open");
-      music.volume = 0;
+    function fadeVolume(target, duration = 2200) {
+      const start = music.volume;
+      const difference = target - start;
+      const started = performance.now();
 
-      function fadeVolume(target, duration = 2200) {
-        const start = music.volume;
-        const difference = target - start;
-        const started = performance.now();
-
-        function step(now) {
-          const t = Math.min(1, (now - started) / duration);
-          music.volume = Math.max(0, Math.min(1, start + difference * t));
-          if (t < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
+      function step(now) {
+        const progress = Math.min(1, (now - started) / duration);
+        music.volume = Math.max(0, Math.min(1, start + difference * progress));
+        if (progress < 1) requestAnimationFrame(step);
       }
 
-      async function enterChurch() {
+      requestAnimationFrame(step);
+    }
+
+    enterButton.addEventListener("click", async () => {
+      try {
+        await music.play();
+        fadeVolume(.42, 2200);
+      } catch (_) {}
+
+      gate.classList.add("entered");
+      document.body.classList.add("church-entered");
+      document.documentElement.classList.remove("gate-open");
+      setTimeout(() => gate.setAttribute("aria-hidden", "true"), 900);
+    });
+
+    musicToggle.addEventListener("click", async () => {
+      if (music.paused) {
         try {
           await music.play();
-          fadeVolume(0.42, 2200);
-        } catch (_) {
-          /* The click normally authorizes playback. If a browser still refuses,
-             the site continues normally and the music button can retry it. */
-        }
-
-        gate.classList.add("entered");
-        document.body.classList.add("church-entered");
-        document.documentElement.classList.remove("gate-open");
-
-        setTimeout(() => {
-          gate.setAttribute("aria-hidden", "true");
-        }, 900);
+          fadeVolume(.42, 700);
+          musicToggle.textContent = "♪ MUSIC ON";
+          musicToggle.setAttribute("aria-pressed", "false");
+          musicToggle.setAttribute("aria-label", "Mute music");
+        } catch (_) {}
+        return;
       }
 
-      enterButton.addEventListener("click", enterChurch);
-
-      musicToggle.addEventListener("click", async () => {
-        if (music.paused) {
-          try {
-            await music.play();
-            fadeVolume(0.42, 700);
-            musicToggle.textContent = "♪ MUSIC ON";
-            musicToggle.setAttribute("aria-pressed", "false");
-            musicToggle.setAttribute("aria-label", "Mute music");
-          } catch (_) {}
-          return;
-        }
-
-        music.pause();
-        musicToggle.textContent = "♪ MUSIC OFF";
-        musicToggle.setAttribute("aria-pressed", "true");
-        musicToggle.setAttribute("aria-label", "Play music");
-      });
-    })();
+      music.pause();
+      musicToggle.textContent = "♪ MUSIC OFF";
+      musicToggle.setAttribute("aria-pressed", "true");
+      musicToggle.setAttribute("aria-label", "Play music");
+    });
   </script>
-
 </body>
 </html>
