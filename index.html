@@ -1244,6 +1244,80 @@
 }
 </style>
 
+
+<style>
+/* ==========================================================
+   FINAL HERO + CLOTH NAV ADJUSTMENT
+   - latest artwork used as the top-page banner
+   - cloth banners are 50% larger than the previous size
+   - spacing between them reduced by half
+   ========================================================== */
+
+.hero-unified-image {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+}
+
+/* Previous desktop banner width was 55%; +50% = 82.5%. */
+.tabs {
+  grid-template-columns: repeat(6, 150px) !important;
+  column-gap: 1px !important;
+  row-gap: 0 !important;
+  padding: 5px 8px 7px !important;
+}
+
+.tab-button,
+.tab-button.active,
+.tab-button:hover {
+  width: 82.5% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  justify-self: center !important;
+  align-self: center !important;
+}
+
+.tab-button-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Tablet: 58% -> 87% (+50%). */
+@media (max-width: 980px) and (min-width: 701px) {
+  .tabs {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    column-gap: 0 !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  .tab-button,
+  .tab-button.active,
+  .tab-button:hover {
+    width: 87% !important;
+  }
+}
+
+/* Phones remain 3 x 2, with the same +50% visual scale. */
+@media (max-width: 700px) {
+  .tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1px 2px !important;
+    padding: 4px 5px 6px !important;
+  }
+
+  .tab-button,
+  .tab-button.active,
+  .tab-button:hover {
+    width: 78% !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -1266,7 +1340,7 @@
   <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute music" aria-pressed="false">♪ MUSIC ON</button>
 
   <header class="hero">
-    <img class="hero-unified-image" src="assets/church-hero-unified2.png" alt="The Church of Overlord">
+    <img class="hero-unified-image" src="assets/church-hero-unified.png" alt="The Church of Overlord">
   </header>
 
   <nav class="tabs" aria-label="Main sections">
