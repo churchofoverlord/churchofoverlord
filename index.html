@@ -970,6 +970,59 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       HERO -> PAGE BACKGROUND BLEND
+       Matches the warm near-black tone at the bottom of the hero.
+       ========================================================== */
+
+    body {
+      background:
+        linear-gradient(
+          180deg,
+          #0c0804 0px,
+          #0b0704 170px,
+          #080504 360px,
+          #050405 680px,
+          #030204 100%
+        ) !important;
+    }
+
+    .tabs {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(12,8,4,.99) 0%,
+          rgba(10,6,4,.99) 55%,
+          rgba(7,5,5,.99) 100%
+        ) !important;
+    }
+
+    /* Soft transition immediately below the unified hero. */
+    .hero {
+      overflow: visible !important;
+    }
+
+    .hero::after {
+      content: "" !important;
+      display: block !important;
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: -34px !important;
+      height: 42px !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+      background: linear-gradient(
+        180deg,
+        rgba(12,8,4,.92) 0%,
+        rgba(12,8,4,.58) 45%,
+        rgba(12,8,4,0) 100%
+      ) !important;
+    }
+  </style>
+
 </head>
 
 <body>
