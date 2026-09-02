@@ -1788,6 +1788,142 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       FINAL NAV CLEANUP + BACKGROUND FIX
+       ========================================================== */
+
+    /* The Pa'agrio Temple remains behind the Church banner / entrance only.
+       The rest of the site returns to a clean dark background. */
+    body {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(91, 24, 123, 0.10), transparent 30rem),
+        linear-gradient(180deg, #020203 0%, #050407 38%, #030204 100%) !important;
+      background-attachment: scroll !important;
+    }
+
+    /* Cleaner navigation strip: no purple outlines, no framed bar feeling. */
+    .tabs {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      padding: 5px 8px !important;
+
+      background: rgba(3, 2, 4, 0.96) !important;
+      border: 0 !important;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Equal visual button size on desktop. */
+    .tab-button,
+    .tab-button.active,
+    .tab-button:hover {
+      flex: 0 0 188px !important;
+      width: 188px !important;
+      height: 48px !important;
+      min-width: 188px !important;
+      min-height: 48px !important;
+      max-width: 188px !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      outline: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    .tab-button-image {
+      display: block !important;
+      width: 188px !important;
+      height: 48px !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: fill !important;
+      margin: 0 !important;
+    }
+
+    /* No old purple underline / outline remnants. */
+    .tab-button::before,
+    .tab-button::after,
+    .tab-button.active::before,
+    .tab-button.active::after {
+      display: none !important;
+      content: none !important;
+      border: 0 !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Keep feedback subtle without recolouring the artwork. */
+    .tab-button:hover .tab-button-image {
+      transform: translateY(-1px);
+      filter:
+        brightness(1.08)
+        drop-shadow(0 3px 5px rgba(0,0,0,.28));
+    }
+
+    .tab-button.active .tab-button-image {
+      filter:
+        brightness(1.12)
+        drop-shadow(0 3px 6px rgba(0,0,0,.34));
+    }
+
+    @media (max-width: 1180px) and (min-width: 761px) {
+      .tabs {
+        gap: 3px !important;
+      }
+
+      .tab-button,
+      .tab-button.active,
+      .tab-button:hover {
+        flex-basis: 15.6vw !important;
+        width: 15.6vw !important;
+        min-width: 0 !important;
+        max-width: 188px !important;
+        height: 46px !important;
+        min-height: 46px !important;
+      }
+
+      .tab-button-image {
+        width: 100% !important;
+        height: 46px !important;
+      }
+    }
+
+    /* Preserve the approved 3 x 2 mobile layout, but make every image identical. */
+    @media (max-width: 760px) {
+      .tabs {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 3px !important;
+        padding: 5px 4px !important;
+      }
+
+      .tab-button,
+      .tab-button.active,
+      .tab-button:hover {
+        width: 100% !important;
+        height: 44px !important;
+        min-width: 0 !important;
+        min-height: 44px !important;
+        max-width: none !important;
+      }
+
+      .tab-button-image {
+        width: 100% !important;
+        height: 44px !important;
+        object-fit: fill !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
