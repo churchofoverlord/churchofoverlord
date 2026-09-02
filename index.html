@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
+    <style>
     *, *::before, *::after { box-sizing: border-box; }
 
     :root {
@@ -31,8 +31,14 @@
       color: var(--stone);
       font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at 50% 0%, rgba(91,24,123,.10), transparent 30rem),
-        linear-gradient(180deg, #020203 0%, var(--bg) 38%, #030204 100%);
+        linear-gradient(
+          180deg,
+          #0c0804 0,
+          #0b0704 170px,
+          #080504 360px,
+          #050405 680px,
+          #030204 100%
+        );
     }
 
     /* ---------- ENTRANCE ---------- */
@@ -69,14 +75,18 @@
     .gate-content {
       position: relative;
       z-index: 1;
-      width: min(1040px, calc(100% - 28px));
-      padding: 20px 18px 28px;
+      width: min(1040px, 100%);
+      max-width: 100vw;
+      margin: 0 auto;
+      padding: 20px 12px 28px;
       text-align: center;
+      justify-self: center;
     }
 
     .gate-church-banner {
       display: block;
-      width: min(900px, 92vw);
+      width: min(900px, calc(100vw - 24px));
+      max-width: calc(100vw - 24px);
       max-height: min(52vh, 460px);
       height: auto;
       margin: 0 auto 18px;
@@ -85,9 +95,12 @@
     }
 
     .enter-church {
-      display: inline-flex;
-      width: min(620px, 92vw);
+      display: flex;
+      width: min(620px, calc(100vw - 24px));
+      max-width: calc(100vw - 24px);
+      margin: 0 auto;
       padding: 0;
+      justify-content: center;
       border: 0;
       background: transparent;
       cursor: pointer;
@@ -106,22 +119,22 @@
     }
 
     .gate-hint {
-      margin: 12px 0 0;
+      margin: 3px 0 0;
       color: #997fa3;
       font: 600 clamp(.55rem,1.7vw,.70rem)/1.4 "Cinzel", Georgia, serif;
       letter-spacing: .14em;
     }
 
     .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0,0,0,0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ---------- MUSIC ---------- */
@@ -147,35 +160,39 @@
     /* ---------- HERO ---------- */
     .hero {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: clamp(14px,2vw,26px);
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(0,0,0,.44), rgba(0,0,0,.56)),
-        url("assets/paagrio-temple-bg.webp") center 48% / cover no-repeat,
-        #030203;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      background: #020203;
     }
 
-    .hero::before {
+    .hero::before { content: none; }
+
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
+      left: 0;
+      right: 0;
+      bottom: -34px;
+      height: 42px;
+      z-index: 2;
       pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(207,89,28,.12), transparent 34%),
-        linear-gradient(90deg, rgba(0,0,0,.32), transparent 22%, transparent 78%, rgba(0,0,0,.32));
+      background: linear-gradient(
+        180deg,
+        rgba(12,8,4,.92) 0%,
+        rgba(12,8,4,.58) 45%,
+        rgba(12,8,4,0) 100%
+      );
     }
 
-    .hero-banner {
-      position: relative;
+    .hero-unified-image {
       display: block;
-      width: min(1180px,100%);
+      width: 100%;
       height: auto;
-      max-height: clamp(220px,34vw,430px);
+      margin: 0 auto;
       object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,.62));
     }
 
     /* ---------- NAV ---------- */
@@ -183,14 +200,21 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, 150px);
       justify-content: center;
       align-items: center;
-      gap: 4px;
-      padding: 5px 8px;
-      overflow-x: auto;
+      column-gap: 1px;
+      row-gap: 0;
+      width: 100%;
+      margin-top: 0;
+      padding: 5px 8px 7px;
+      overflow: visible;
       scrollbar-width: none;
-      background: rgba(3,2,4,.96);
+      background:
+        url("assets/nav-volcanic-rock-metal.png")
+        center / 100% 100% no-repeat;
+      box-shadow: 0 8px 24px rgba(0,0,0,.24);
       backdrop-filter: blur(5px);
     }
 
@@ -198,14 +222,21 @@
 
     .tab-button {
       position: relative;
-      flex: 0 0 188px;
-      width: 188px;
-      height: 48px;
+      width: 82.5%;
+      height: auto;
+      min-width: 0;
+      max-width: none;
+      min-height: 0;
+      max-height: none;
+      aspect-ratio: 1 / 1;
+      justify-self: center;
+      align-self: center;
       margin: 0;
       padding: 0;
       border: 0;
       outline: 0;
       background: transparent;
+      overflow: visible;
       cursor: pointer;
     }
 
@@ -213,36 +244,35 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: fill;
+      object-fit: contain;
       pointer-events: none;
       transition: transform .15s ease, filter .15s ease;
     }
 
     .tab-button:hover .tab-button-image {
-      transform: translateY(-1px);
-      filter: brightness(1.08) drop-shadow(0 3px 5px rgba(0,0,0,.28));
+      transform: translateY(-2px);
+      filter: brightness(1.06) drop-shadow(0 4px 7px rgba(0,0,0,.28));
     }
 
-    /* Orange glow identifies the currently open tab. */
     .tab-button.active::before {
       content: "";
       position: absolute;
-      inset: 4px 7px;
+      inset: 20% 17%;
       z-index: -1;
-      border-radius: 10px;
-      background: rgba(215,122,44,.20);
+      border-radius: 50%;
+      background: rgba(214,112,35,.035);
       box-shadow:
-        0 0 10px rgba(215,122,44,.50),
-        0 0 22px rgba(215,122,44,.30),
-        0 0 36px rgba(159,67,31,.18);
+        0 0 10px 6px rgba(215,122,44,.085),
+        0 0 21px 11px rgba(194,85,29,.04);
+      filter: blur(7px);
       pointer-events: none;
     }
 
     .tab-button.active .tab-button-image {
       filter:
-        brightness(1.13)
-        drop-shadow(0 0 7px rgba(215,122,44,.34))
-        drop-shadow(0 3px 6px rgba(0,0,0,.34));
+        brightness(1.06)
+        drop-shadow(0 0 4px rgba(215,122,44,.10))
+        drop-shadow(0 4px 7px rgba(0,0,0,.28));
     }
 
     /* ---------- CONTENT ---------- */
@@ -254,7 +284,7 @@
     .tab-panel {
       display: none;
       min-height: 540px;
-      padding: 30px 0 58px;
+      padding: 18px 0 58px;
     }
 
     .tab-panel.active {
@@ -272,14 +302,6 @@
       text-align: center;
     }
 
-    .motto {
-      margin: 0;
-      color: var(--purple);
-      font-size: clamp(.72rem,1.7vw,1rem);
-      letter-spacing: .22em;
-    }
-
-    /* Video: glow only, no visible border. */
     .video-frame {
       position: relative;
       width: min(920px,100%);
@@ -301,7 +323,6 @@
       border: 0;
     }
 
-    /* Documents: glow only, no border/background frame. */
     .document-page { text-align: center; }
 
     .document-image {
@@ -309,7 +330,6 @@
       width: min(760px,100%);
       height: auto;
       margin: 0 auto;
-      padding: 0;
       border: 0;
       background: transparent;
       box-shadow:
@@ -345,8 +365,8 @@
     }
 
     @keyframes exile-pulse {
-      0%,100% { opacity:.62; }
-      50% { opacity:1; }
+      0%,100% { opacity: .62; }
+      50% { opacity: 1; }
     }
 
     /* ---------- KEEPERS / NON-BELIEVERS ---------- */
@@ -381,16 +401,6 @@
       text-shadow:
         0 0 13px rgba(176,90,215,.11),
         0 7px 28px rgba(190,78,26,.075);
-    }
-
-    .section-intro {
-      position: relative;
-      z-index: 1;
-      margin: 13px auto 0;
-      max-width: 760px;
-      color: #a989b8;
-      font: 600 clamp(.72rem,1.5vw,.92rem)/1.5 "Cinzel", Georgia, serif;
-      letter-spacing: .08em;
     }
 
     #keepers .page-heading h1 { color: #e6ddea; }
@@ -479,56 +489,66 @@
     }
 
     /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 1180px) and (min-width: 761px) {
-      .tab-button {
-        flex-basis: 15.6vw;
-        width: 15.6vw;
-        min-width: 0;
-        height: 46px;
+    @media (max-width: 980px) and (min-width: 701px) {
+      .tabs {
+        grid-template-columns: repeat(6, minmax(0,1fr));
+        column-gap: 0;
+        padding-left: 5px;
+        padding-right: 5px;
       }
+
+      .tab-button { width: 87%; }
     }
 
     @media (max-width: 760px) {
       body { background-attachment: scroll; }
 
+      .gate-content {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       .gate-church-banner {
         width: min(96vw,760px);
+        max-width: calc(100vw - 20px);
         max-height: 43vh;
         margin-bottom: 14px;
       }
 
-      .enter-church { width: min(520px,94vw); }
-
-      .hero { padding: 9px; }
-
-      .hero-banner {
-        max-height: clamp(150px,42vw,270px);
+      .enter-church {
+        width: min(94vw,520px);
+        max-width: calc(100vw - 20px);
       }
 
-      .tabs {
-        display: grid;
-        grid-template-columns: repeat(3,minmax(0,1fr));
-        gap: 3px;
-        padding: 5px 4px;
-      }
-
-      .tab-button {
-        width: 100%;
-        min-width: 0;
-        height: 44px;
-      }
+      .gate-hint { margin-top: 2px; }
 
       main { width: calc(100% - 20px); }
 
       .tab-panel {
         min-height: 0;
-        padding: 22px 0 48px;
+        padding: 14px 0 48px;
       }
 
-      .page-heading h1 {
-        font-size: clamp(1.55rem,7.2vw,2.15rem);
-        letter-spacing: .055em;
+      /* Same mobile title treatment for both list pages. */
+      #keepers .page-heading,
+      #non-believers .page-heading {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      #keepers .page-heading h1,
+      #non-believers .page-heading h1 {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        text-align: center;
         white-space: nowrap;
+        font-size: clamp(1.25rem,5.8vw,1.75rem);
+        letter-spacing: .035em;
       }
 
       .non-believers-list { gap: 6px; }
@@ -553,6 +573,16 @@
       }
     }
 
+    @media (max-width: 700px) {
+      .tabs {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap: 1px 2px;
+        padding: 4px 5px 6px;
+      }
+
+      .tab-button { width: 78%; }
+    }
+
     @media (max-width: 390px) {
       .non-believers-list li {
         grid-template-columns: 40px minmax(0,1fr);
@@ -567,823 +597,12 @@
     @media (prefers-reduced-motion: reduce) {
       .church-gate,
       .tab-panel,
-      .exile-status::before { animation: none; transition: none; }
-    }
-  </style>
-
-  <style>
-    /* ---------- FINAL NAV SCALE + HERO DIVIDER ---------- */
-
-    .hero-divider {
-      position: relative;
-      z-index: 48;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 30px;
-      margin: -4px 0 -2px;
-      overflow: visible;
-      background: #030204;
-      pointer-events: none;
-    }
-
-    .hero-divider img {
-      display: block;
-      width: min(1540px, 98vw);
-      height: 42px;
-      object-fit: fill;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,.34));
-    }
-
-    .tabs {
-      gap: 8px;
-      padding: 8px 10px 9px;
-    }
-
-    .tab-button {
-      flex: 0 0 clamp(190px, 15vw, 220px);
-      width: clamp(190px, 15vw, 220px);
-      height: 56px;
-    }
-
-    /* Active glow is 75% of the previous visual spread. */
-    .tab-button.active::before {
-      inset: 7px 12px;
-      border-radius: 8px;
-      background: rgba(215,122,44,.18);
-      box-shadow:
-        0 0 7.5px rgba(215,122,44,.48),
-        0 0 16.5px rgba(215,122,44,.28),
-        0 0 27px rgba(159,67,31,.16);
-    }
-
-    .tab-button.active .tab-button-image {
-      filter:
-        brightness(1.13)
-        drop-shadow(0 0 5px rgba(215,122,44,.31))
-        drop-shadow(0 3px 6px rgba(0,0,0,.34));
-    }
-
-    @media (max-width: 1390px) and (min-width: 761px) {
-      .tabs { gap: 7px; }
-
-      .tab-button {
-        flex-basis: clamp(175px, 15.1vw, 210px);
-        width: clamp(175px, 15.1vw, 210px);
-        height: 54px;
-      }
-    }
-
-    @media (max-width: 1180px) and (min-width: 761px) {
-      .tabs { gap: 6px; }
-
-      .tab-button {
-        flex-basis: calc((100vw - 70px) / 6);
-        width: calc((100vw - 70px) / 6);
-        min-width: 0;
-        height: 52px;
-      }
-
-      .hero-divider img {
-        width: 99vw;
-        height: 38px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hero-divider {
-        height: 22px;
-        margin: -2px 0 0;
-      }
-
-      .hero-divider img {
-        width: 100vw;
-        height: 30px;
-      }
-
-      .tabs {
-        gap: 5px;
-        padding: 7px 5px 8px;
-      }
-
-      .tab-button {
-        width: 100%;
-        height: 50px;
-      }
-
-      .tab-button.active::before {
-        inset: 7px 9px;
-        box-shadow:
-          0 0 6px rgba(215,122,44,.46),
-          0 0 13px rgba(215,122,44,.26),
-          0 0 21px rgba(159,67,31,.14);
+      .exile-status::before {
+        animation: none;
+        transition: none;
       }
     }
   </style>
-
-
-  <style>
-    /* ==========================================================
-       NAV SCALE V2
-       Larger buttons, softer active glow, stronger divider,
-       tighter vertical composition.
-       ========================================================== */
-
-    .hero-divider {
-      height: 58px !important;
-      margin: -7px 0 -10px !important;
-      background: #030204 !important;
-      overflow: hidden !important;
-    }
-
-    .hero-divider img {
-      width: min(1540px, 96vw) !important;
-      height: auto !important;
-      max-height: 56px !important;
-      object-fit: contain !important;
-      filter: drop-shadow(0 4px 9px rgba(0,0,0,.38)) !important;
-    }
-
-    .tabs {
-      gap: 13px !important;
-      padding: 7px 12px 8px !important;
-      background: rgba(3,2,4,.97) !important;
-    }
-
-    /* ~50% larger than the previous 220x56 desktop maximum. */
-    .tab-button {
-      flex: 0 0 300px !important;
-      width: 300px !important;
-      height: 78px !important;
-      min-width: 0 !important;
-    }
-
-    .tab-button-image {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: fill !important;
-    }
-
-    /* Diffuse glow: no visible capsule/cylinder shape. */
-    .tab-button.active::before {
-      content: "" !important;
-      display: block !important;
-      position: absolute !important;
-      inset: 20px 34px !important;
-      z-index: -1 !important;
-      border-radius: 50% !important;
-      background: rgba(214,112,35,.055) !important;
-      box-shadow:
-        0 0 15px 8px rgba(215,122,44,.11),
-        0 0 30px 15px rgba(194,85,29,.065),
-        0 0 48px 24px rgba(142,55,22,.025) !important;
-      filter: blur(7px) !important;
-      pointer-events: none !important;
-    }
-
-    .tab-button.active .tab-button-image {
-      filter:
-        brightness(1.08)
-        drop-shadow(0 0 4px rgba(215,122,44,.14))
-        drop-shadow(0 4px 7px rgba(0,0,0,.34)) !important;
-    }
-
-    /* Bring content closer to navigation. */
-    .tab-panel {
-      padding-top: 18px !important;
-    }
-
-    #home .intro {
-      padding-top: 0 !important;
-      padding-bottom: 18px !important;
-    }
-
-    /* Six large buttons still fit progressively on common desktop widths. */
-    @media (max-width: 1900px) and (min-width: 1401px) {
-      .tabs { gap: 11px !important; }
-
-      .tab-button {
-        flex-basis: calc((100vw - 90px) / 6) !important;
-        width: calc((100vw - 90px) / 6) !important;
-        max-width: 290px !important;
-        height: 74px !important;
-      }
-    }
-
-    @media (max-width: 1400px) and (min-width: 761px) {
-      .tabs {
-        gap: 8px !important;
-        padding-left: 8px !important;
-        padding-right: 8px !important;
-      }
-
-      .tab-button {
-        flex-basis: calc((100vw - 64px) / 6) !important;
-        width: calc((100vw - 64px) / 6) !important;
-        max-width: none !important;
-        height: 68px !important;
-      }
-
-      .hero-divider {
-        height: 50px !important;
-        margin-bottom: -8px !important;
-      }
-
-      .hero-divider img {
-        width: 98vw !important;
-        max-height: 48px !important;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hero-divider {
-        height: 34px !important;
-        margin: -3px 0 -3px !important;
-      }
-
-      .hero-divider img {
-        width: 98vw !important;
-        max-height: 34px !important;
-      }
-
-      .tabs {
-        grid-template-columns: repeat(3, minmax(0,1fr)) !important;
-        gap: 7px !important;
-        padding: 7px 6px 8px !important;
-      }
-
-      .tab-button {
-        width: 100% !important;
-        height: clamp(55px, 14vw, 70px) !important;
-      }
-
-      .tab-button.active::before {
-        inset: 16px 22px !important;
-        box-shadow:
-          0 0 11px 6px rgba(215,122,44,.10),
-          0 0 22px 11px rgba(194,85,29,.055) !important;
-        filter: blur(6px) !important;
-      }
-
-      .tab-panel {
-        padding-top: 14px !important;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       UNIFIED MAIN HERO
-       The uploaded image now replaces:
-       - main banner
-       - separate Pa'agrio temple background
-       - metal divider
-       Entrance screen remains unchanged.
-       ========================================================== */
-
-    .hero {
-      position: relative !important;
-      display: block !important;
-      width: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden !important;
-      background: #020203 !important;
-    }
-
-    .hero::before,
-    .hero::after {
-      display: none !important;
-      content: none !important;
-      background: none !important;
-    }
-
-    .hero-unified-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: none;
-      margin: 0 auto;
-      object-fit: contain;
-      filter: none;
-    }
-
-    /* Old standalone divider is no longer used. */
-    .hero-divider {
-      display: none !important;
-    }
-
-    /* Navigation now begins immediately beneath the unified artwork. */
-    .tabs {
-      margin-top: 0 !important;
-    }
-
-    @media (max-width: 760px) {
-      .hero {
-        padding: 0 !important;
-      }
-
-      .hero-unified-image {
-        width: 100%;
-        height: auto;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       NAVIGATION: ALWAYS 3 x 2
-       Same button width, 50% greater height.
-       ========================================================== */
-
-    .tabs {
-      display: grid !important;
-      grid-template-columns: repeat(3, 300px) !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 12px 18px !important;
-      padding: 12px 14px 14px !important;
-      overflow: visible !important;
-    }
-
-    .tab-button {
-      width: 300px !important;
-      min-width: 300px !important;
-      max-width: 300px !important;
-      height: 117px !important;
-      min-height: 117px !important;
-      max-height: 117px !important;
-      flex: none !important;
-    }
-
-    .tab-button-image {
-      width: 300px !important;
-      height: 117px !important;
-      max-width: 300px !important;
-      max-height: 117px !important;
-      object-fit: fill !important;
-    }
-
-    /* Re-centre the softer active glow for the taller buttons. */
-    .tab-button.active::before {
-      inset: 31px 34px !important;
-      border-radius: 50% !important;
-    }
-
-    @media (max-width: 980px) {
-      .tabs {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 9px 10px !important;
-        padding: 10px 8px 12px !important;
-      }
-
-      .tab-button {
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
-        height: auto !important;
-        min-height: 0 !important;
-        max-height: none !important;
-        aspect-ratio: 300 / 117 !important;
-      }
-
-      .tab-button-image {
-        width: 100% !important;
-        height: 100% !important;
-        max-width: none !important;
-        max-height: none !important;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .tabs {
-        gap: 6px !important;
-        padding: 8px 5px 10px !important;
-      }
-
-      .tab-button.active::before {
-        inset: 24% 12% !important;
-      }
-    }
-  </style>
-
-
-  <style>
-    /* ==========================================================
-       HERO -> PAGE BACKGROUND BLEND
-       Matches the warm near-black tone at the bottom of the hero.
-       ========================================================== */
-
-    body {
-      background:
-        linear-gradient(
-          180deg,
-          #0c0804 0px,
-          #0b0704 170px,
-          #080504 360px,
-          #050405 680px,
-          #030204 100%
-        ) !important;
-    }
-
-    .tabs {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(12,8,4,.99) 0%,
-          rgba(10,6,4,.99) 55%,
-          rgba(7,5,5,.99) 100%
-        ) !important;
-    }
-
-    /* Soft transition immediately below the unified hero. */
-    .hero {
-      overflow: visible !important;
-    }
-
-    .hero::after {
-      content: "" !important;
-      display: block !important;
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: -34px !important;
-      height: 42px !important;
-      z-index: 2 !important;
-      pointer-events: none !important;
-      background: linear-gradient(
-        180deg,
-        rgba(12,8,4,.92) 0%,
-        rgba(12,8,4,.58) 45%,
-        rgba(12,8,4,0) 100%
-      ) !important;
-    }
-  </style>
-
-
-  <style>
-    /* CLOTH BANNER NAVIGATION — 1 x 6 */
-    .tabs {
-      display: grid !important;
-      grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 12px !important;
-      width: 100% !important;
-      padding: 10px 18px 12px !important;
-      overflow: visible !important;
-    }
-    .tab-button,
-    .tab-button.active,
-    .tab-button:hover {
-      width: 100% !important;
-      min-width: 0 !important;
-      max-width: none !important;
-      height: auto !important;
-      min-height: 0 !important;
-      max-height: none !important;
-      aspect-ratio: 1 / 1 !important;
-      flex: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      border: 0 !important;
-      background: transparent !important;
-      overflow: visible !important;
-    }
-    .tab-button-image {
-      display: block !important;
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      max-height: none !important;
-      object-fit: contain !important;
-      pointer-events: none !important;
-    }
-    .tab-button.active::before {
-      content: "" !important;
-      display: block !important;
-      position: absolute !important;
-      inset: 18% 16% !important;
-      z-index: -1 !important;
-      border-radius: 50% !important;
-      background: rgba(214,112,35,.035) !important;
-      box-shadow: 0 0 13px 8px rgba(215,122,44,.095), 0 0 28px 15px rgba(194,85,29,.05) !important;
-      filter: blur(8px) !important;
-      pointer-events: none !important;
-    }
-    .tab-button.active .tab-button-image {
-      filter: brightness(1.06) drop-shadow(0 0 4px rgba(215,122,44,.10)) drop-shadow(0 4px 7px rgba(0,0,0,.28)) !important;
-    }
-    .tab-button:hover .tab-button-image {
-      transform: translateY(-2px) !important;
-      filter: brightness(1.06) drop-shadow(0 4px 7px rgba(0,0,0,.28)) !important;
-    }
-    @media (max-width: 1100px) {
-      .tabs { gap: 7px !important; padding-left: 8px !important; padding-right: 8px !important; }
-    }
-    @media (max-width: 700px) {
-      .tabs { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; padding: 8px 7px 10px !important; }
-    }
-  </style>
-
-
-<style>
-/* CLOTH NAV — 65% SCALE, ORIGINAL PROPORTIONS */
-.tabs {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  justify-content: center !important;
-  align-items: center !important;
-  column-gap: 2px !important;
-  row-gap: 2px !important;
-  padding: 2px 4px 3px !important;
-}
-
-.tab-button,
-.tab-button.active,
-.tab-button:hover {
-  width: 55% !important;
-  height: auto !important;
-  aspect-ratio: 1 / 1 !important;
-  justify-self: center !important;
-  align-self: center !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.tab-button-image {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-/* Scale the active glow with the smaller banner. */
-.tab-button.active::before {
-  inset: 20% 17% !important;
-  box-shadow:
-    0 0 10px 6px rgba(215,122,44,.085),
-    0 0 21px 11px rgba(194,85,29,.04) !important;
-  filter: blur(7px) !important;
-}
-
-@media (max-width: 1100px) {
-  .tabs {
-    column-gap: 5px !important;
-    padding-left: 7px !important;
-    padding-right: 7px !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 68% !important;
-  }
-}
-
-@media (max-width: 700px) {
-  .tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 6px 8px !important;
-    padding: 7px 7px 9px !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 55% !important;
-  }
-}
-</style>
-
-
-<style>
-/* ==========================================================
-   VOLCANIC ROCK NAV BAR
-   Generated specifically for the cloth-banner navigation.
-   ========================================================== */
-
-.tabs {
-  /* The artwork already contains the stone texture and the
-     metallic top/bottom borders. Stretch only horizontally. */
-  background:
-    url("assets/nav-volcanic-rock-metal.png")
-    center center / 100% 100% no-repeat !important;
-
-  /* Keep the six banners compact and centred. */
-  grid-template-columns: repeat(6, 150px) !important;
-  justify-content: center !important;
-  align-items: center !important;
-  column-gap: 2px !important;
-  row-gap: 0 !important;
-  padding: 5px 12px 7px !important;
-
-  box-shadow:
-    0 8px 24px rgba(0,0,0,.24) !important;
-}
-
-/* Remove any previously-added synthetic bar glow/background layer:
-   the new image now supplies the visual surface itself. */
-.tabs::before {
-  content: none !important;
-  display: none !important;
-}
-
-/* Preserve current banner sizing and proportions. */
-.tab-button,
-.tab-button.active,
-.tab-button:hover {
-  width: 55% !important;
-  height: auto !important;
-  aspect-ratio: 1 / 1 !important;
-  justify-self: center !important;
-  align-self: center !important;
-}
-
-.tab-button-image {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-@media (max-width: 980px) and (min-width: 701px) {
-  .tabs {
-    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-    column-gap: 0 !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 58% !important;
-  }
-}
-
-@media (max-width: 700px) {
-  .tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2px 4px !important;
-    padding: 5px 6px 7px !important;
-    background-size: 100% 100% !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 52% !important;
-  }
-}
-</style>
-
-
-<style>
-/* ==========================================================
-   FINAL HERO + CLOTH NAV ADJUSTMENT
-   - latest artwork used as the top-page banner
-   - cloth banners are 50% larger than the previous size
-   - spacing between them reduced by half
-   ========================================================== */
-
-.hero-unified-image {
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-  max-height: none !important;
-  margin: 0 auto !important;
-  object-fit: contain !important;
-}
-
-/* Previous desktop banner width was 55%; +50% = 82.5%. */
-.tabs {
-  grid-template-columns: repeat(6, 150px) !important;
-  column-gap: 1px !important;
-  row-gap: 0 !important;
-  padding: 5px 8px 7px !important;
-}
-
-.tab-button,
-.tab-button.active,
-.tab-button:hover {
-  width: 82.5% !important;
-  height: auto !important;
-  aspect-ratio: 1 / 1 !important;
-  justify-self: center !important;
-  align-self: center !important;
-}
-
-.tab-button-image {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-/* Tablet: 58% -> 87% (+50%). */
-@media (max-width: 980px) and (min-width: 701px) {
-  .tabs {
-    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-    column-gap: 0 !important;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 87% !important;
-  }
-}
-
-/* Phones remain 3 x 2, with the same +50% visual scale. */
-@media (max-width: 700px) {
-  .tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 1px 2px !important;
-    padding: 4px 5px 6px !important;
-  }
-
-  .tab-button,
-  .tab-button.active,
-  .tab-button:hover {
-    width: 78% !important;
-  }
-}
-</style>
-
-
-<style>
-/* ==========================================================
-   ENTRANCE SCREEN — MOBILE CENTERING + CLOSER HINT
-   ========================================================== */
-
-/* Keep the whole entrance composition precisely centred. */
-.gate-content {
-  box-sizing: border-box !important;
-  width: min(1040px, 100%) !important;
-  max-width: 100vw !important;
-  margin: 0 auto !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-  text-align: center !important;
-  justify-self: center !important;
-}
-
-/* Banner and button use the exact same centre axis. */
-.gate-church-banner {
-  display: block !important;
-  width: min(900px, calc(100vw - 24px)) !important;
-  max-width: calc(100vw - 24px) !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  transform: none !important;
-}
-
-.enter-church {
-  display: flex !important;
-  width: min(620px, calc(100vw - 24px)) !important;
-  max-width: calc(100vw - 24px) !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  justify-content: center !important;
-}
-
-/* Bring the line below the button visibly closer on every screen size. */
-.gate-hint {
-  margin-top: 3px !important;
-}
-
-/* Mobile-specific centring safeguards. */
-@media (max-width: 760px) {
-  .gate-content {
-    width: 100% !important;
-    max-width: 100vw !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  .gate-church-banner {
-    width: min(96vw, 760px) !important;
-    max-width: calc(100vw - 20px) !important;
-  }
-
-  .enter-church {
-    width: min(94vw, 520px) !important;
-    max-width: calc(100vw - 20px) !important;
-  }
-
-  .gate-hint {
-    margin-top: 2px !important;
-  }
-}
-</style>
 
 </head>
 
