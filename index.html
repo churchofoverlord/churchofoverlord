@@ -367,6 +367,38 @@
       background-image: url("assets/keepers-row.png");
     }
 
+
+    /* ---------- EXILE STATUS ---------- */
+    .exile-status {
+      width: fit-content;
+      max-width: 92%;
+      margin: 16px auto 0;
+      padding: 8px 14px;
+      border: 1px solid rgba(176, 90, 215, 0.30);
+      background: rgba(122, 47, 157, 0.07);
+      color: #c27be0;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(0.62rem, 1.35vw, 0.78rem);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 0.11em;
+      text-align: center;
+      box-shadow: 0 0 16px rgba(176, 90, 215, 0.06);
+    }
+
+    /* ---------- ROW HOVER DETAILS ---------- */
+    .keepers-list li:hover {
+      filter:
+        brightness(1.025)
+        drop-shadow(0 0 7px rgba(176, 90, 215, 0.22));
+    }
+
+    #non-believers .non-believers-list li:hover {
+      filter:
+        brightness(1.025)
+        drop-shadow(0 0 7px rgba(194, 145, 58, 0.18));
+    }
+
     /* ---------- FOOTER ---------- */
 
     footer {
@@ -633,6 +665,48 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       FINAL MOBILE NAVIGATION — 3 x 2 EQUAL GRID
+       ========================================================== */
+    @media (max-width: 760px) {
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+        width: 100%;
+        padding: 8px 6px 9px;
+        overflow: visible;
+      }
+
+      .tab-button {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        padding: 5px 4px;
+        font-size: clamp(.46rem, 2.05vw, .62rem);
+        line-height: 1.08;
+        letter-spacing: .025em;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .tab-button::after {
+        left: 14%;
+        right: 14%;
+        bottom: -10px;
+      }
+
+      .exile-status {
+        margin-top: 13px;
+        padding: 7px 10px;
+        font-size: clamp(.58rem, 2.45vw, .72rem);
+        letter-spacing: .075em;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -677,6 +751,7 @@
     <section id="trial-of-exile" class="tab-panel document-page">
       <div class="intro">
         <p class="motto">· THEY CAST US OUT · THEY WILL NOT SILENCE THE FLAME ·</p>
+        <p class="exile-status">STATUS: AWAITING THE JUDGEMENT OF THE FLAME</p>
       </div>
       <img class="document-image" src="assets/trial-of-exile.png" alt="The Trial of Exile">
     </section>
@@ -731,8 +806,7 @@
 
         <div class="non-believers-ending">
           <span></span>
-          <p>
-            <· THE FLAME REMEMBERS ·</p>
+          <p>· THE FLAME REMEMBERS ·</p>
           <span></span>
         </div>
       </div>
