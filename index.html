@@ -960,6 +960,149 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       PA'AGRIO TEMPLE AESTHETIC
+       Warm sacred-fire ambience + ancient stone.
+       Purple remains the Overlord / Church accent.
+       ========================================================== */
+
+    :root {
+      --paagrio-fire: #d77a2c;
+      --paagrio-ember: #9f431f;
+      --paagrio-gold: #d4a45d;
+      --temple-stone: #5b4032;
+    }
+
+    /* Shift the site's ambient light from generic purple toward
+       the warm fire-and-stone atmosphere of the Orc Village temple. */
+    body {
+      background:
+        radial-gradient(ellipse at 50% 4%, rgba(189, 83, 31, 0.13), transparent 28rem),
+        radial-gradient(ellipse at 50% 38%, rgba(116, 54, 30, 0.075), transparent 42rem),
+        linear-gradient(180deg, #080403 0%, #070405 34%, #040304 100%);
+    }
+
+    main::before {
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(203, 93, 31, 0.085), transparent 32rem),
+        radial-gradient(ellipse at 50% 52%, rgba(116, 57, 32, 0.05), transparent 45rem),
+        linear-gradient(90deg, rgba(0,0,0,0.30), transparent 21%, transparent 79%, rgba(0,0,0,0.30)),
+        linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.28) 100%);
+    }
+
+    /* A tiny warm edge beneath the hero suggests firelight below stone,
+       while the existing purple line remains the Church accent. */
+    .hero {
+      box-shadow:
+        0 1px 0 rgba(176, 90, 215, 0.10),
+        0 7px 24px rgba(155, 66, 25, 0.055);
+    }
+
+    /* Navigation remains purple/Overlord, but gets warmer charcoal-metal
+       undertones instead of a purely violet-black surface. */
+    .tabs {
+      background:
+        linear-gradient(180deg, rgba(16, 10, 9, 0.975), rgba(6, 4, 6, 0.985));
+      border-bottom-color: rgba(176, 90, 215, 0.20);
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.38),
+        0 1px 0 rgba(167, 78, 31, 0.055);
+    }
+
+    @media (min-width: 761px) {
+      .tab-button {
+        background:
+          linear-gradient(180deg, rgba(255, 225, 190, 0.025), transparent 18%),
+          linear-gradient(180deg, rgba(34, 27, 25, 0.90), rgba(9, 7, 8, 0.97));
+      }
+    }
+
+    /* Titles retain purple as Church identity but receive a very restrained
+       amber underglow, as if lit by the central sacred fire. */
+    .page-heading::before {
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(201, 87, 30, 0.075), transparent 54%),
+        radial-gradient(ellipse, rgba(146, 62, 181, 0.075), transparent 70%);
+    }
+
+    .page-heading h1 {
+      text-shadow:
+        0 0 13px rgba(176, 90, 215, 0.11),
+        0 7px 28px rgba(190, 78, 26, 0.075);
+    }
+
+    /* Sacred documents now look illuminated by Pa'agrio's fire:
+       warm light immediately around parchment, purple farther out. */
+    .document-image {
+      border-color: rgba(197, 131, 66, 0.20);
+      background:
+        linear-gradient(145deg, rgba(122, 69, 40, 0.12), rgba(255, 230, 192, 0.018));
+      box-shadow:
+        0 25px 76px rgba(0, 0, 0, 0.72),
+        0 0 18px rgba(218, 129, 54, 0.115),
+        0 0 44px rgba(167, 72, 29, 0.075),
+        0 0 82px rgba(105, 34, 136, 0.045);
+    }
+
+    /* Trial is the most explicitly ritual page, so its status gets
+       a trace of ember-light while remaining recognisably purple. */
+    .exile-status {
+      border-color: rgba(176, 90, 215, 0.28);
+      background:
+        linear-gradient(180deg, rgba(122, 47, 157, 0.055), rgba(133, 55, 24, 0.045));
+      box-shadow:
+        0 0 14px rgba(176, 90, 215, 0.055),
+        0 5px 24px rgba(176, 75, 27, 0.045);
+    }
+
+    .exile-status::before {
+      text-shadow:
+        0 0 5px rgba(200, 120, 232, 0.68),
+        0 0 12px rgba(176, 90, 215, 0.30),
+        0 0 18px rgba(210, 94, 31, 0.11);
+    }
+
+    /* The home video area sits in a faint pool of temple firelight. */
+    .video-frame {
+      border-color: rgba(176, 90, 215, 0.32);
+      box-shadow:
+        0 20px 72px rgba(0, 0, 0, 0.68),
+        0 0 32px rgba(173, 75, 28, 0.075),
+        0 0 58px rgba(105, 34, 136, 0.055);
+    }
+
+    /* Footer becomes darker stone/ember territory while preserving
+       the purple Church sigil and ornamental ending. */
+    footer {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(142, 61, 28, 0.065), transparent 25rem),
+        #020203;
+      border-top-color: rgba(133, 69, 48, 0.22);
+    }
+
+    .footer-sigil {
+      filter:
+        drop-shadow(0 0 8px rgba(122, 47, 157, 0.13))
+        drop-shadow(0 4px 14px rgba(177, 75, 27, 0.055));
+    }
+
+    /* Keepers stay silver-purple; Non-Believers stay aged gold.
+       This preserves the distinction introduced in the previous pass. */
+    #keepers .page-heading::before {
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(185, 78, 28, 0.045), transparent 55%),
+        radial-gradient(ellipse, rgba(146, 62, 181, 0.085), transparent 70%);
+    }
+
+    #non-believers .page-heading::before {
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(194, 121, 47, 0.065), transparent 55%),
+        radial-gradient(ellipse, rgba(122, 47, 157, 0.045), transparent 70%);
+    }
+  </style>
+
 </head>
 
 <body>
