@@ -364,7 +364,7 @@
       The ONLY visual/layout difference is the background asset.
     */
     .keepers-list li {
-      background-image: url("assets/keepers-row.png");
+      background-image: url("assets/keepers-row-v4.png");
     }
 
 
@@ -1390,6 +1390,169 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       LAYOUT FIXES
+       ========================================================== */
+
+    /* Banner: preserve full image, but stop it from taking over the viewport. */
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .hero-banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: clamp(220px, 34vw, 430px);
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
+
+    /* Keepers and Non-Believers: identical dimensions and text geometry. */
+    .non-believers-list,
+    .keepers-list {
+      width: min(860px, 100%);
+    }
+
+    .non-believers-list li,
+    .keepers-list li {
+      width: 100%;
+      aspect-ratio: 1996 / 321 !important;
+      grid-template-columns: 82px minmax(0, 1fr) !important;
+      padding: 0 58px 0 138px !important;
+      background-size: 100% 100% !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .non-believers-list li::before,
+    .keepers-list li::before {
+      font-size: 2rem !important;
+      line-height: 1 !important;
+    }
+
+    .non-believers-list .name,
+    .keepers-list .name {
+      padding-left: 16px !important;
+      font-size: 2rem !important;
+      line-height: 1 !important;
+    }
+
+    /* Generated divider asset removed from Keepers / Non-Believers. */
+    .ornamental-divider {
+      display: none !important;
+    }
+
+    @media (max-width: 760px) {
+      .hero-banner {
+        max-height: clamp(150px, 42vw, 270px);
+      }
+
+      .non-believers-list li,
+      .keepers-list li {
+        grid-template-columns: 46px minmax(0, 1fr) !important;
+        padding: 0 25px 0 82px !important;
+      }
+
+      .non-believers-list li::before,
+      .keepers-list li::before {
+        font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
+      }
+
+      .non-believers-list .name,
+      .keepers-list .name {
+        padding-left: 8px !important;
+        font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .non-believers-list li,
+      .keepers-list li {
+        grid-template-columns: 40px minmax(0, 1fr) !important;
+        padding-left: 72px !important;
+        padding-right: 21px !important;
+      }
+
+      .non-believers-list li::before,
+      .keepers-list li::before {
+        font-size: 1rem !important;
+      }
+
+      .non-believers-list .name,
+      .keepers-list .name {
+        font-size: 1.1rem !important;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* ==========================================================
+       NAV BUTTON BACKGROUND UPDATE
+       Uses the new shared dark-stone button asset.
+       Purple CSS borders removed.
+       ========================================================== */
+
+    .tab-button,
+    .tab-button.active,
+    .tab-button:hover {
+      border: 0 !important;
+      border-color: transparent !important;
+      border-radius: 0 !important;
+
+      background-image: url("assets/nav-button-bg.webp") !important;
+      background-size: 100% 100% !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+
+      box-shadow: none !important;
+    }
+
+    .tab-button {
+      color: #b7a9b8;
+    }
+
+    .tab-button:hover {
+      color: #eadbc6;
+      filter:
+        brightness(1.08)
+        drop-shadow(0 0 8px rgba(176, 90, 215, 0.10));
+    }
+
+    .tab-button.active {
+      color: #f0dfc7;
+      filter:
+        brightness(1.12)
+        drop-shadow(0 0 10px rgba(176, 90, 215, 0.14));
+    }
+
+    /* Keep the thin purple active underline only; this is not a button border. */
+    .tab-button::after {
+      background: transparent;
+    }
+
+    .tab-button.active::after {
+      background: var(--purple-bright);
+      box-shadow: 0 0 10px rgba(176, 90, 215, 0.55);
+    }
+
+    @media (max-width: 760px) {
+      .tab-button,
+      .tab-button.active,
+      .tab-button:hover {
+        background-size: 100% 100% !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -1462,7 +1625,6 @@
       <div class="page-heading">
         <h1>KEEPERS OF THE FLAME</h1>
         <p class="section-intro">· THEY STOOD WITH THE FLAME WHEN THE GATES WERE CLOSED ·</p>
-        <img class="ornamental-divider" src="assets/paagrio-divider.webp" alt="">
       </div>
 
       <div class="non-believers-panel">
@@ -1485,7 +1647,6 @@
       <div class="page-heading">
         <h1>NON-BELIEVERS</h1>
         <p class="section-intro">· THE FLAME AWAITS THOSE WHO HAVE YET TO SEE ·</p>
-        <img class="ornamental-divider" src="assets/paagrio-divider.webp" alt="">
       </div>
 
       <div class="non-believers-panel">
