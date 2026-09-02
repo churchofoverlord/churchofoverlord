@@ -386,18 +386,40 @@
       box-shadow: 0 0 16px rgba(176, 90, 215, 0.06);
     }
 
-    /* ---------- ROW HOVER DETAILS ---------- */
-    .keepers-list li:hover {
+    /* ---------- ROW GLOW DETAILS ---------- */
+
+    /* Subtle permanent glow so it is visible on touch devices too. */
+    .keepers-list li {
       filter:
-        brightness(1.025)
-        drop-shadow(0 0 7px rgba(176, 90, 215, 0.22));
+        drop-shadow(0 0 5px rgba(176, 90, 215, 0.22))
+        drop-shadow(0 0 12px rgba(122, 47, 157, 0.10));
     }
 
-    #non-believers .non-believers-list li:hover {
+    #non-believers .non-believers-list li {
       filter:
-        brightness(1.025)
-        drop-shadow(0 0 7px rgba(194, 145, 58, 0.18));
+        drop-shadow(0 0 5px rgba(201, 154, 69, 0.18))
+        drop-shadow(0 0 12px rgba(166, 113, 34, 0.08));
     }
+
+    /* Slightly stronger when hovered, focused or tapped. */
+    .keepers-list li:hover,
+    .keepers-list li:focus-within,
+    .keepers-list li:active {
+      filter:
+        brightness(1.03)
+        drop-shadow(0 0 8px rgba(176, 90, 215, 0.34))
+        drop-shadow(0 0 18px rgba(122, 47, 157, 0.15));
+    }
+
+    #non-believers .non-believers-list li:hover,
+    #non-believers .non-believers-list li:focus-within,
+    #non-believers .non-believers-list li:active {
+      filter:
+        brightness(1.03)
+        drop-shadow(0 0 8px rgba(201, 154, 69, 0.30))
+        drop-shadow(0 0 18px rgba(166, 113, 34, 0.13));
+    }
+
 
     /* ---------- FOOTER ---------- */
 
