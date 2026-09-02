@@ -1103,11 +1103,317 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       GENERATED ASSET INTEGRATION + CHURCH ENTRANCE
+       ========================================================== */
+
+    html.gate-open,
+    html.gate-open body {
+      overflow: hidden;
+    }
+
+    /* Actual Pa'agrio Temple now sits behind the site, very dark and restrained. */
+    body {
+      background:
+        linear-gradient(rgba(3, 2, 3, .84), rgba(3, 2, 3, .91)),
+        url("assets/paagrio-temple-bg.webp") center top / cover fixed no-repeat,
+        #040304;
+    }
+
+    main::before {
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(210, 91, 29, .085), transparent 31rem),
+        linear-gradient(90deg, rgba(0,0,0,.36), transparent 22%, transparent 78%, rgba(0,0,0,.36)),
+        linear-gradient(180deg, transparent 52%, rgba(0,0,0,.32));
+    }
+
+    /* Upgraded banner */
+    .hero {
+      background: #000;
+    }
+
+    .hero-banner {
+      width: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Universal generated button texture for all six navigation buttons. */
+    .tab-button,
+    .tab-button.active {
+      position: relative;
+      overflow: hidden;
+      background-image:
+        linear-gradient(180deg, rgba(8,5,10,.30), rgba(4,3,5,.58)),
+        url("assets/church-ui-panel.webp");
+      background-size: cover;
+      background-position: center;
+      border-color: rgba(176,90,215,.34);
+      box-shadow:
+        inset 0 1px 0 rgba(239,221,244,.06),
+        inset 0 -1px 0 rgba(0,0,0,.76),
+        0 3px 8px rgba(0,0,0,.28);
+    }
+
+    .tab-button:hover {
+      background-image:
+        linear-gradient(180deg, rgba(83,34,103,.18), rgba(5,3,6,.50)),
+        url("assets/church-ui-panel.webp");
+      border-color: rgba(188,101,222,.62);
+      box-shadow:
+        inset 0 1px 0 rgba(244,225,250,.08),
+        0 0 15px rgba(128,49,160,.16);
+    }
+
+    .tab-button.active {
+      background-image:
+        linear-gradient(180deg, rgba(95,38,119,.25), rgba(6,3,8,.54)),
+        url("assets/church-ui-panel.webp");
+      border-color: rgba(192,103,225,.72);
+    }
+
+    /* Generated ornamental divider takes over from the CSS-only divider. */
+    .page-heading::after {
+      display: none;
+    }
+
+    .ornamental-divider {
+      display: block;
+      width: min(720px, 86%);
+      height: auto;
+      margin: 10px auto -2px;
+      opacity: .58;
+      filter:
+        drop-shadow(0 0 7px rgba(186,83,215,.17))
+        drop-shadow(0 2px 9px rgba(194,80,30,.08));
+      pointer-events: none;
+    }
+
+    /* Sacred-fire footer asset */
+    .footer-brazier {
+      display: block;
+      width: 92px;
+      height: 122px;
+      object-fit: contain;
+      margin: -4px auto 10px;
+      opacity: .82;
+      filter:
+        drop-shadow(0 0 11px rgba(214,90,27,.22))
+        drop-shadow(0 0 18px rgba(122,47,157,.08));
+    }
+
+    /* Existing symbol becomes a smaller Church seal beneath the Pa'agrio flame. */
+    .footer-sigil {
+      width: 48px;
+      height: 48px;
+      opacity: .52;
+    }
+
+    /* ---------- ENTRANCE SCREEN ---------- */
+    .church-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.76)),
+        url("assets/paagrio-temple-bg.webp") center / cover no-repeat,
+        #020202;
+      transition: opacity 850ms ease, visibility 850ms ease;
+    }
+
+    .church-gate::before {
+      content: "";
+      position: absolute;
+      inset: 3.2%;
+      pointer-events: none;
+      background: url("assets/church-ui-panel.webp") center / 100% 100% no-repeat;
+      opacity: .38;
+      mix-blend-mode: screen;
+      filter: saturate(.72) brightness(.74);
+    }
+
+    .gate-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 53%, rgba(210,90,27,.17), transparent 24rem),
+        radial-gradient(circle at 50% 45%, rgba(128,48,157,.12), transparent 34rem),
+        linear-gradient(90deg, rgba(0,0,0,.55), transparent 25%, transparent 75%, rgba(0,0,0,.55));
+      pointer-events: none;
+    }
+
+    .gate-content {
+      position: relative;
+      z-index: 2;
+      width: min(760px, calc(100% - 42px));
+      padding: 34px 26px 38px;
+      text-align: center;
+    }
+
+    .gate-emblem {
+      display: block;
+      width: clamp(118px, 19vw, 190px);
+      height: auto;
+      margin: 0 auto 12px;
+      filter:
+        drop-shadow(0 0 18px rgba(218,94,28,.26))
+        drop-shadow(0 0 26px rgba(109,42,134,.10));
+    }
+
+    .gate-title {
+      margin: 0 auto 25px;
+      color: #e6d4b8;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(1.45rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-shadow:
+        0 2px 2px #000,
+        0 0 18px rgba(176,90,215,.13),
+        0 9px 28px rgba(193,80,26,.08);
+    }
+
+    .enter-church {
+      min-width: min(360px, 88vw);
+      min-height: 58px;
+      padding: 10px 30px;
+      border: 1px solid rgba(198,112,225,.58);
+      color: #f0ddc1;
+      background:
+        linear-gradient(180deg, rgba(61,25,74,.32), rgba(7,5,8,.54)),
+        url("assets/church-ui-panel.webp") center / cover no-repeat;
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.06),
+        0 0 20px rgba(128,47,158,.12),
+        0 8px 28px rgba(0,0,0,.56);
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(.78rem, 2vw, 1rem);
+      font-weight: 700;
+      letter-spacing: .15em;
+      cursor: pointer;
+      transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+    }
+
+    .enter-church:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.12);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        0 0 27px rgba(157,67,190,.20),
+        0 8px 30px rgba(0,0,0,.62);
+    }
+
+    .gate-hint {
+      margin: 13px 0 0;
+      color: #997fa3;
+      font-family: "Cinzel", Georgia, serif;
+      font-size: clamp(.55rem, 1.7vw, .70rem);
+      letter-spacing: .14em;
+    }
+
+    .church-gate.entered {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Music toggle only appears after entering. */
+    .music-toggle {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 120;
+      display: none;
+      min-height: 34px;
+      padding: 0 11px;
+      border: 1px solid rgba(176,90,215,.28);
+      color: #a98cb6;
+      background: rgba(7,5,8,.86);
+      box-shadow: 0 5px 18px rgba(0,0,0,.34);
+      font-family: "Cinzel", Georgia, serif;
+      font-size: .57rem;
+      letter-spacing: .08em;
+      cursor: pointer;
+      backdrop-filter: blur(7px);
+    }
+
+    body.church-entered .music-toggle {
+      display: block;
+    }
+
+    .music-toggle:hover {
+      color: #dbc7e4;
+      border-color: rgba(176,90,215,.50);
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .ornamental-divider {
+        width: 96%;
+        margin-top: 7px;
+      }
+
+      .footer-brazier {
+        width: 76px;
+        height: 104px;
+      }
+
+      .church-gate::before {
+        inset: 1.5%;
+        background-size: cover;
+      }
+
+      .gate-content {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .music-toggle {
+        right: 9px;
+        bottom: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .church-gate {
+        transition: none;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
+
+  <div id="church-gate" class="church-gate" role="dialog" aria-modal="true" aria-label="Enter the Church of Overlord">
+    <div class="gate-shade"></div>
+    <div class="gate-content">
+      <img class="gate-emblem" src="assets/paagrio-flame-emblem.webp" alt="">
+      <div class="gate-title">THE CHURCH OF OVERLORD</div>
+      <button id="enter-church" class="enter-church" type="button">ENTER THE CHURCH</button>
+      <p class="gate-hint">ENTER AND STAND BEFORE THE FLAME</p>
+    </div>
+  </div>
+
+  <audio id="church-music" loop preload="auto">
+    <source src="assets/orc-village-theme.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute music" aria-pressed="false">
+    ♪ MUSIC ON
+  </button>
+
   <header class="hero">
-    <img class="hero-banner" src="assets/banner.png" alt="The Church of Overlord banner">
+    <img class="hero-banner" src="assets/banner-temple.webp" alt="The Church of Overlord banner">
   </header>
 
   <nav class="tabs" aria-label="Main sections">
@@ -1156,6 +1462,7 @@
       <div class="page-heading">
         <h1>KEEPERS OF THE FLAME</h1>
         <p class="section-intro">· THEY STOOD WITH THE FLAME WHEN THE GATES WERE CLOSED ·</p>
+        <img class="ornamental-divider" src="assets/paagrio-divider.webp" alt="">
       </div>
 
       <div class="non-believers-panel">
@@ -1168,7 +1475,7 @@
 
         <div class="non-believers-ending">
           <span></span>
-          <p>· THE FLAME REMEMBERS IT'S FAITHFUL ·</p>
+          <p>· THE FLAME REMEMBERS ITS FAITHFUL ·</p>
           <span></span>
         </div>
       </div>
@@ -1178,6 +1485,7 @@
       <div class="page-heading">
         <h1>NON-BELIEVERS</h1>
         <p class="section-intro">· THE FLAME AWAITS THOSE WHO HAVE YET TO SEE ·</p>
+        <img class="ornamental-divider" src="assets/paagrio-divider.webp" alt="">
       </div>
 
       <div class="non-believers-panel">
@@ -1210,6 +1518,7 @@
   </main>
 
   <footer>
+    <img class="footer-brazier" src="assets/paagrio-footer-brazier.webp" alt="">
     <img class="footer-sigil" src="assets/symbol.png" alt="">
     <p>· PRAISE PA'AGRIO · HONOR THE ANCESTORS · TRUST THE LORD ·</p>
   </footer>
@@ -1244,5 +1553,69 @@
       false
     );
   </script>
+
+  <script>
+    (() => {
+      const gate = document.getElementById("church-gate");
+      const enterButton = document.getElementById("enter-church");
+      const music = document.getElementById("church-music");
+      const musicToggle = document.getElementById("music-toggle");
+
+      document.documentElement.classList.add("gate-open");
+      music.volume = 0;
+
+      function fadeVolume(target, duration = 2200) {
+        const start = music.volume;
+        const difference = target - start;
+        const started = performance.now();
+
+        function step(now) {
+          const t = Math.min(1, (now - started) / duration);
+          music.volume = Math.max(0, Math.min(1, start + difference * t));
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      async function enterChurch() {
+        try {
+          await music.play();
+          fadeVolume(0.42, 2200);
+        } catch (_) {
+          /* The click normally authorizes playback. If a browser still refuses,
+             the site continues normally and the music button can retry it. */
+        }
+
+        gate.classList.add("entered");
+        document.body.classList.add("church-entered");
+        document.documentElement.classList.remove("gate-open");
+
+        setTimeout(() => {
+          gate.setAttribute("aria-hidden", "true");
+        }, 900);
+      }
+
+      enterButton.addEventListener("click", enterChurch);
+
+      musicToggle.addEventListener("click", async () => {
+        if (music.paused) {
+          try {
+            await music.play();
+            fadeVolume(0.42, 700);
+            musicToggle.textContent = "♪ MUSIC ON";
+            musicToggle.setAttribute("aria-pressed", "false");
+            musicToggle.setAttribute("aria-label", "Mute music");
+          } catch (_) {}
+          return;
+        }
+
+        music.pause();
+        musicToggle.textContent = "♪ MUSIC OFF";
+        musicToggle.setAttribute("aria-pressed", "true");
+        musicToggle.setAttribute("aria-label", "Play music");
+      });
+    })();
+  </script>
+
 </body>
 </html>
