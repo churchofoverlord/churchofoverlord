@@ -1553,6 +1553,241 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       IMAGE BUTTONS
+       The generated artwork is now the actual visual button.
+       ========================================================== */
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .tab-button,
+    .tab-button.active,
+    .tab-button:hover {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      min-height: 0 !important;
+      height: auto !important;
+      padding: 0 !important;
+
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: none !important;
+      background-image: none !important;
+      box-shadow: none !important;
+
+      color: transparent !important;
+      overflow: visible !important;
+      line-height: 0 !important;
+      filter: none !important;
+    }
+
+    .tab-button-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 54px;
+      object-fit: contain;
+      pointer-events: none;
+      transition:
+        transform 150ms ease,
+        filter 150ms ease,
+        opacity 150ms ease;
+    }
+
+    .tab-button:hover .tab-button-image {
+      transform: translateY(-1px);
+      filter:
+        brightness(1.10)
+        drop-shadow(0 0 7px rgba(176, 90, 215, 0.14));
+    }
+
+    .tab-button.active .tab-button-image {
+      filter:
+        brightness(1.13)
+        drop-shadow(0 0 9px rgba(176, 90, 215, 0.18));
+    }
+
+    /* Remove the old purple active underline too: the artwork itself is enough. */
+    .tab-button::after,
+    .tab-button.active::after {
+      display: none !important;
+      content: none !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Entrance button uses its own generated image too. */
+    .enter-church,
+    .enter-church:hover {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      width: min(620px, 92vw) !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: none !important;
+      background-image: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      overflow: visible !important;
+      line-height: 0 !important;
+    }
+
+    .enter-church-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      transition:
+        transform 160ms ease,
+        filter 160ms ease;
+    }
+
+    .enter-church:hover .enter-church-image {
+      transform: translateY(-1px) scale(1.01);
+      filter:
+        brightness(1.08)
+        drop-shadow(0 0 12px rgba(176, 90, 215, 0.13));
+    }
+
+    @media (min-width: 761px) {
+      .tabs {
+        gap: 8px;
+        padding-top: 10px;
+        padding-bottom: 9px;
+      }
+
+      .tab-button {
+        flex: 1 1 0 !important;
+        max-width: 240px;
+      }
+
+      .tab-button-image {
+        max-height: 50px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .tabs {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 4px !important;
+        padding: 7px 5px 8px !important;
+      }
+
+      .tab-button {
+        width: 100% !important;
+      }
+
+      .tab-button-image {
+        width: 100%;
+        max-height: none;
+      }
+
+      .enter-church {
+        width: min(520px, 94vw) !important;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* ==========================================================
+       CHURCH BANNER + ENTRANCE UPDATE
+       ========================================================== */
+
+    /* Main Church page: Pa'agrio Temple directly behind the banner. */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      padding: clamp(14px, 2vw, 26px);
+      background:
+        linear-gradient(rgba(0,0,0,.46), rgba(0,0,0,.58)),
+        url("assets/paagrio-temple-bg.webp") center 48% / cover no-repeat,
+        #030203 !important;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(207, 89, 28, .13), transparent 34%),
+        linear-gradient(90deg, rgba(0,0,0,.34), transparent 22%, transparent 78%, rgba(0,0,0,.34));
+    }
+
+    .hero-banner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, 100%) !important;
+      max-height: clamp(220px, 34vw, 430px) !important;
+      object-fit: contain !important;
+      background: transparent !important;
+      filter:
+        drop-shadow(0 12px 24px rgba(0,0,0,.62))
+        drop-shadow(0 0 10px rgba(121,47,151,.08));
+    }
+
+    /* Entrance: the Church banner itself replaces the old title + Pa'agrio emblem. */
+    .gate-church-banner {
+      display: block;
+      width: min(900px, 92vw);
+      max-height: min(52vh, 460px);
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto clamp(16px, 2.2vh, 28px);
+      filter:
+        drop-shadow(0 16px 34px rgba(0,0,0,.72))
+        drop-shadow(0 0 13px rgba(129,49,157,.09));
+    }
+
+    /* Old entrance title/emblem are no longer used. */
+    .gate-emblem,
+    .gate-title {
+      display: none !important;
+    }
+
+    .gate-content {
+      width: min(1040px, calc(100% - 28px));
+      padding-top: 20px;
+      padding-bottom: 28px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 9px;
+      }
+
+      .hero-banner {
+        max-height: clamp(150px, 42vw, 270px) !important;
+      }
+
+      .gate-church-banner {
+        width: min(96vw, 760px);
+        max-height: 43vh;
+        margin-bottom: 14px;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -1560,9 +1795,8 @@
   <div id="church-gate" class="church-gate" role="dialog" aria-modal="true" aria-label="Enter the Church of Overlord">
     <div class="gate-shade"></div>
     <div class="gate-content">
-      <img class="gate-emblem" src="assets/paagrio-flame-emblem.webp" alt="">
-      <div class="gate-title">THE CHURCH OF OVERLORD</div>
-      <button id="enter-church" class="enter-church" type="button">ENTER THE CHURCH</button>
+<img class="gate-church-banner" src="assets/banner-temple.webp" alt="The Church of Overlord">
+      <button id="enter-church" class="enter-church" type="button"><img class="enter-church-image" src="assets/button-enter.webp" alt="ENTER THE CHURCH"><span class="sr-only">ENTER THE CHURCH</span></button>
       <p class="gate-hint">ENTER AND STAND BEFORE THE FLAME</p>
     </div>
   </div>
@@ -1580,12 +1814,12 @@
   </header>
 
   <nav class="tabs" aria-label="Main sections">
-    <button type="button" class="tab-button active" data-tab="home">CHURCH OF OVERLORD</button>
-    <button type="button" class="tab-button" data-tab="ten-laws">TEN LAWS</button>
-    <button type="button" class="tab-button" data-tab="doctrine">DOCTRINE</button>
-    <button type="button" class="tab-button" data-tab="trial-of-exile">TRIAL OF EXILE</button>
-    <button type="button" class="tab-button" data-tab="keepers">KEEPERS OF THE FLAME</button>
-    <button type="button" class="tab-button" data-tab="non-believers">NON-BELIEVERS</button>
+    <button type="button" class="tab-button active" data-tab="home"><img class="tab-button-image" src="assets/button-home.webp" alt="CHURCH OF OVERLORD"><span class="sr-only">CHURCH OF OVERLORD</span></button>
+    <button type="button" class="tab-button" data-tab="ten-laws"><img class="tab-button-image" src="assets/button-ten-laws.webp" alt="TEN LAWS"><span class="sr-only">TEN LAWS</span></button>
+    <button type="button" class="tab-button" data-tab="doctrine"><img class="tab-button-image" src="assets/button-doctrine.webp" alt="DOCTRINE"><span class="sr-only">DOCTRINE</span></button>
+    <button type="button" class="tab-button" data-tab="trial-of-exile"><img class="tab-button-image" src="assets/button-trial-of-exile.webp" alt="TRIAL OF EXILE"><span class="sr-only">TRIAL OF EXILE</span></button>
+    <button type="button" class="tab-button" data-tab="keepers"><img class="tab-button-image" src="assets/button-keepers.webp" alt="KEEPERS OF THE FLAME"><span class="sr-only">KEEPERS OF THE FLAME</span></button>
+    <button type="button" class="tab-button" data-tab="non-believers"><img class="tab-button-image" src="assets/button-non-believers.webp" alt="NON-BELIEVERS"><span class="sr-only">NON-BELIEVERS</span></button>
   </nav>
 
   <main>
