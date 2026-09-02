@@ -729,6 +729,237 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       FULL AESTHETIC PASS
+       Decorative only — preserves current layout and assets.
+       ========================================================== */
+
+    /* Overall content vignette / ritual ambience */
+    main {
+      position: relative;
+      isolation: isolate;
+    }
+
+    main::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 22%, rgba(111, 42, 143, 0.075), transparent 38rem),
+        linear-gradient(90deg, rgba(0,0,0,0.26), transparent 20%, transparent 80%, rgba(0,0,0,0.26)),
+        linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.24) 100%);
+    }
+
+    /* Page titles: restrained purple ambient halo */
+    .page-heading h1 {
+      position: relative;
+      z-index: 1;
+      text-shadow:
+        0 0 14px rgba(176, 90, 215, 0.13),
+        0 0 32px rgba(122, 47, 157, 0.08);
+    }
+
+    .page-heading::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -28px;
+      width: min(620px, 86vw);
+      height: 92px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      background: radial-gradient(ellipse, rgba(146, 62, 181, 0.105), transparent 68%);
+      filter: blur(5px);
+    }
+
+    /* Ornamental divider replacing the plain heading line */
+    .page-heading::after {
+      content: "◆";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(720px, 82%);
+      height: 15px;
+      margin: 18px auto 0;
+      color: rgba(176, 90, 215, 0.62);
+      font-size: 0.48rem;
+      line-height: 1;
+      letter-spacing: 0;
+      background:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(176, 90, 215, 0.06) 8%,
+          rgba(176, 90, 215, 0.38) 42%,
+          transparent 42.2%,
+          transparent 57.8%,
+          rgba(176, 90, 215, 0.38) 58%,
+          rgba(176, 90, 215, 0.06) 92%,
+          transparent 100%)
+        center / 100% 1px no-repeat;
+      text-shadow: 0 0 8px rgba(176, 90, 215, 0.55);
+    }
+
+    /* Keepers: colder silver-purple identity */
+    #keepers .page-heading h1 {
+      color: #e6ddea;
+      text-shadow:
+        0 0 12px rgba(213, 190, 224, 0.12),
+        0 0 28px rgba(157, 73, 190, 0.13);
+    }
+
+    #keepers .page-heading::after {
+      color: rgba(205, 181, 218, 0.72);
+      background:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(201, 181, 214, 0.05) 8%,
+          rgba(174, 127, 194, 0.38) 42%,
+          transparent 42.2%,
+          transparent 57.8%,
+          rgba(174, 127, 194, 0.38) 58%,
+          rgba(201, 181, 214, 0.05) 92%,
+          transparent 100%)
+        center / 100% 1px no-repeat;
+    }
+
+    /* Non-Believers: aged gold with a trace of purple */
+    #non-believers .page-heading h1 {
+      color: #e4d1ad;
+      text-shadow:
+        0 0 12px rgba(194, 145, 58, 0.11),
+        0 0 28px rgba(122, 47, 157, 0.07);
+    }
+
+    #non-believers .page-heading::after {
+      color: rgba(196, 151, 75, 0.66);
+      background:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(194, 145, 58, 0.04) 8%,
+          rgba(194, 145, 58, 0.31) 42%,
+          transparent 42.2%,
+          transparent 57.8%,
+          rgba(194, 145, 58, 0.31) 58%,
+          rgba(194, 145, 58, 0.04) 92%,
+          transparent 100%)
+        center / 100% 1px no-repeat;
+      text-shadow: 0 0 8px rgba(194, 145, 58, 0.30);
+    }
+
+    /* Exile status: proper ritual status indicator */
+    .exile-status::before {
+      content: "◆";
+      display: inline-block;
+      margin-right: 9px;
+      color: #c878e8;
+      font-size: 0.65em;
+      vertical-align: 0.12em;
+      text-shadow:
+        0 0 5px rgba(200, 120, 232, 0.72),
+        0 0 12px rgba(176, 90, 215, 0.36);
+      animation: exile-status-pulse 5s ease-in-out infinite;
+    }
+
+    @keyframes exile-status-pulse {
+      0%, 100% { opacity: 0.62; }
+      50% { opacity: 1; }
+    }
+
+    /* Sacred-document treatment: remove the obvious rectangular UI feel
+       and let a restrained purple aura sit behind the parchment. */
+    .document-image {
+      border-color: rgba(176, 90, 215, 0.18);
+      background: linear-gradient(145deg, rgba(122, 47, 157, 0.08), rgba(255,255,255,0.008));
+      box-shadow:
+        0 24px 72px rgba(0, 0, 0, 0.68),
+        0 0 26px rgba(122, 47, 157, 0.10),
+        0 0 64px rgba(105, 34, 136, 0.075);
+    }
+
+    /* Desktop navigation: faint engraved-metal inner treatment */
+    @media (min-width: 761px) {
+      .tab-button {
+        border-color: rgba(176, 90, 215, 0.24);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.035), transparent 18%),
+          linear-gradient(180deg, rgba(31, 25, 34, 0.88), rgba(8, 7, 10, 0.96));
+        box-shadow:
+          inset 0 1px 0 rgba(226, 211, 232, 0.055),
+          inset 0 -1px 0 rgba(0,0,0,0.72),
+          0 2px 5px rgba(0,0,0,0.22);
+      }
+
+      .tab-button:hover {
+        box-shadow:
+          inset 0 1px 0 rgba(231, 213, 238, 0.075),
+          inset 0 -1px 0 rgba(0,0,0,0.76),
+          0 0 12px rgba(122, 47, 157, 0.10);
+      }
+
+      .tab-button.active {
+        box-shadow:
+          inset 0 1px 0 rgba(235, 216, 242, 0.085),
+          inset 0 -1px 0 rgba(0,0,0,0.78),
+          0 0 16px rgba(122, 47, 157, 0.12);
+      }
+    }
+
+    /* Footer: formal ornamental ending */
+    footer::before {
+      content: "◆";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(620px, 78%);
+      height: 15px;
+      margin: 0 auto 23px;
+      color: rgba(176, 90, 215, 0.46);
+      font-size: 0.42rem;
+      background:
+        linear-gradient(90deg,
+          transparent,
+          rgba(176, 90, 215, 0.28) 42%,
+          transparent 42.2%,
+          transparent 57.8%,
+          rgba(176, 90, 215, 0.28) 58%,
+          transparent)
+        center / 100% 1px no-repeat;
+      text-shadow: 0 0 7px rgba(176, 90, 215, 0.42);
+    }
+
+    .footer-sigil {
+      opacity: 0.66;
+      filter: drop-shadow(0 0 8px rgba(122, 47, 157, 0.13));
+    }
+
+    /* Keep motion restrained for users who prefer reduced motion. */
+    @media (prefers-reduced-motion: reduce) {
+      .exile-status::before {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-heading::before {
+        top: -22px;
+        height: 76px;
+      }
+
+      .page-heading::after {
+        width: 88%;
+        margin-top: 14px;
+      }
+
+      footer::before {
+        width: 84%;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
