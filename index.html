@@ -1318,6 +1318,55 @@
 }
 </style>
 
+
+<style>
+/* ==========================================================
+   HERO BACKGROUND EXTENSION + 70% BANNER SCALE
+   ========================================================== */
+
+/* Extend the same warm near-black page background behind
+   the transparent areas of the top banner. */
+.hero {
+  background:
+    linear-gradient(
+      180deg,
+      #0c0804 0%,
+      #0b0704 28%,
+      #080504 58%,
+      #050405 82%,
+      #030204 100%
+    ) !important;
+}
+
+/* Reduce the visible banner to 70% of its previous size
+   while preserving its original proportions. */
+.hero-unified-image {
+  display: block !important;
+  width: 70% !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+}
+
+/* Keep the blend below the hero continuous with the page. */
+.hero::after {
+  background: linear-gradient(
+    180deg,
+    rgba(12,8,4,.92) 0%,
+    rgba(12,8,4,.58) 45%,
+    rgba(12,8,4,0) 100%
+  ) !important;
+}
+
+/* On small screens keep enough width for the title to remain readable. */
+@media (max-width: 700px) {
+  .hero-unified-image {
+    width: 92% !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
