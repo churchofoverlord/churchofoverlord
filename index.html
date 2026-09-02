@@ -832,6 +832,66 @@
     }
   </style>
 
+
+  <style>
+    /* ==========================================================
+       UNIFIED MAIN HERO
+       The uploaded image now replaces:
+       - main banner
+       - separate Pa'agrio temple background
+       - metal divider
+       Entrance screen remains unchanged.
+       ========================================================== */
+
+    .hero {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #020203 !important;
+    }
+
+    .hero::before,
+    .hero::after {
+      display: none !important;
+      content: none !important;
+      background: none !important;
+    }
+
+    .hero-unified-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      margin: 0 auto;
+      object-fit: contain;
+      filter: none;
+    }
+
+    /* Old standalone divider is no longer used. */
+    .hero-divider {
+      display: none !important;
+    }
+
+    /* Navigation now begins immediately beneath the unified artwork. */
+    .tabs {
+      margin-top: 0 !important;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 0 !important;
+      }
+
+      .hero-unified-image {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -854,12 +914,8 @@
   <button id="music-toggle" class="music-toggle" type="button" aria-label="Mute music" aria-pressed="false">♪ MUSIC ON</button>
 
   <header class="hero">
-    <img class="hero-banner" src="assets/banner-temple.png" alt="The Church of Overlord banner">
+    <img class="hero-unified-image" src="assets/church-hero-unified.png" alt="The Church of Overlord">
   </header>
-
-  <div class="hero-divider" aria-hidden="true">
-    <img src="assets/metal-divider.png" alt="">
-  </div>
 
   <nav class="tabs" aria-label="Main sections">
     <button type="button" class="tab-button active" data-tab="home">
